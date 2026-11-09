@@ -1,0 +1,10 @@
+---
+import Base from '../layouts/Base.astro';
+import { apps } from '../data/apps';
+---
+<Base title="Поддержка приложений · bobuk.io" description="Помощь с установкой, обновлением и использованием публичных приложений bobuk.io.">
+  <section class="prose wrap"><p class="eyebrow">Поддержка</p><h1>У каждого вопроса<br />есть своё место.</h1><p class="lead">Выберите приложение: там собраны инструкции, частые вопросы и ссылка для связи с проектом.</p>
+    {apps.map(app => <a class="support-row" href={`/apps/${app.slug}/support/`}><img src={app.icon} width="56" height="56" alt="" /><span><strong>{app.name}</strong><small>{app.platform} · Установка, интеграции и помощь</small></span><span aria-hidden="true">↗</span></a>)}
+    <h2>О самом сайте</h2><p>Каталог включает только публичные приложения организации <a href="https://github.com/bobuk-io">bobuk-io на GitHub</a>. Этот сайт не использует аналитику, формы сбора данных или cookies приложения. Провайдер хостинга может обрабатывать технические данные HTTP-запросов — его политику нужно учитывать при выборе хостинга.</p>
+  </section>
+</Base>

@@ -1,0 +1,10 @@
+---
+import type { App } from '../data/apps';
+interface Props { app: App; }
+const { app } = Astro.props;
+---
+<figure class="product-shot">
+  <div class="shot-topline"><span>На вашем Mac</span><span aria-hidden="true">⌘</span></div>
+  <img src={app.screenshot} alt="Окно Splash Finish: один запрос внимания и две завершённые задачи от Claude Code, Codex и pi" width="516" height="624" fetchpriority="high" />
+  <figcaption><span class="live-dot" aria-hidden="true"></span> Меньше переключений. Больше спокойствия.</figcaption>
+</figure>

@@ -1,0 +1,15 @@
+{
+  "name": "bobuk-io-landing",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.23.4", "npm": ">=9.6.5" },
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1",
+    "build": "astro check && astro build",
+    "preview": "astro preview --host 127.0.0.1",
+    "sync:github": "node scripts/sync-github.mjs",
+    "test": "node --test scripts/site.test.mjs"
+  },
+  "dependencies": { "astro": "^7.4.7" },
+  "devDependencies": { "@astrojs/check": "^0.9.5", "typescript": "^5.9.3" }
+}
