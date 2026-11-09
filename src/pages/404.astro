@@ -1,4 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import { locales, ui, localPath } from '../i18n';
 ---
-<Base title="Страница не найдена · bobuk.io" description="Вернитесь к каталогу приложений bobuk.io." noindex><section class="prose wrap"><p class="eyebrow">404 / Здесь пусто</p><h1>Кажется, не туда.</h1><p class="lead">Страница переехала или ещё не появилась.</p><a class="button" href="/">К приложениям →</a></section></Base>
+<Base title="Page not found · bobuk.io" description="Return to the bobuk.io apps catalog." locale="en" route="404" noindex>
+  <section class="prose wrap"><p class="eyebrow">404 / {ui.en.notFound}</p><h1>{ui.en.notFoundTitle}</h1>{locales.map(locale => <section lang={locale} class="not-found-language"><p>{ui[locale].notFoundText}</p><a class="text-link" href={localPath(locale)}>{ui[locale].back} →</a></section>)}</section>
+</Base>

@@ -1,6 +1,7 @@
 {
   "organization": "bobuk-io",
   "repositories": [
+    "HAScS",
     "bobuk-io.github.io",
     "splash-finish"
   ]
