@@ -10,7 +10,7 @@ export const splashCopy: Record<Locale, AppCopy> = {
     features: [
       { title: 'One place for everything', text: 'Completed tasks and requests for attention from Claude Code, Codex, and pi share one window.' },
       { title: 'Back to the context', text: 'Click a notification to return to its source. Exact navigation depends on your terminal and integration.' },
-      { title: 'At your own pace', text: 'Snooze notifications, respect Do Not Disturb, or open the inbox with ⌥⌘S.' },
+      { title: 'At your own pace', text: 'Snooze notifications, respect Do Not Disturb, pick a light or dark theme, or open the inbox with ⌥⌘S.' },
       { title: 'Local by default', text: 'No app account or analytics. The inbox stays on your Mac; updates come from GitHub.' },
     ],
     installNote: 'The installer requires Python 3.10+.',
@@ -19,7 +19,8 @@ export const splashCopy: Record<Locale, AppCopy> = {
       { title: 'Connect your agents', text: 'In Claude Code, start a new session. In Codex, review and trust hooks via /hooks. In pi, run /reload.', command: 'splash-finish install-skills' },
     ],
     faq: [
-      { question: 'What’s new in 0.3.8?', answer: 'Less noise from pi: browsing idle menus such as /jewter no longer opens Splash Finish or clears completed items. Questions and approvals during an agent run still notify you. Managed workers can opt out with SPLASH_FINISH_DISABLED=1.' },
+      { question: 'What’s new in 0.3.9?', answer: 'A light theme. Open Settings… (⌘,) from the menu bar icon and choose Light or Dark; the panel stays dark until you switch. Start at Login, Respect Do Not Disturb, and installing or removing agent skills now live in Settings too.' },
+      { question: 'What changed in 0.3.8?', answer: 'Less noise from pi: browsing idle menus such as /jewter no longer opens Splash Finish or clears completed items. Questions and approvals during an agent run still notify you. Managed workers can opt out with SPLASH_FINISH_DISABLED=1.' },
       { question: 'Is this an App Store app?', answer: 'Not yet. A signed and notarized version is available through GitHub Releases. An App Store link will appear after publication.' },
       { question: 'Do I need all three agents?', answer: 'No. Install just one integration: splash-finish install-skills --agent pi. Replace pi with claude or codex as needed.' },
       { question: 'How do I update or uninstall?', answer: 'Use Check for Updates in the app menu or run the installer again. After updating to 0.3.8, run splash-finish install-skills to refresh integrations, then /reload in existing pi sessions. To uninstall, first run splash-finish uninstall-skills, quit the app, and remove it from ~/Applications. See Support for data removal details.' },
@@ -47,7 +48,7 @@ export const splashCopy: Record<Locale, AppCopy> = {
     features: [
       { title: 'Всё в одном месте', text: 'Завершённые задачи и запросы внимания от Claude Code, Codex и pi собираются в общем окне.' },
       { title: 'Назад к контексту', text: 'Нажмите на уведомление, чтобы вернуться к источнику. Точный переход зависит от терминала и интеграции.' },
-      { title: 'В вашем ритме', text: 'Отложите уведомления, включите учёт режима «Не беспокоить» или откройте инбокс сочетанием ⌥⌘S.' },
+      { title: 'В вашем ритме', text: 'Отложите уведомления, включите учёт режима «Не беспокоить», выберите светлую или тёмную тему или откройте инбокс сочетанием ⌥⌘S.' },
       { title: 'Локально по умолчанию', text: 'Без аккаунта и аналитики приложения. Инбокс хранится на Mac; обновления загружаются с GitHub.' },
     ],
     installNote: 'Для установщика нужен Python 3.10+.',
@@ -56,7 +57,8 @@ export const splashCopy: Record<Locale, AppCopy> = {
       { title: 'Подключите агентов', text: 'В Claude Code начните новую сессию; в Codex подтвердите hooks через /hooks; в pi выполните /reload.', command: 'splash-finish install-skills' },
     ],
     faq: [
-      { question: 'Что нового в 0.3.8?', answer: 'Меньше шума от pi: просмотр меню при простое, например /jewter, больше не открывает Splash Finish и не убирает завершённые задачи. Вопросы и подтверждения во время работы агента по-прежнему вызывают уведомления. Для управляемых воркеров добавлен флаг SPLASH_FINISH_DISABLED=1.' },
+      { question: 'Что нового в 0.3.9?', answer: 'Светлая тема. Откройте Settings… (⌘,) из значка в строке меню и выберите Light или Dark; до переключения панель остаётся тёмной. Start at Login, Respect Do Not Disturb, установка и удаление навыков агентов теперь тоже находятся в Settings.' },
+      { question: 'Что изменилось в 0.3.8?', answer: 'Меньше шума от pi: просмотр меню при простое, например /jewter, больше не открывает Splash Finish и не убирает завершённые задачи. Вопросы и подтверждения во время работы агента по-прежнему вызывают уведомления. Для управляемых воркеров добавлен флаг SPLASH_FINISH_DISABLED=1.' },
       { question: 'Это приложение из App Store?', answer: 'Пока нет. Сейчас доступна подписанная и нотарифицированная версия через GitHub Releases. Ссылка на App Store появится после публикации.' },
       { question: 'Нужно ли подключать все три агента?', answer: 'Нет. Можно установить одну интеграцию: splash-finish install-skills --agent pi. Вместо pi можно указать claude или codex.' },
       { question: 'Как обновить или удалить приложение?', answer: 'Выберите Check for Updates в меню приложения или повторно запустите установщик. После обновления до 0.3.8 выполните splash-finish install-skills для обновления интеграций, затем /reload в открытых сессиях pi. Для удаления выполните splash-finish uninstall-skills, закройте приложение и удалите его из ~/Applications. Подробности удаления данных — в поддержке.' },
@@ -84,7 +86,7 @@ export const splashCopy: Record<Locale, AppCopy> = {
     features: [
       { title: 'Усе в одному місці', text: 'Завершені завдання та запити уваги від Claude Code, Codex і pi збираються в спільному вікні.' },
       { title: 'Назад до контексту', text: 'Натисніть сповіщення, щоб повернутися до джерела. Точний перехід залежить від термінала та інтеграції.' },
-      { title: 'У вашому ритмі', text: 'Відкладіть сповіщення, увімкніть урахування режиму «Не турбувати» або відкрийте інбокс сполученням ⌥⌘S.' },
+      { title: 'У вашому ритмі', text: 'Відкладіть сповіщення, увімкніть урахування режиму «Не турбувати», виберіть світлу або темну тему чи відкрийте інбокс сполученням ⌥⌘S.' },
       { title: 'Локально за замовчуванням', text: 'Без облікового запису й аналітики застосунку. Інбокс зберігається на Mac; оновлення надходять із GitHub.' },
     ],
     installNote: 'Для інсталятора потрібен Python 3.10+.',
@@ -93,7 +95,8 @@ export const splashCopy: Record<Locale, AppCopy> = {
       { title: 'Підключіть агентів', text: 'У Claude Code почніть нову сесію; у Codex підтвердьте hooks через /hooks; у pi виконайте /reload.', command: 'splash-finish install-skills' },
     ],
     faq: [
-      { question: 'Що нового в 0.3.8?', answer: 'Менше шуму від pi: перегляд меню під час простою, наприклад /jewter, більше не відкриває Splash Finish і не прибирає завершені завдання. Запитання та підтвердження під час роботи агента й надалі викликають сповіщення. Для керованих воркерів додано прапорець SPLASH_FINISH_DISABLED=1.' },
+      { question: 'Що нового в 0.3.9?', answer: 'Світла тема. Відкрийте Settings… (⌘,) зі значка в рядку меню та виберіть Light або Dark; до перемикання панель залишається темною. Start at Login, Respect Do Not Disturb, встановлення та видалення навичок агентів тепер теж у Settings.' },
+      { question: 'Що змінилося в 0.3.8?', answer: 'Менше шуму від pi: перегляд меню під час простою, наприклад /jewter, більше не відкриває Splash Finish і не прибирає завершені завдання. Запитання та підтвердження під час роботи агента й надалі викликають сповіщення. Для керованих воркерів додано прапорець SPLASH_FINISH_DISABLED=1.' },
       { question: 'Це застосунок з App Store?', answer: 'Поки ні. Підписана й нотаризована версія доступна через GitHub Releases. Посилання на App Store з’явиться після публікації.' },
       { question: 'Чи потрібно підключати всіх трьох агентів?', answer: 'Ні. Можна встановити одну інтеграцію: splash-finish install-skills --agent pi. Замість pi можна вказати claude або codex.' },
       { question: 'Як оновити або видалити застосунок?', answer: 'Виберіть Check for Updates у меню застосунку або знову запустіть інсталятор. Після оновлення до 0.3.8 виконайте splash-finish install-skills для оновлення інтеграцій, потім /reload у відкритих сесіях pi. Для видалення виконайте splash-finish uninstall-skills, закрийте застосунок і видаліть його з ~/Applications. Подробиці видалення даних — у підтримці.' },
