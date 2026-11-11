@@ -87,6 +87,20 @@ test('both products have their own translated content, structured data, and stor
   assert.match(await readFile(new URL('robots.txt', dist), 'utf8'), /Sitemap:/);
 });
 
+test('Splash Finish release and upgrade instructions are available in every locale', async () => {
+  if (!snapshot.repositories.includes('splash-finish')) return;
+  for (const locale of locales) {
+    for (const section of ['', '/support']) {
+      const source = await html(pathFor(locale, `apps/splash-finish${section}`));
+      assert.ok(source.includes('0.3.8'), `${locale}${section}: release version`);
+      assert.ok(source.includes('/jewter') || section === '/support');
+      assert.ok(source.includes('SPLASH_FINISH_DISABLED=1'), `${locale}${section}: worker opt-out`);
+      assert.ok(source.includes('splash-finish install-skills'), `${locale}${section}: integration refresh`);
+      assert.ok(source.includes('/reload'), `${locale}${section}: pi reload`);
+    }
+  }
+});
+
 test('UI copy is translated, not just the language selector', async () => {
   const expected = { en: ['Less noise.', 'Support'], ru: ['Меньше шума.', 'Поддержка'], uk: ['Менше шуму.', 'Підтримка'] };
   for (const locale of locales) {
