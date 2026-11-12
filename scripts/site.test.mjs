@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile, readdir, access } from 'node:fs/promises';
 const dist = new URL('../dist/', import.meta.url);
 const locales = ['en', 'ru', 'uk'];
-const catalog = [{ slug: 'splash-finish', repo: 'splash-finish', name: 'Splash Finish' }, { slug: 'hascs', repo: 'HAScS', name: 'HAScS' }];
+const catalog = [{ slug: 'splash-finish', repo: 'splash-finish', name: 'Splash Finish' }, { slug: 'hascs', repo: 'HAScS', name: 'HAScS' }, { slug: 'ting', repo: 'ting', name: 'Ting' }];
 const snapshot = JSON.parse(await readFile(new URL('../src/data/public-repos.json', import.meta.url)));
 const active = catalog.filter(app => snapshot.repositories.includes(app.repo));
 const pathFor = (locale, route = '') => `/${locale === 'en' ? '' : locale + '/'}${route ? route + '/' : ''}`;
@@ -64,7 +64,7 @@ test('only verified public apps appear in each language; private apps leave no r
   }
 });
 
-test('both products have their own translated content, structured data, and store URLs', async () => {
+test('all products have their own translated content, structured data, and store URLs', async () => {
   const sitemap = await readFile(new URL('sitemap.xml', dist), 'utf8');
   for (const app of active) for (const locale of locales) {
     const root = pathFor(locale, `apps/${app.slug}`);
@@ -107,5 +107,27 @@ test('UI copy is translated, not just the language selector', async () => {
     const source = await html(pathFor(locale));
     for (const text of expected[locale]) assert.ok(source.includes(text));
     for (const other of locales.filter(other => other !== locale)) assert.ok(!source.includes(expected[other][0]));
+  }
+});
+
+
+test('Ting has localized launcher copy and icon-only artwork without HAScS claims', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  const expected = { en: 'Your next app. A few keys away.', ru: 'Нужное приложение. Несколькими клавишами.', uk: 'Потрібний застосунок. Кількома клавішами.' };
+  for (const locale of locales) {
+    const source = await html(pathFor(locale, 'apps/ting'));
+    assert.ok(source.includes(expected[locale]));
+    assert.ok(source.includes('/images/ting-icon.png'));
+    assert.ok(source.includes('icon-artwork'));
+    assert.ok(source.includes('~/.config/ting/config.json'));
+    assert.ok(source.includes('Home') && source.includes('F13'));
+    assert.ok(!source.includes('Home Assistant'));
+    assert.ok(!source.includes('apps.apple.com'));
+    for (const section of ['support', 'privacy']) {
+      const page = await html(pathFor(locale, `apps/ting/${section}`));
+      assert.ok(page.includes('~/.config/ting/'));
+      assert.ok(page.includes('https://github.com/bobuk-io/ting/security/advisories/new'));
+      assert.ok(!page.includes('Home Assistant'));
+    }
   }
 });

@@ -9,6 +9,6 @@ const copy = app.translations[locale];
 ---
 <figure class:list={['product-shot', { 'icon-artwork': !app.screenshot }]}>
   <div class="shot-topline"><span>{t.onMac}</span><span aria-hidden="true">⌘</span></div>
-  {app.screenshot ? <img src={app.screenshot} alt={copy.screenshotAlt || app.name} width="516" height="624" fetchpriority="high" /> : <div class="artwork-center"><img src={app.icon} alt="" width="256" height="256" /><p>{app.name}</p><span>Home Assistant Scenes Selector</span></div>}
-  <figcaption>{app.screenshot ? <><span class="live-dot" aria-hidden="true"></span>{t.shotCaption}</> : <span>Home Assistant · macOS · 1–9</span>}</figcaption>
+  {app.screenshot ? <img src={app.screenshot} alt={copy.screenshotAlt || app.name} width="516" height="624" fetchpriority="high" /> : <div class="artwork-center"><img src={app.icon} alt="" width="256" height="256" /><p>{app.name}</p><span>{app.slug === 'hascs' ? 'Home Assistant Scenes Selector' : copy.category}</span></div>}
+  <figcaption>{app.screenshot ? <><span class="live-dot" aria-hidden="true"></span>{t.shotCaption}</> : <span>{app.slug === 'hascs' ? 'Home Assistant · macOS · 1–9' : `${copy.category} · ${app.platform}`}</span>}</figcaption>
 </figure>
