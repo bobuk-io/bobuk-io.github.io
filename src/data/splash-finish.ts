@@ -19,6 +19,7 @@ export const splashCopy: Record<Locale, AppCopy> = {
       { title: 'Connect your agents', text: 'In Claude Code, start a new session. In Codex, review and trust hooks via /hooks. In pi, run /reload.', command: 'splash-finish install-skills' },
     ],
     faq: [
+      { question: 'What’s new in 0.3.11?', answer: 'Less noise from temporary Codex sessions used for tab titles and suggestions: hook events with an explicitly null or empty transcript path no longer change the inbox. Normal sessions remain supported, and JSON answers are not filtered by their text.' },
       { question: 'What’s new in 0.3.9?', answer: 'A light theme. Open Settings… (⌘,) from the menu bar icon and choose Light or Dark; the panel stays dark until you switch. Start at Login, Respect Do Not Disturb, and installing or removing agent skills now live in Settings too.' },
       { question: 'What changed in 0.3.8?', answer: 'Less noise from pi: browsing idle menus such as /jewter no longer opens Splash Finish or clears completed items. Questions and approvals during an agent run still notify you. Managed workers can opt out with SPLASH_FINISH_DISABLED=1.' },
       { question: 'Is this an App Store app?', answer: 'Not yet. A signed and notarized version is available through GitHub Releases. An App Store link will appear after publication.' },
@@ -57,6 +58,7 @@ export const splashCopy: Record<Locale, AppCopy> = {
       { title: 'Подключите агентов', text: 'В Claude Code начните новую сессию; в Codex подтвердите hooks через /hooks; в pi выполните /reload.', command: 'splash-finish install-skills' },
     ],
     faq: [
+      { question: 'Что нового в 0.3.11?', answer: 'Меньше лишних уведомлений от временных сессий Codex, которые создают названия вкладок и подсказки. События hooks с явно пустым путём к истории больше не меняют инбокс. Обычные сессии по-прежнему поддерживаются; ответы JSON не фильтруются по тексту.' },
       { question: 'Что нового в 0.3.9?', answer: 'Светлая тема. Откройте Settings… (⌘,) из значка в строке меню и выберите Light или Dark; до переключения панель остаётся тёмной. Start at Login, Respect Do Not Disturb, установка и удаление навыков агентов теперь тоже находятся в Settings.' },
       { question: 'Что изменилось в 0.3.8?', answer: 'Меньше шума от pi: просмотр меню при простое, например /jewter, больше не открывает Splash Finish и не убирает завершённые задачи. Вопросы и подтверждения во время работы агента по-прежнему вызывают уведомления. Для управляемых воркеров добавлен флаг SPLASH_FINISH_DISABLED=1.' },
       { question: 'Это приложение из App Store?', answer: 'Пока нет. Сейчас доступна подписанная и нотарифицированная версия через GitHub Releases. Ссылка на App Store появится после публикации.' },
@@ -95,6 +97,7 @@ export const splashCopy: Record<Locale, AppCopy> = {
       { title: 'Підключіть агентів', text: 'У Claude Code почніть нову сесію; у Codex підтвердьте hooks через /hooks; у pi виконайте /reload.', command: 'splash-finish install-skills' },
     ],
     faq: [
+      { question: 'Що нового в 0.3.11?', answer: 'Менше зайвих сповіщень від тимчасових сесій Codex, які створюють назви вкладок і підказки. Події hooks з явно порожнім шляхом до історії більше не змінюють інбокс. Звичайні сесії й надалі підтримуються; відповіді JSON не фільтруються за текстом.' },
       { question: 'Що нового в 0.3.9?', answer: 'Світла тема. Відкрийте Settings… (⌘,) зі значка в рядку меню та виберіть Light або Dark; до перемикання панель залишається темною. Start at Login, Respect Do Not Disturb, встановлення та видалення навичок агентів тепер теж у Settings.' },
       { question: 'Що змінилося в 0.3.8?', answer: 'Менше шуму від pi: перегляд меню під час простою, наприклад /jewter, більше не відкриває Splash Finish і не прибирає завершені завдання. Запитання та підтвердження під час роботи агента й надалі викликають сповіщення. Для керованих воркерів додано прапорець SPLASH_FINISH_DISABLED=1.' },
       { question: 'Це застосунок з App Store?', answer: 'Поки ні. Підписана й нотаризована версія доступна через GitHub Releases. Посилання на App Store з’явиться після публікації.' },
