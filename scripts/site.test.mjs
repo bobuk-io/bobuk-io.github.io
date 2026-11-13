@@ -111,7 +111,7 @@ test('UI copy is translated, not just the language selector', async () => {
 });
 
 
-test('Ting documents released launcha and its local data in every locale', async () => {
+test('Ting documents release 0.3.1 panel spacing and local launcha data in every locale', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   const headings = {
     en: 'launcha — Ting 0.3.0',
@@ -126,8 +126,10 @@ test('Ting documents released launcha and its local data in every locale', async
       assert.ok(source.includes(text), `${locale}: missing ${text}`);
     }
     const app = await html(pathFor(locale, 'apps/ting'));
-    assert.ok(app.includes('0.3.0') && app.includes('launcha'));
+    assert.ok(app.includes('Ting 0.3.1') && app.includes('launcha'));
     assert.ok(app.includes('Check for Updates'));
+    assert.ok(source.includes('0.3.1'));
+    assert.ok(source.includes('amber top rule') || source.includes('янтарной полосой') || source.includes('бурштиновою смугою'));
     const privacy = await html(pathFor(locale, 'apps/ting/privacy'));
     for (const text of ['launcha-history.json', 'launcha-consent.json', '~/Library', 'Desktop']) {
       assert.ok(privacy.includes(text), `${locale}: missing privacy fact ${text}`);
