@@ -111,6 +111,23 @@ test('UI copy is translated, not just the language selector', async () => {
 });
 
 
+test('Ting documents unreleased launcha and its local data in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  const headings = {
+    en: 'launcha (unreleased)',
+    ru: 'launcha (ещё не выпущено)',
+    uk: 'launcha (ще не випущено)',
+  };
+  for (const locale of locales) {
+    const source = await html(pathFor(locale, 'apps/ting/support'));
+    for (const text of [headings[locale], 'selecta', '/System/Applications', '~/Desktop',
+      '~/Library', 'Spotlight', 'Command-Return', 'Show panel title',
+      '~/Library/Application Support/Ting/launcha-history.json', 'launcha-consent.json']) {
+      assert.ok(source.includes(text), `${locale}: missing ${text}`);
+    }
+  }
+});
+
 test('Ting has localized launcher copy and icon-only artwork without HAScS claims', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   const expected = { en: 'Your next app. A few keys away.', ru: 'Нужное приложение. Несколькими клавишами.', uk: 'Потрібний застосунок. Кількома клавішами.' };
