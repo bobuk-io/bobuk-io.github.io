@@ -126,7 +126,8 @@ test('Ting documents release 0.3.1 panel spacing and local launcha data in every
       assert.ok(source.includes(text), `${locale}: missing ${text}`);
     }
     const app = await html(pathFor(locale, 'apps/ting'));
-    assert.ok(app.includes('Ting 0.3.1') && app.includes('launcha'));
+    assert.ok(app.includes('Ting 0.3.2') && app.includes('Ting 0.3.1') && app.includes('launcha'));
+    assert.ok(source.includes('Ting 0.3.2'));
     assert.ok(app.includes('Check for Updates'));
     assert.ok(source.includes('0.3.1'));
     assert.ok(source.includes('amber top rule') || source.includes('янтарной полосой') || source.includes('бурштиновою смугою'));
