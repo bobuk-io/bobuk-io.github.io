@@ -1,12 +1,12 @@
-import type { AppCopy } from './types';
-import type { Locale } from '../i18n';
+import type { AppCopy } from '../types';
+import type { Locale } from '../../i18n';
 const command = 'curl -fsSL https://raw.githubusercontent.com/bobuk-io/splash-finish/main/install.py | python3 -';
 const scriptUrl = 'https://github.com/bobuk-io/splash-finish/blob/main/install.py';
 // Real screenshots of Splash Finish 0.3.12 with demo notifications. The app UI is English in every locale.
 const inbox = { src: '/images/shots/splash-finish/inbox.webp', width: 470, height: 674 };
 const question = { src: '/images/shots/splash-finish/question.webp', width: 470, height: 724 };
 const light = { src: '/images/shots/splash-finish/inbox-light.webp', width: 470, height: 674 };
-export const splashCopy: Record<Locale, AppCopy> = {
+const copy: Record<Locale, AppCopy> = {
   en: {
     category: 'For working with AI', tagline: 'Your agents work. You stay focused.',
     description: 'One quiet inbox for Claude Code, Codex, and pi. Know when work is done or an agent needs a decision, then return to the right session.',
@@ -143,3 +143,4 @@ export const splashCopy: Record<Locale, AppCopy> = {
     ],
   },
 };
+export default copy;

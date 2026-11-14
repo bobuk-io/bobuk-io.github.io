@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile, readdir, access } from 'node:fs/promises';
 const dist = new URL('../dist/', import.meta.url);
 const locales = ['en', 'ru', 'uk'];
-const catalog = [{ slug: 'splash-finish', repo: 'splash-finish', name: 'Splash Finish' }, { slug: 'hascs', repo: 'HAScS', name: 'HAScS' }, { slug: 'ting', repo: 'ting', name: 'Ting' }];
+const catalog = JSON.parse(await readFile(new URL('../src/data/catalog.json', import.meta.url))).map(app => ({ slug: app.slug, repo: app.repoName, name: app.name }));
 const snapshot = JSON.parse(await readFile(new URL('../src/data/public-repos.json', import.meta.url)));
 const active = catalog.filter(app => snapshot.repositories.includes(app.repo));
 const pathFor = (locale, route = '') => `/${locale === 'en' ? '' : locale + '/'}${route ? route + '/' : ''}`;
@@ -200,5 +200,12 @@ test('the homepage lists the most recently updated app first', async () => {
     const homepage = await html(pathFor(locale));
     const order = active.map(app => [app.slug, homepage.indexOf(`id="app-${app.slug}"`)]).sort((a, b) => a[1] - b[1]).map(([slug]) => slug);
     assert.deepEqual(order, expected, `${locale}: homepage order`);
+  }
+});
+
+test('no scaffold placeholders reach the built site', async () => {
+  for (const file of await htmlFiles(dist)) {
+    const source = await readFile(file, 'utf8');
+    assert.ok(!source.includes('TODO(landing)'), `${file.pathname.slice(dist.pathname.length)} still has TODO(landing) text from npm run app:new`);
   }
 });

@@ -1,12 +1,12 @@
-import type { AppCopy } from './types';
-import type { Locale } from '../i18n';
+import type { AppCopy } from '../types';
+import type { Locale } from '../../i18n';
 // Real screenshots of Ting 0.3.3 with a demo config. The app UI is English; keycaps also show
 // the letter of the active keyboard layout (Russian here), as Ting does for any layout.
 const selecta = { src: '/images/shots/ting/selecta.webp', width: 340, height: 407 };
 const launcha = { src: '/images/shots/ting/launcha.webp', width: 460, height: 250 };
 const light = { src: '/images/shots/ting/selecta-light.webp', width: 340, height: 407 };
 const bindings = { src: '/images/shots/ting/bindings.webp', width: 820, height: 608 };
-export const tingCopy: Record<Locale, AppCopy> = {
+const copy: Record<Locale, AppCopy> = {
   en: {
     category: 'For your keyboard', tagline: 'Your next app. A few keys away.',
     shots: [
@@ -167,3 +167,4 @@ export const tingCopy: Record<Locale, AppCopy> = {
     ],
   },
 };
+export default copy;

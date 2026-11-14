@@ -48,4 +48,4 @@ try {
   await rename(temporary, target);
 } finally { await rm(temporary, { force: true }); }
 console.log(`Verified ${repositories.length} public repositories: ${repositories.join(', ') || '(none)'}.`);
-console.log('Only curated entries in src/data/apps.ts become product pages.');
+console.log('Only apps listed in src/data/catalog.json become product pages.');

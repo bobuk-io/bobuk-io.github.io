@@ -1,8 +1,8 @@
-import type { AppCopy } from './types';
-import type { Locale } from '../i18n';
+import type { AppCopy } from '../types';
+import type { Locale } from '../../i18n';
 // Real screenshots of HAScS 0.3.2 with five demo scenes; the app UI follows the page language.
 const shot = (name: string, locale: Locale, width = 622, height = 505) => ({ src: `/images/shots/hascs/${name}-${locale}.webp`, width, height });
-export const hascsCopy: Record<Locale, AppCopy> = {
+const copy: Record<Locale, AppCopy> = {
   en: {
     category: 'For your home', tagline: 'Your home scenes. One key away.',
     shots: [
@@ -130,3 +130,4 @@ export const hascsCopy: Record<Locale, AppCopy> = {
     ],
   },
 };
+export default copy;
