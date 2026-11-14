@@ -9,7 +9,7 @@ const en = {
   siteTitle: 'Small apps for things that matter', siteDescription: 'Independent bobuk.io apps with public source code. Made for real tasks, without the noise.',
   skip: 'Skip to content', home: 'Home', apps: 'Apps', support: 'Support', code: 'Source code', language: 'Language',
   eyebrow: 'Independent apps. Public source code.', hero: 'Less noise.', heroSoft: 'More of your own work.', intro: 'Small tools that solve a specific problem. Made with respect for your time.', findApp: 'Find your app', catalog: 'public catalog',
-  explore: 'Take a look', install: 'Install', requirements: 'macOS 14+ · Apple silicon and Intel', companions: 'Works with', onMac: 'On your Mac', shotCaption: 'Less switching. More peace of mind.',
+  explore: 'Take a look', install: 'Install', requirements: 'macOS 14+ · Apple silicon and Intel', companions: 'Works with', onMac: 'On your Mac', screenshots: 'screenshots', prevShot: 'Previous screenshot', nextShot: 'Next screenshot', shotOf: (n: number, total: number) => `Screenshot ${n} of ${total}`,
   principles: [
     { label: '01 / Focused', title: 'One thing. Done well.', text: 'Not an everything app. A useful tool that fits into an ordinary day.' },
     { label: '02 / In the open', title: 'The code is no secret.', text: 'Only public bobuk-io projects are listed here. See how they work and suggest improvements.' },
@@ -27,7 +27,7 @@ const ru: UI = {
   siteTitle: 'Небольшие приложения для больших дел', siteDescription: 'Независимые приложения bobuk.io с публичным исходным кодом. Сделаны для реальных задач, без лишнего шума.',
   skip: 'К содержимому', home: 'Главная', apps: 'Приложения', support: 'Поддержка', code: 'Исходный код', language: 'Язык',
   eyebrow: 'Независимые приложения с публичным кодом', hero: 'Меньше шума.', heroSoft: 'Больше своего дела.', intro: 'Небольшие инструменты, которые решают конкретную задачу. Сделаны с вниманием к вашему времени.', findApp: 'Найти своё приложение', catalog: 'публичный каталог',
-  explore: 'Познакомиться', install: 'Установить', requirements: 'macOS 14+ · Apple silicon и Intel', companions: 'В компании с', onMac: 'На вашем Mac', shotCaption: 'Меньше переключений. Больше спокойствия.',
+  explore: 'Познакомиться', install: 'Установить', requirements: 'macOS 14+ · Apple silicon и Intel', companions: 'В компании с', onMac: 'На вашем Mac', screenshots: 'скриншоты', prevShot: 'Предыдущий скриншот', nextShot: 'Следующий скриншот', shotOf: (n: number, total: number) => `Скриншот ${n} из ${total}`,
   principles: [
     { label: '01 / По делу', title: 'Одна задача. Хорошо.', text: 'Не комбайн на все случаи жизни, а инструмент, которому находится место в обычном дне.' },
     { label: '02 / Открыто', title: 'Код — не секрет.', text: 'В каталоге только публичные проекты bobuk-io. Можно посмотреть, как всё устроено, и предложить улучшение.' },
@@ -44,7 +44,7 @@ const uk: UI = {
   siteTitle: 'Невеликі застосунки для важливих справ', siteDescription: 'Незалежні застосунки bobuk.io з публічним вихідним кодом. Для справжніх завдань, без зайвого шуму.',
   skip: 'До вмісту', home: 'Головна', apps: 'Застосунки', support: 'Підтримка', code: 'Вихідний код', language: 'Мова',
   eyebrow: 'Незалежні застосунки з публічним кодом', hero: 'Менше шуму.', heroSoft: 'Більше власної справи.', intro: 'Невеликі інструменти, що розв’язують конкретне завдання. Створені з повагою до вашого часу.', findApp: 'Знайти свій застосунок', catalog: 'публічний каталог',
-  explore: 'Познайомитися', install: 'Встановити', requirements: 'macOS 14+ · Apple silicon та Intel', companions: 'Працює разом із', onMac: 'На вашому Mac', shotCaption: 'Менше перемикань. Більше спокою.',
+  explore: 'Познайомитися', install: 'Встановити', requirements: 'macOS 14+ · Apple silicon та Intel', companions: 'Працює разом із', onMac: 'На вашому Mac', screenshots: 'знімки екрана', prevShot: 'Попередній знімок екрана', nextShot: 'Наступний знімок екрана', shotOf: (n: number, total: number) => `Знімок екрана ${n} з ${total}`,
   principles: [
     { label: '01 / По суті', title: 'Одна справа. Добре.', text: 'Не комбайн на всі випадки життя, а інструмент, якому є місце у звичайному дні.' },
     { label: '02 / Відкрито', title: 'Код — не секрет.', text: 'У каталозі лише публічні проєкти bobuk-io. Можна побачити, як усе влаштовано, і запропонувати покращення.' },

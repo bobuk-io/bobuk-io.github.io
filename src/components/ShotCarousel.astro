@@ -1,0 +1,83 @@
+---
+// Screenshot carousel. Without JavaScript it is a horizontally scrollable, snapping strip;
+// the script adds arrows, dots, a counter and arrow-key navigation. No autoplay.
+import type { App } from '../data/apps';
+import { ui } from '../i18n';
+import type { Locale } from '../i18n';
+interface Props { app: App; locale: Locale; priority?: boolean; }
+const { app, locale, priority = false } = Astro.props;
+const t = ui[locale];
+const shots = app.translations[locale].shots;
+const pad = (n: number) => String(n).padStart(2, '0');
+---
+<div class="shots" role="region" aria-roledescription="carousel" aria-label={`${app.name} — ${t.screenshots}`} data-carousel>
+  <div class="shot-topline"><span>{t.onMac}</span><span aria-hidden="true">{shots.length > 1 ? <><span data-current>01</span> / {pad(shots.length)}</> : '⌘'}</span></div>
+  <ul class="shot-track" tabindex="0">
+    {shots.map((shot, i) => <li class="shot-slide" aria-roledescription="slide" aria-label={t.shotOf(i + 1, shots.length)}>
+      <figure>
+        <div class="shot-frame"><img src={shot.src} width={shot.width} height={shot.height} alt={shot.alt} loading={priority && i === 0 ? 'eager' : 'lazy'} fetchpriority={priority && i === 0 ? 'high' : undefined} decoding="async" /></div>
+        <figcaption>{shot.caption}</figcaption>
+      </figure>
+    </li>)}
+  </ul>
+  {shots.length > 1 && <div class="shot-controls" data-controls hidden>
+    <button type="button" class="shot-arrow" data-prev aria-label={t.prevShot}><span aria-hidden="true">←</span></button>
+    <div class="shot-dots">{shots.map((_, i) => <button type="button" data-dot={i} aria-label={t.shotOf(i + 1, shots.length)} aria-current={i === 0 ? 'true' : undefined}></button>)}</div>
+    <button type="button" class="shot-arrow" data-next aria-label={t.nextShot}><span aria-hidden="true">→</span></button>
+  </div>}
+</div>
+<script>
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  document.querySelectorAll<HTMLElement>('[data-carousel]').forEach(root => {
+    const track = root.querySelector<HTMLElement>('.shot-track');
+    const controls = root.querySelector<HTMLElement>('[data-controls]');
+    if (!track || !controls) return;
+    const slides = Array.from(track.children) as HTMLElement[];
+    const dots = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-dot]'));
+    const prev = root.querySelector<HTMLButtonElement>('[data-prev]');
+    const next = root.querySelector<HTMLButtonElement>('[data-next]');
+    const counter = root.querySelector<HTMLElement>('[data-current]');
+    let index = 0;
+    const render = () => {
+      dots.forEach((dot, i) => i === index ? dot.setAttribute('aria-current', 'true') : dot.removeAttribute('aria-current'));
+      if (prev) prev.disabled = index === 0;
+      if (next) next.disabled = index === slides.length - 1;
+      if (counter) counter.textContent = String(index + 1).padStart(2, '0');
+    };
+    // While a button-driven scroll animates, keep its target so quick repeated clicks add up
+    // and intermediate scroll positions don't move the dots backwards.
+    let pending: number | null = null;
+    let settle = 0;
+    const go = (target: number) => {
+      index = Math.max(0, Math.min(slides.length - 1, target));
+      pending = index;
+      render();
+      clearTimeout(settle);
+      settle = window.setTimeout(() => { pending = null; }, 900);
+      track.scrollTo({ left: slides[index].offsetLeft, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+    };
+    let frame = 0;
+    track.addEventListener('scroll', () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        if (pending !== null) {
+          if (Math.abs(track.scrollLeft - slides[pending].offsetLeft) > 2) return;
+          pending = null;
+        }
+        const current = Math.max(0, Math.min(slides.length - 1, Math.round(track.scrollLeft / Math.max(1, track.clientWidth))));
+        if (current !== index) { index = current; render(); }
+      });
+    }, { passive: true });
+    prev?.addEventListener('click', () => go(index - 1));
+    next?.addEventListener('click', () => go(index + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => go(i)));
+    track.addEventListener('keydown', event => {
+      const target = { ArrowLeft: index - 1, ArrowRight: index + 1, Home: 0, End: slides.length - 1 }[event.key];
+      if (target === undefined) return;
+      event.preventDefault();
+      go(target);
+    });
+    controls.hidden = false;
+    render();
+  });
+</script>

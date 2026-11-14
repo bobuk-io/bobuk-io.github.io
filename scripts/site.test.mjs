@@ -153,14 +153,14 @@ test('Ting documents release 0.3.1 panel spacing and local launcha data in every
   }
 });
 
-test('Ting has localized launcher copy and icon-only artwork without HAScS claims', async () => {
+test('Ting has localized launcher copy and screenshots without HAScS claims', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   const expected = { en: 'Your next app. A few keys away.', ru: 'Нужное приложение. Несколькими клавишами.', uk: 'Потрібний застосунок. Кількома клавішами.' };
   for (const locale of locales) {
     const source = await html(pathFor(locale, 'apps/ting'));
     assert.ok(source.includes(expected[locale]));
     assert.ok(source.includes('/images/ting-icon.png'));
-    assert.ok(source.includes('icon-artwork'));
+    assert.ok(source.includes('/images/shots/ting/selecta.webp'));
     assert.ok(source.includes('~/.config/ting/config.json'));
     assert.ok(source.includes('Home') && source.includes('F13'));
     assert.ok(!source.includes('Home Assistant'));
@@ -170,6 +170,25 @@ test('Ting has localized launcher copy and icon-only artwork without HAScS claim
       assert.ok(page.includes('~/.config/ting/'));
       assert.ok(page.includes('https://github.com/bobuk-io/ting/security/advisories/new'));
       assert.ok(!page.includes('Home Assistant'));
+    }
+  }
+});
+
+test('every public app shows a screenshot carousel on the homepage and its own page', async () => {
+  const shots = source => [...source.matchAll(/<li class="shot-slide"[^>]*>[\s\S]*?<img src="([^"]+)"[^>]*alt="([^"]*)"[\s\S]*?<figcaption>([^<]+)<\/figcaption>/g)];
+  for (const locale of locales) {
+    const homepage = await html(pathFor(locale));
+    assert.equal((homepage.match(/aria-roledescription="carousel"/g) || []).length, active.length, `${locale}: one carousel per app`);
+    for (const app of active) {
+      const page = await html(pathFor(locale, `apps/${app.slug}`));
+      for (const [where, source] of [['home', homepage], ['page', page]]) {
+        const slides = shots(where === 'home' ? source.slice(source.indexOf(`id="app-${app.slug}"`)) : source).filter(([, src]) => src.startsWith(`/images/shots/${app.slug}/`));
+        assert.ok(slides.length >= 3, `${locale} ${where} ${app.slug}: ${slides.length} screenshots`);
+        for (const [, src, alt, caption] of slides) {
+          assert.ok(alt.length > 20 && caption.trim().length > 5, `${locale} ${app.slug}: ${src} needs alt and caption`);
+          if (app.slug === 'hascs') assert.ok(src.endsWith(`-${locale}.webp`), `${locale}: HAScS screenshots follow the page language`);
+        }
+      }
     }
   }
 });

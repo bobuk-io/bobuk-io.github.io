@@ -2,11 +2,19 @@ import type { AppCopy } from './types';
 import type { Locale } from '../i18n';
 const command = 'curl -fsSL https://raw.githubusercontent.com/bobuk-io/splash-finish/main/install.py | python3 -';
 const scriptUrl = 'https://github.com/bobuk-io/splash-finish/blob/main/install.py';
+// Real screenshots of Splash Finish 0.3.12 with demo notifications. The app UI is English in every locale.
+const inbox = { src: '/images/shots/splash-finish/inbox.webp', width: 470, height: 674 };
+const question = { src: '/images/shots/splash-finish/question.webp', width: 470, height: 724 };
+const light = { src: '/images/shots/splash-finish/inbox-light.webp', width: 470, height: 674 };
 export const splashCopy: Record<Locale, AppCopy> = {
   en: {
     category: 'For working with AI', tagline: 'Your agents work. You stay focused.',
     description: 'One quiet inbox for Claude Code, Codex, and pi. Know when work is done or an agent needs a decision, then return to the right session.',
-    screenshotAlt: 'Splash Finish inbox: one request for attention and two completed tasks from Claude Code, Codex, and pi',
+    shots: [
+      { ...inbox, caption: 'Every agent in one inbox.', alt: 'Splash Finish inbox in the dark theme: Claude Code asks to approve a database migration; three tasks from Claude Code, pi, and Codex are complete.' },
+      { ...question, caption: 'Answer pi right in the inbox.', alt: 'A pi question in Splash Finish: choose a rollout plan from three options, with fields for your own answer and a note, and Answer in pi and Submit buttons.' },
+      { ...light, caption: 'Light theme, if you prefer.', alt: 'The same Splash Finish inbox in the light theme.' },
+    ],
     features: [
       { title: 'One place for everything', text: 'Completed tasks and requests for attention from Claude Code, Codex, and pi share one window.' },
       { title: 'Back to the context', text: 'Click a notification to return to its source. Rex support returns to the original local session and pane. Exact navigation depends on your terminal and integration.' },
@@ -47,7 +55,11 @@ export const splashCopy: Record<Locale, AppCopy> = {
   ru: {
     category: 'Для работы с AI', tagline: 'Агенты работают. Вы — не отвлекаетесь.',
     description: 'Один тихий инбокс для Claude Code, Codex и pi. Узнайте, когда работа закончена или агенту нужно ваше решение, — и вернитесь к нужной сессии.',
-    screenshotAlt: 'Окно Splash Finish: один запрос внимания и две завершённые задачи от Claude Code, Codex и pi',
+    shots: [
+      { ...inbox, caption: 'Все агенты — в одном инбоксе.', alt: 'Инбокс Splash Finish в тёмной теме: Claude Code просит подтвердить миграцию базы данных; три задачи от Claude Code, pi и Codex завершены.' },
+      { ...question, caption: 'Ответ для pi — прямо в инбоксе.', alt: 'Вопрос от pi в Splash Finish: выбор плана выкатки из трёх вариантов, поля для своего ответа и заметки, кнопки Answer in pi и Submit.' },
+      { ...light, caption: 'Есть и светлая тема.', alt: 'Тот же инбокс Splash Finish в светлой теме.' },
+    ],
     features: [
       { title: 'Всё в одном месте', text: 'Завершённые задачи и запросы внимания от Claude Code, Codex и pi собираются в общем окне.' },
       { title: 'Назад к контексту', text: 'Нажмите на уведомление, чтобы вернуться к источнику. Поддержка Rex возвращает вас в исходную локальную сессию и панель. Точный переход зависит от терминала и интеграции.' },
@@ -88,7 +100,11 @@ export const splashCopy: Record<Locale, AppCopy> = {
   uk: {
     category: 'Для роботи з AI', tagline: 'Агенти працюють. Ви — не відволікаєтеся.',
     description: 'Один тихий інбокс для Claude Code, Codex і pi. Дізнайтеся, коли роботу завершено або агенту потрібне ваше рішення, — і поверніться до потрібної сесії.',
-    screenshotAlt: 'Вікно Splash Finish: один запит уваги та два завершені завдання від Claude Code, Codex і pi',
+    shots: [
+      { ...inbox, caption: 'Усі агенти — в одному інбоксі.', alt: 'Інбокс Splash Finish у темній темі: Claude Code просить підтвердити міграцію бази даних; три завдання від Claude Code, pi та Codex завершено.' },
+      { ...question, caption: 'Відповідь для pi — просто в інбоксі.', alt: 'Запитання від pi у Splash Finish: вибір плану розгортання з трьох варіантів, поля для власної відповіді й нотатки, кнопки Answer in pi і Submit.' },
+      { ...light, caption: 'Є й світла тема.', alt: 'Той самий інбокс Splash Finish у світлій темі.' },
+    ],
     features: [
       { title: 'Усе в одному місці', text: 'Завершені завдання та запити уваги від Claude Code, Codex і pi збираються в спільному вікні.' },
       { title: 'Назад до контексту', text: 'Натисніть сповіщення, щоб повернутися до джерела. Підтримка Rex повертає вас до вихідної локальної сесії та панелі. Точний перехід залежить від термінала та інтеграції.' },

@@ -1,8 +1,20 @@
 import type { AppCopy } from './types';
 import type { Locale } from '../i18n';
+// Real screenshots of Ting 0.3.3 with a demo config. The app UI is English; keycaps also show
+// the letter of the active keyboard layout (Russian here), as Ting does for any layout.
+const selecta = { src: '/images/shots/ting/selecta.webp', width: 340, height: 407 };
+const launcha = { src: '/images/shots/ting/launcha.webp', width: 460, height: 250 };
+const light = { src: '/images/shots/ting/selecta-light.webp', width: 340, height: 407 };
+const bindings = { src: '/images/shots/ting/bindings.webp', width: 820, height: 608 };
 export const tingCopy: Record<Locale, AppCopy> = {
   en: {
     category: 'For your keyboard', tagline: 'Your next app. A few keys away.',
+    shots: [
+      { ...selecta, caption: 'Press the leader, then one key.', alt: 'Ting selecta menu in the dark theme: keycaps for Terminal, Safari, Notes, Calendar, Music, a Home scenes link, and Web and Tools groups. Each keycap shows the Latin key and the letter of the current keyboard layout.' },
+      { ...launcha, caption: 'Double-tap the leader to search apps.', alt: 'Ting launcha search: the query “system” finds System Information and System Settings.' },
+      { ...light, caption: 'Light or dark, as you like.', alt: 'The Ting selecta menu in the light theme.' },
+      { ...bindings, caption: 'Every sequence in one table.', alt: 'Ting Settings, Bindings tab: a table of key sequences, names, and actions, including the Web and Tools groups.' },
+    ],
     description: 'A leader-key launcher for macOS. Press your leader key, then a key or short sequence to open an app or URL. Home, then w, g — and you’re on GitHub. Double-tap the leader to search apps with launcha.',
     features: [
       { title: 'Ting 0.3.3: a quieter “ting”', text: 'The sound Ting plays when it opens an app, link or file is now half as loud. Turn it off in Settings → General with Play a “ting” when opening an app, link or file.' },
@@ -50,6 +62,12 @@ export const tingCopy: Record<Locale, AppCopy> = {
   },
   ru: {
     category: 'Для клавиатуры', tagline: 'Нужное приложение. Несколькими клавишами.',
+    shots: [
+      { ...selecta, caption: 'Ведущая клавиша, затем ещё одна.', alt: 'Меню selecta в Ting, тёмная тема: клавиши для Terminal, Safari, Notes, Calendar, Music, ссылка Home scenes и группы Web и Tools. На каждой клавише — латинская буква и буква текущей раскладки.' },
+      { ...launcha, caption: 'Двойное нажатие — поиск приложений.', alt: 'Поиск launcha в Ting: по запросу «system» найдены System Information и System Settings.' },
+      { ...light, caption: 'Светлая или тёмная тема — на выбор.', alt: 'Меню selecta в Ting в светлой теме.' },
+      { ...bindings, caption: 'Все последовательности — в одной таблице.', alt: 'Настройки Ting, вкладка Bindings: таблица последовательностей клавиш, названий и действий, включая группы Web и Tools.' },
+    ],
     description: 'Лаунчер для macOS с ведущей клавишей. Нажмите её, затем одну клавишу или короткую последовательность — откроется приложение или URL. Home, затем w, g — и вы на GitHub. Двойное нажатие ведущей клавиши открывает поиск приложений launcha.',
     features: [
       { title: 'Ting 0.3.3: тише «ting»', text: 'Звук при открытии приложения, ссылки или файла теперь вдвое тише. Выключить его можно в Settings → General переключателем Play a “ting” when opening an app, link or file.' },
@@ -97,6 +115,12 @@ export const tingCopy: Record<Locale, AppCopy> = {
   },
   uk: {
     category: 'Для клавіатури', tagline: 'Потрібний застосунок. Кількома клавішами.',
+    shots: [
+      { ...selecta, caption: 'Початкова клавіша, потім ще одна.', alt: 'Меню selecta в Ting, темна тема: клавіші для Terminal, Safari, Notes, Calendar, Music, посилання Home scenes і групи Web та Tools. На кожній клавіші — латинська літера й літера поточної розкладки.' },
+      { ...launcha, caption: 'Подвійне натискання — пошук застосунків.', alt: 'Пошук launcha в Ting: за запитом «system» знайдено System Information і System Settings.' },
+      { ...light, caption: 'Світла чи темна тема — на вибір.', alt: 'Меню selecta в Ting у світлій темі.' },
+      { ...bindings, caption: 'Усі послідовності — в одній таблиці.', alt: 'Налаштування Ting, вкладка Bindings: таблиця послідовностей клавіш, назв і дій, зокрема групи Web та Tools.' },
+    ],
     description: 'Лаунчер для macOS із початковою клавішею. Натисніть її, а потім одну клавішу чи коротку послідовність — відкриється застосунок або URL. Home, потім w, g — і ви на GitHub. Подвійне натискання початкової клавіші відкриває пошук застосунків launcha.',
     features: [
       { title: 'Ting 0.3.3: тихіший «ting»', text: 'Звук під час відкриття застосунку, посилання чи файлу тепер удвічі тихіший. Вимкнути його можна в Settings → General перемикачем Play a “ting” when opening an app, link or file.' },

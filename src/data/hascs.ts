@@ -1,8 +1,16 @@
 import type { AppCopy } from './types';
 import type { Locale } from '../i18n';
+// Real screenshots of HAScS 0.3.2 with five demo scenes; the app UI follows the page language.
+const shot = (name: string, locale: Locale, width = 622, height = 505) => ({ src: `/images/shots/hascs/${name}-${locale}.webp`, width, height });
 export const hascsCopy: Record<Locale, AppCopy> = {
   en: {
     category: 'For your home', tagline: 'Your home scenes. One key away.',
+    shots: [
+      { ...shot('panel', 'en'), caption: 'Press a number to run a scene.', alt: 'HAScS remote with five Home Assistant scenes numbered 1 to 5: Movie night, Good morning, Dinner, Reading, and Bedtime.' },
+      { ...shot('success', 'en'), caption: 'A short confirmation that the request was sent.', alt: 'HAScS after choosing Movie night: a green check mark and “Activation request sent”.' },
+      { ...shot('reorder', 'en'), caption: 'Drag tiles into your own order.', alt: 'HAScS reorder mode: scene tiles with drag handles and Cancel and Done buttons.' },
+      { ...shot('settings', 'en', 540, 517), caption: 'The URL and token stay in Keychain.', alt: 'HAScS Settings: Home Assistant server URL, an access token saved in Keychain, and the interface language.' },
+    ],
     description: 'A native macOS menu-bar remote for Home Assistant scenes. Open the compact panel, press 1–9, and get back to what you were doing.',
     features: [
       { title: 'A remote in your menu bar', text: 'Click the house icon to open the panel on the display containing your pointer.' },
@@ -39,6 +47,12 @@ export const hascsCopy: Record<Locale, AppCopy> = {
   },
   ru: {
     category: 'Для вашего дома', tagline: 'Сцены вашего дома. Одной клавишей.',
+    shots: [
+      { ...shot('panel', 'ru'), caption: 'Нажмите цифру, чтобы запустить сцену.', alt: 'Пульт HAScS с пятью сценами Home Assistant под номерами от 1 до 5: Кино, Доброе утро, Ужин, Чтение и Отбой.' },
+      { ...shot('success', 'ru'), caption: 'Короткое подтверждение: запрос отправлен.', alt: 'HAScS после выбора сцены «Кино»: зелёная галочка и надпись «Запрос на запуск отправлен».' },
+      { ...shot('reorder', 'ru'), caption: 'Перетащите плитки в удобном порядке.', alt: 'Режим изменения порядка в HAScS: плитки сцен с маркерами перетаскивания и кнопки «Отмена» и «Готово».' },
+      { ...shot('settings', 'ru', 540, 517), caption: 'Адрес и токен хранятся в Keychain.', alt: 'Настройки HAScS: адрес сервера Home Assistant, токен доступа в связке ключей и язык интерфейса.' },
+    ],
     description: 'Нативный пульт для сцен Home Assistant в строке меню macOS. Откройте компактную панель, нажмите 1–9 — и возвращайтесь к своим делам.',
     features: [
       { title: 'Пульт в строке меню', text: 'Нажмите на значок дома: панель откроется на экране, где находится указатель.' },
@@ -75,6 +89,12 @@ export const hascsCopy: Record<Locale, AppCopy> = {
   },
   uk: {
     category: 'Для вашої оселі', tagline: 'Сцени вашої оселі. Однією клавішею.',
+    shots: [
+      { ...shot('panel', 'uk'), caption: 'Натисніть цифру, щоб запустити сцену.', alt: 'Пульт HAScS із п’ятьма сценами Home Assistant під номерами від 1 до 5: Кіно, Добрий ранок, Вечеря, Читання та Відбій.' },
+      { ...shot('success', 'uk'), caption: 'Коротке підтвердження: запит надіслано.', alt: 'HAScS після вибору сцени «Кіно»: зелена галочка та напис про надісланий запит на запуск.' },
+      { ...shot('reorder', 'uk'), caption: 'Перетягніть плитки у зручному порядку.', alt: 'Режим зміни порядку в HAScS: плитки сцен із маркерами перетягування та кнопки «Скасувати» і «Готово».' },
+      { ...shot('settings', 'uk', 540, 517), caption: 'Адреса й токен зберігаються в Keychain.', alt: 'Налаштування HAScS: адреса сервера Home Assistant, токен доступу у В’язці ключів і мова інтерфейсу.' },
+    ],
     description: 'Нативний пульт для сцен Home Assistant у рядку меню macOS. Відкрийте компактну панель, натисніть 1–9 — і повертайтеся до своїх справ.',
     features: [
       { title: 'Пульт у рядку меню', text: 'Натисніть значок будинку: панель відкриється на екрані, де розташований вказівник.' },
