@@ -101,6 +101,19 @@ test('Splash Finish release and upgrade instructions are available in every loca
   }
 });
 
+test('Splash Finish 0.3.12 documents Rex setup in every locale', async () => {
+  if (!snapshot.repositories.includes('splash-finish')) return;
+  for (const locale of locales) {
+    const app = await html(pathFor(locale, 'apps/splash-finish'));
+    assert.ok(app.includes('0.3.12'), `${locale}: Rex release version`);
+    for (const text of ['Rex', 'Remote Control', 'splash-finish install-skills', '/reload']) {
+      assert.ok(app.includes(text), `${locale}: missing ${text}`);
+    }
+    const support = await html(pathFor(locale, 'apps/splash-finish/support'));
+    assert.ok(support.includes('Rex CLI') && support.includes('Remote Control'), `${locale}: Rex requirements`);
+  }
+});
+
 test('UI copy is translated, not just the language selector', async () => {
   const expected = { en: ['Less noise.', 'Support'], ru: ['Меньше шума.', 'Поддержка'], uk: ['Менше шуму.', 'Підтримка'] };
   for (const locale of locales) {

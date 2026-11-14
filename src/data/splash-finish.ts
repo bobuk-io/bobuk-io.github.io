@@ -9,7 +9,7 @@ export const splashCopy: Record<Locale, AppCopy> = {
     screenshotAlt: 'Splash Finish inbox: one request for attention and two completed tasks from Claude Code, Codex, and pi',
     features: [
       { title: 'One place for everything', text: 'Completed tasks and requests for attention from Claude Code, Codex, and pi share one window.' },
-      { title: 'Back to the context', text: 'Click a notification to return to its source. Upcoming Rex support returns to the original local session and pane. Exact navigation depends on your terminal and integration.' },
+      { title: 'Back to the context', text: 'Click a notification to return to its source. Rex support returns to the original local session and pane. Exact navigation depends on your terminal and integration.' },
       { title: 'At your own pace', text: 'Snooze notifications, respect Do Not Disturb, pick a light or dark theme, or open the inbox with ⌥⌘S.' },
       { title: 'Local by default', text: 'No app account or analytics. The inbox stays on your Mac; updates come from GitHub.' },
     ],
@@ -19,6 +19,7 @@ export const splashCopy: Record<Locale, AppCopy> = {
       { title: 'Connect your agents', text: 'In Claude Code, start a new session. In Codex, review and trust hooks via /hooks. In pi, run /reload.', command: 'splash-finish install-skills' },
     ],
     faq: [
+      { question: 'What’s new in 0.3.12?', answer: 'Return to the original local Rex session and pane from notifications and rich pi questions. Enable Remote Control in Rex and keep one local Mac app client connected. After updating, run splash-finish install-skills, then /reload in existing pi sessions to refresh the question adapter. Older notifications without Rex coordinates cannot recover their original pane.' },
       { question: 'What’s new in 0.3.11?', answer: 'Less noise from temporary Codex sessions used for tab titles and suggestions: hook events with an explicitly null or empty transcript path no longer change the inbox. Normal sessions remain supported, and JSON answers are not filtered by their text.' },
       { question: 'What’s new in 0.3.9?', answer: 'A light theme. Open Settings… (⌘,) from the menu bar icon and choose Light or Dark; the panel stays dark until you switch. Start at Login, Respect Do Not Disturb, and installing or removing agent skills now live in Settings too.' },
       { question: 'What changed in 0.3.8?', answer: 'Less noise from pi: browsing idle menus such as /jewter no longer opens Splash Finish or clears completed items. Questions and approvals during an agent run still notify you. Managed workers can opt out with SPLASH_FINISH_DISABLED=1.' },
@@ -30,7 +31,7 @@ export const splashCopy: Record<Locale, AppCopy> = {
     support: [
       { title: 'Something isn’t working?', paragraphs: [], items: ['Update the app by running the installer again.', 'Run splash-finish doctor to inspect integrations and repair hints.', 'In Codex, check hook trust via /hooks. In pi, run /reload. In Claude Code, start a new session.'] },
       { title: 'Too many pi notifications?', paragraphs: ['Update to 0.3.8 or later, run splash-finish install-skills, and run /reload in existing pi sessions. Menus opened while pi is idle no longer trigger attention notifications.', 'For managed workers, set SPLASH_FINISH_DISABLED=1 in the worker process environment. Leave it unset in the coordinator. This suppresses worker hooks, rich questions, and explicit notify calls; unmarked helper sessions can still notify.'] },
-      { title: 'Upcoming Rex support', paragraphs: ['New notifications from local Rex sessions will retain their original session and pane. Exact return requires the Rex CLI, one connected local Mac app client, and Remote Control enabled by you in Rex. Splash Finish does not enable it. If navigation fails, the notification stays. Remote hosts and old notifications without Rex coordinates are not supported.'] },
+      { title: 'Rex support', paragraphs: ['New notifications from local Rex sessions retain their original session and pane. Exact return requires the Rex CLI, one connected local Mac app client, and Remote Control enabled by you in Rex. Splash Finish does not enable it. If navigation fails, the notification stays. Remote hosts and old notifications without Rex coordinates are not supported.'] },
       { title: 'Report a problem', paragraphs: ['Include your macOS, app, and agent versions, steps to reproduce, and the expected result. Do not post full status --raw output: it can contain private task excerpts.'] },
       { title: 'Uninstall and remove data', paragraphs: [], items: ['Run splash-finish uninstall-skills.', 'Quit Splash Finish and remove ~/Applications/Splash Finish.app and the splash-finish symlink from your local bin directory.', 'To erase the inbox, remove ~/Library/Application Support/Splash Finish. Agent configuration backups remain next to their configuration files; remove those separately if no longer needed.'] },
     ],
@@ -49,7 +50,7 @@ export const splashCopy: Record<Locale, AppCopy> = {
     screenshotAlt: 'Окно Splash Finish: один запрос внимания и две завершённые задачи от Claude Code, Codex и pi',
     features: [
       { title: 'Всё в одном месте', text: 'Завершённые задачи и запросы внимания от Claude Code, Codex и pi собираются в общем окне.' },
-      { title: 'Назад к контексту', text: 'Нажмите на уведомление, чтобы вернуться к источнику. В следующей версии поддержка Rex вернёт вас в исходную локальную сессию и панель. Точный переход зависит от терминала и интеграции.' },
+      { title: 'Назад к контексту', text: 'Нажмите на уведомление, чтобы вернуться к источнику. Поддержка Rex возвращает вас в исходную локальную сессию и панель. Точный переход зависит от терминала и интеграции.' },
       { title: 'В вашем ритме', text: 'Отложите уведомления, включите учёт режима «Не беспокоить», выберите светлую или тёмную тему или откройте инбокс сочетанием ⌥⌘S.' },
       { title: 'Локально по умолчанию', text: 'Без аккаунта и аналитики приложения. Инбокс хранится на Mac; обновления загружаются с GitHub.' },
     ],
@@ -59,6 +60,7 @@ export const splashCopy: Record<Locale, AppCopy> = {
       { title: 'Подключите агентов', text: 'В Claude Code начните новую сессию; в Codex подтвердите hooks через /hooks; в pi выполните /reload.', command: 'splash-finish install-skills' },
     ],
     faq: [
+      { question: 'Что нового в 0.3.12?', answer: 'Возврат в исходную локальную сессию и панель Rex из уведомлений и интерактивных вопросов pi. Включите Remote Control в Rex и оставьте один подключённый локальный клиент Mac. После обновления выполните splash-finish install-skills, затем /reload в открытых сессиях pi для обновления адаптера вопросов. Старые уведомления без координат Rex не смогут восстановить исходную панель.' },
       { question: 'Что нового в 0.3.11?', answer: 'Меньше лишних уведомлений от временных сессий Codex, которые создают названия вкладок и подсказки. События hooks с явно пустым путём к истории больше не меняют инбокс. Обычные сессии по-прежнему поддерживаются; ответы JSON не фильтруются по тексту.' },
       { question: 'Что нового в 0.3.9?', answer: 'Светлая тема. Откройте Settings… (⌘,) из значка в строке меню и выберите Light или Dark; до переключения панель остаётся тёмной. Start at Login, Respect Do Not Disturb, установка и удаление навыков агентов теперь тоже находятся в Settings.' },
       { question: 'Что изменилось в 0.3.8?', answer: 'Меньше шума от pi: просмотр меню при простое, например /jewter, больше не открывает Splash Finish и не убирает завершённые задачи. Вопросы и подтверждения во время работы агента по-прежнему вызывают уведомления. Для управляемых воркеров добавлен флаг SPLASH_FINISH_DISABLED=1.' },
@@ -70,7 +72,7 @@ export const splashCopy: Record<Locale, AppCopy> = {
     support: [
       { title: 'Что-то не работает?', paragraphs: [], items: ['Обновите приложение, повторно запустив установщик.', 'Выполните splash-finish doctor — он проверит интеграции и подскажет, что исправить.', 'В Codex проверьте доверие к hooks через /hooks. В pi выполните /reload, в Claude Code начните новую сессию.'] },
       { title: 'Слишком много уведомлений от pi?', paragraphs: ['Обновитесь до 0.3.8 или новее, выполните splash-finish install-skills, затем /reload в открытых сессиях pi. Меню, открытые при простое pi, больше не вызывают уведомлений о запросе внимания.', 'Для управляемых воркеров задайте SPLASH_FINISH_DISABLED=1 в окружении процесса воркера. У координатора оставьте переменную незаданной. Это отключает хуки, интерактивные вопросы и явные вызовы notify от воркера; непомеченные служебные сессии всё ещё могут присылать уведомления.'] },
-      { title: 'Поддержка Rex в следующей версии', paragraphs: ['Новые уведомления из локальных сессий Rex сохранят исходную сессию и панель. Для точного возврата нужны Rex CLI, один подключённый локальный клиент Mac и включённый вами Remote Control в Rex. Splash Finish не включает его сам. При отказе перехода уведомление останется. Удалённые хосты и старые уведомления без координат Rex не поддерживаются.'] },
+      { title: 'Поддержка Rex', paragraphs: ['Новые уведомления из локальных сессий Rex сохраняют исходную сессию и панель. Для точного возврата нужны Rex CLI, один подключённый локальный клиент Mac и включённый вами Remote Control в Rex. Splash Finish не включает его сам. При отказе перехода уведомление останется. Удалённые хосты и старые уведомления без координат Rex не поддерживаются.'] },
       { title: 'Сообщить о проблеме', paragraphs: ['Укажите версии macOS, приложения и агента, шаги воспроизведения и ожидаемый результат. Не публикуйте полный вывод status --raw: он может содержать приватные фрагменты задач.'] },
       { title: 'Удаление приложения и данных', paragraphs: [], items: ['Выполните splash-finish uninstall-skills.', 'Закройте Splash Finish, удалите ~/Applications/Splash Finish.app и ссылку splash-finish из локальной bin-директории.', 'Чтобы стереть инбокс, удалите ~/Library/Application Support/Splash Finish. Резервные копии конфигураций агентов остаются рядом с ними; при необходимости удалите их отдельно.'] },
     ],
@@ -89,7 +91,7 @@ export const splashCopy: Record<Locale, AppCopy> = {
     screenshotAlt: 'Вікно Splash Finish: один запит уваги та два завершені завдання від Claude Code, Codex і pi',
     features: [
       { title: 'Усе в одному місці', text: 'Завершені завдання та запити уваги від Claude Code, Codex і pi збираються в спільному вікні.' },
-      { title: 'Назад до контексту', text: 'Натисніть сповіщення, щоб повернутися до джерела. У наступній версії підтримка Rex поверне вас до вихідної локальної сесії та панелі. Точний перехід залежить від термінала та інтеграції.' },
+      { title: 'Назад до контексту', text: 'Натисніть сповіщення, щоб повернутися до джерела. Підтримка Rex повертає вас до вихідної локальної сесії та панелі. Точний перехід залежить від термінала та інтеграції.' },
       { title: 'У вашому ритмі', text: 'Відкладіть сповіщення, увімкніть урахування режиму «Не турбувати», виберіть світлу або темну тему чи відкрийте інбокс сполученням ⌥⌘S.' },
       { title: 'Локально за замовчуванням', text: 'Без облікового запису й аналітики застосунку. Інбокс зберігається на Mac; оновлення надходять із GitHub.' },
     ],
@@ -99,6 +101,7 @@ export const splashCopy: Record<Locale, AppCopy> = {
       { title: 'Підключіть агентів', text: 'У Claude Code почніть нову сесію; у Codex підтвердьте hooks через /hooks; у pi виконайте /reload.', command: 'splash-finish install-skills' },
     ],
     faq: [
+      { question: 'Що нового в 0.3.12?', answer: 'Повернення до вихідної локальної сесії та панелі Rex зі сповіщень та інтерактивних запитань pi. Увімкніть Remote Control у Rex і залиште один підключений локальний клієнт Mac. Після оновлення виконайте splash-finish install-skills, потім /reload у відкритих сесіях pi для оновлення адаптера запитань. Старі сповіщення без координат Rex не зможуть відновити вихідну панель.' },
       { question: 'Що нового в 0.3.11?', answer: 'Менше зайвих сповіщень від тимчасових сесій Codex, які створюють назви вкладок і підказки. Події hooks з явно порожнім шляхом до історії більше не змінюють інбокс. Звичайні сесії й надалі підтримуються; відповіді JSON не фільтруються за текстом.' },
       { question: 'Що нового в 0.3.9?', answer: 'Світла тема. Відкрийте Settings… (⌘,) зі значка в рядку меню та виберіть Light або Dark; до перемикання панель залишається темною. Start at Login, Respect Do Not Disturb, встановлення та видалення навичок агентів тепер теж у Settings.' },
       { question: 'Що змінилося в 0.3.8?', answer: 'Менше шуму від pi: перегляд меню під час простою, наприклад /jewter, більше не відкриває Splash Finish і не прибирає завершені завдання. Запитання та підтвердження під час роботи агента й надалі викликають сповіщення. Для керованих воркерів додано прапорець SPLASH_FINISH_DISABLED=1.' },
@@ -110,7 +113,7 @@ export const splashCopy: Record<Locale, AppCopy> = {
     support: [
       { title: 'Щось не працює?', paragraphs: [], items: ['Оновіть застосунок, знову запустивши інсталятор.', 'Виконайте splash-finish doctor — він перевірить інтеграції та підкаже, що виправити.', 'У Codex перевірте довіру до hooks через /hooks. У pi виконайте /reload, у Claude Code почніть нову сесію.'] },
       { title: 'Забагато сповіщень від pi?', paragraphs: ['Оновіться до 0.3.8 або новішої версії, виконайте splash-finish install-skills, потім /reload у відкритих сесіях pi. Меню, відкриті під час простою pi, більше не викликають сповіщень із запитом уваги.', 'Для керованих воркерів задайте SPLASH_FINISH_DISABLED=1 в оточенні процесу воркера. У координатора залиште змінну незаданою. Це вимикає хуки, інтерактивні запитання та явні виклики notify від воркера; непозначені службові сесії все ще можуть надсилати сповіщення.'] },
-      { title: 'Підтримка Rex у наступній версії', paragraphs: ['Нові сповіщення з локальних сесій Rex збережуть вихідну сесію та панель. Для точного повернення потрібні Rex CLI, один підключений локальний клієнт Mac і ввімкнений вами Remote Control у Rex. Splash Finish не вмикає його сам. Якщо перехід не вдасться, сповіщення залишиться. Віддалені хости та старі сповіщення без координат Rex не підтримуються.'] },
+      { title: 'Підтримка Rex', paragraphs: ['Нові сповіщення з локальних сесій Rex зберігають вихідну сесію та панель. Для точного повернення потрібні Rex CLI, один підключений локальний клієнт Mac і ввімкнений вами Remote Control у Rex. Splash Finish не вмикає його сам. Якщо перехід не вдасться, сповіщення залишиться. Віддалені хости та старі сповіщення без координат Rex не підтримуються.'] },
       { title: 'Повідомити про проблему', paragraphs: ['Укажіть версії macOS, застосунку й агента, кроки відтворення та очікуваний результат. Не публікуйте повний вивід status --raw: він може містити приватні фрагменти завдань.'] },
       { title: 'Видалення застосунку й даних', paragraphs: [], items: ['Виконайте splash-finish uninstall-skills.', 'Закрийте Splash Finish, видаліть ~/Applications/Splash Finish.app та посилання splash-finish із локальної bin-директорії.', 'Щоб стерти інбокс, видаліть ~/Library/Application Support/Splash Finish. Резервні копії конфігурацій агентів залишаються поруч із ними; за потреби видаліть їх окремо.'] },
     ],
