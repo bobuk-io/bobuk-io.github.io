@@ -192,3 +192,13 @@ test('every public app shows a screenshot carousel on the homepage and its own p
     }
   }
 });
+
+test('the homepage lists the most recently updated app first', async () => {
+  const time = app => Date.parse(snapshot.updatedAt?.[app.repo] ?? '') || 0;
+  const expected = [...active].sort((a, b) => time(b) - time(a)).map(app => app.slug);
+  for (const locale of locales) {
+    const homepage = await html(pathFor(locale));
+    const order = active.map(app => [app.slug, homepage.indexOf(`id="app-${app.slug}"`)]).sort((a, b) => a[1] - b[1]).map(([slug]) => slug);
+    assert.deepEqual(order, expected, `${locale}: homepage order`);
+  }
+});

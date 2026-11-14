@@ -10,4 +10,8 @@ const catalog: App[] = [
   { slug: 'ting', repoName: 'ting', name: 'Ting', repo: 'https://github.com/bobuk-io/ting', platform: 'macOS', icon: '/images/ting-icon.png', socialImage: '/images/ting.png', companions: [], translations: tingCopy },
 ];
 const publicNames = new Set<string>(publicRepos.repositories);
-export const apps = catalog.filter(app => publicNames.has(app.repoName));
+// Latest published release per repository (last push if it has none), from `npm run sync:github`.
+const updatedAt: Record<string, string | undefined> = publicRepos.updatedAt;
+const updated = (app: App) => Date.parse(updatedAt[app.repoName] ?? '') || 0;
+/** Public apps, most recently updated first; the catalog order above breaks ties (the sort is stable). */
+export const apps = catalog.filter(app => publicNames.has(app.repoName)).sort((a, b) => updated(b) - updated(a));
