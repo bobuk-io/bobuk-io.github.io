@@ -173,6 +173,19 @@ test('Ting documents release 0.4.0 micro-apps and their security model in every 
   }
 });
 
+test('Ting update feed is served at apps/ting/appcast.xml and points to signed GitHub archives', async () => {
+  const feed = await readFile(new URL('./apps/ting/appcast.xml', dist), 'utf8');
+  assert.match(feed, /^<\?xml/);
+  assert.match(feed, /sparkle:version>\d+</, 'no build number');
+  const version = feed.match(/sparkle:shortVersionString>([^<]+)</)?.[1];
+  assert.ok(version, 'no version');
+  const urls = [...feed.matchAll(/<enclosure\b[^>]*\burl="([^"]+)"/g)].map(match => match[1]);
+  assert.ok(urls.length >= 1, 'no archive');
+  for (const url of urls) assert.ok(url.startsWith('https://github.com/bobuk-io/ting/releases/download/v'), url);
+  assert.ok(urls[0].endsWith(`/v${version}/Ting-${version}-universal.zip`), urls[0]);
+  assert.match(feed, /sparkle:edSignature="[^"]+"/, 'the archive is not signed for Sparkle');
+});
+
 test('Ting documents release 0.6.1 Accessibility window in every locale', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   for (const locale of locales) {

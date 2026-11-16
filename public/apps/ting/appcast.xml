@@ -1,0 +1,53 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Ting</title>
+        <item>
+            <title>0.6.1</title>
+            <pubDate>Mon, 16 Nov 2026 20:54:32 +0200</pubDate>
+            <link>https://bobuk.io/apps/ting/</link>
+            <sparkle:version>13</sparkle:version>
+            <sparkle:shortVersionString>0.6.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[# Ting 0.6.1
+
+## Changes
+
+- **An Accessibility window instead of an error.** When a micro-app needs
+  Accessibility (the selected text, the front window, `keys`, `paste` or
+  `output.to: [app]`) and Ting does not have it, Ting opens a window with the
+  steps: **Open Accessibility Settings** opens System Settings › Privacy &
+  Security › Accessibility, and the Ting icon in the window can be dragged
+  straight into its list of apps. The window stays above System Settings and
+  closes by itself once access is on; then start the micro-app again. A result
+  that could not be pasted stays on the clipboard. Ting no longer shows the
+  prompt of macOS for it.
+- **Accessibility in Settings.** Settings › Advanced shows whether Ting has
+  Accessibility; **Allow…** opens the same window.
+- **Readable buttons in the light theme.** Prominent buttons, such as
+  **Continue** in the welcome window, use a lighter amber, so their text stands
+  out.
+
+## Upgrade and install
+
+Requires **macOS 14 or later**. The universal ZIP supports **Apple Silicon and Intel**.
+
+To upgrade an installed copy, choose **Check for Updates…** in the menu-bar
+menu. Your settings, leader, bindings, micro-apps and permissions are kept.
+
+For a new or manual installation, download `Ting-0.6.1-universal.zip` from
+[Releases](https://github.com/bobuk-io/ting/releases/latest) and unzip it. Quit
+any running copy of Ting, move `Ting.app` to `/Applications` (replace the old
+copy for a manual upgrade), and open it. Ting lives in the menu bar and has no
+Dock icon. On first launch, choose a leader key; there is no default leader.
+
+The official release is signed with Developer ID, notarized by Apple, and
+includes a stapled notarization ticket. Verify the archive with
+`SHA256SUMS.txt` if desired. Ting asks for Automation and Accessibility only
+when a micro-app needs them (see the
+[0.6.0 release notes](v0.6.0.md#permissions)) and never for Input Monitoring.
+]]></description>
+            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.6.1/Ting-0.6.1-universal.zip" length="7134823" type="application/octet-stream" sparkle:edSignature="Psrvew+meAbz4tWNc1rep8Y/Egfx8lJH39NAEoIerHW3Zdm0ylRvBSkAJATEONL18eKOG7hRBe/PMbqq4xNEBw=="/>
+        </item>
+    </channel>
+</rss>
