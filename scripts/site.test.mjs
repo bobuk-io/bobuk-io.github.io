@@ -173,6 +173,23 @@ test('Ting documents release 0.4.0 micro-apps and their security model in every 
   }
 });
 
+test('Ting documents release 0.6.1 Accessibility window in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  for (const locale of locales) {
+    for (const route of ['apps/ting', 'apps/ting/support']) {
+      assert.ok((await html(pathFor(locale, route))).includes('Ting 0.6.1'), `${locale}: missing 0.6.1 on ${route}`);
+    }
+    const support = await html(pathFor(locale, 'apps/ting/support'));
+    for (const text of ['Open Accessibility Settings', 'Settings › Advanced', 'Allow…', 'Check for Updates…']) {
+      assert.ok(support.includes(text), `${locale}: missing ${text} on the support page`);
+    }
+    const guide = await html(pathFor(locale, 'apps/ting/micro-apps'));
+    for (const text of ['v0.6.1', 'Settings › Advanced']) {
+      assert.ok(guide.includes(text), `${locale}: missing ${text} on the guide page`);
+    }
+  }
+});
+
 test('Ting documents release 0.6.0 context, keys and paste in every locale', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   const permissions = {
@@ -193,7 +210,7 @@ test('Ting documents release 0.6.0 context, keys and paste in every locale', asy
       assert.ok(privacy.includes(text), `${locale}: missing privacy fact ${text}`);
     }
     const guide = await html(pathFor(locale, 'apps/ting/micro-apps'));
-    for (const text of ['context: [selection]', '${context.SOURCE.FIELD}', '$TING_CONTEXT_SOURCE_FIELD', 'keys: cmd+t', 'to: [app]', '--context', 'v0.6.0']) {
+    for (const text of ['context: [selection]', '${context.SOURCE.FIELD}', '$TING_CONTEXT_SOURCE_FIELD', 'keys: cmd+t', 'to: [app]', '--context']) {
       assert.ok(guide.includes(text), `${locale}: missing ${text} on the guide page`);
     }
   }

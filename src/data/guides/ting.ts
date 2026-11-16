@@ -1,10 +1,10 @@
 import type { Guide } from '../types';
 import type { Locale } from '../../i18n';
-// The micro-app guide of Ting 0.6.0. Facts come from FORMAT.md, CONFIGURING.md and the README of
+// The micro-app guide of Ting 0.6.1. Facts come from FORMAT.md, CONFIGURING.md and the README of
 // bobuk-io/ting; the YAML in the code blocks passes `ting-micro check`. Code is the same in every locale.
 
-const format = 'https://github.com/bobuk-io/ting/blob/v0.6.0/docs/micro-apps/FORMAT.md';
-const configuring = 'https://github.com/bobuk-io/ting/blob/v0.6.0/docs/CONFIGURING.md';
+const format = 'https://github.com/bobuk-io/ting/blob/v0.6.1/docs/micro-apps/FORMAT.md';
+const configuring = 'https://github.com/bobuk-io/ting/blob/v0.6.1/docs/CONFIGURING.md';
 
 const code = {
   request: `Write a new Ting micro-app: Leader t a should translate the
@@ -236,7 +236,7 @@ const guides: Record<Locale, Guide> = {
         { code: code.context },
         'And this one opens a new browser tab and searches there for the clipboard text:',
         { code: code.keys },
-        'macOS asks once to let Ting control Finder or the browser. Accessibility is turned on for Ting in System Settings › Privacy & Security › Accessibility. Without a permission the micro-app does not start, and the panel says what to allow.',
+        'macOS asks once to let Ting control Finder or the browser; without that, the micro-app does not start and the panel says what to allow. Without Accessibility, Ting opens a window that shows how to turn it on: drag the Ting icon from it into System Settings › Privacy & Security › Accessibility. Settings › Advanced shows whether Ting has it.',
       ] },
       { id: 'libraries', title: 'Libraries', blocks: [
         'Steps that several micro-apps share live once in `~/.config/ting/micro/libs/NAME.yaml`, with `format: ting.microlib/1`. A library has no key and is not listed in launcha.',
@@ -369,7 +369,7 @@ const guides: Record<Locale, Guide> = {
         { code: code.context },
         'А это открывает новую вкладку браузера и ищет там текст из буфера обмена:',
         { code: code.keys },
-        'macOS один раз спросит, можно ли Ting управлять Finder или браузером. Универсальный доступ для Ting включается в системных настройках, в разделе конфиденциальности и безопасности. Без разрешения микро-приложение не запускается, а панель говорит, что нужно разрешить.',
+        'macOS один раз спросит, можно ли Ting управлять Finder или браузером; без этого микро-приложение не запускается, а панель говорит, что нужно разрешить. Без универсального доступа Ting открывает окно, которое показывает, как его включить: перетащите иконку Ting из окна в список универсального доступа в настройках конфиденциальности и безопасности. Есть ли доступ у Ting, видно в Settings › Advanced.',
       ] },
       { id: 'libraries', title: 'Библиотеки', blocks: [
         'Шаги, общие для нескольких микро-приложений, хранятся один раз в `~/.config/ting/micro/libs/NAME.yaml` с `format: ting.microlib/1`. У библиотеки нет клавиши, и в launcha её нет.',
@@ -502,7 +502,7 @@ const guides: Record<Locale, Guide> = {
         { code: code.context },
         'А цей відкриває нову вкладку браузера й шукає там текст із буфера обміну:',
         { code: code.keys },
-        'macOS один раз запитає, чи можна Ting керувати Finder або браузером. Доступність для Ting вмикається в системних налаштуваннях, у розділі приватності й безпеки. Без дозволу мікрозастосунок не запускається, а панель каже, що треба дозволити.',
+        'macOS один раз запитає, чи можна Ting керувати Finder або браузером; без цього мікрозастосунок не запускається, а панель каже, що треба дозволити. Без доступності Ting відкриває вікно, яке показує, як її ввімкнути: перетягніть іконку Ting із вікна до списку доступності в налаштуваннях приватності й безпеки. Чи має Ting доступ, видно в Settings › Advanced.',
       ] },
       { id: 'libraries', title: 'Бібліотеки', blocks: [
         'Кроки, спільні для кількох мікрозастосунків, зберігаються один раз у `~/.config/ting/micro/libs/NAME.yaml` з `format: ting.microlib/1`. Бібліотека не має клавіші, і в launcha її немає.',
