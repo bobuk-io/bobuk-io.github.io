@@ -13,6 +13,19 @@ async function htmlFiles(directory) {
 }
 const html = path => readFile(new URL('.' + path + 'index.html', dist), 'utf8');
 
+test('Ting documents Homebrew installation, updates and safe removal in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  for (const locale of locales) {
+    const app = await html(pathFor(locale, 'apps/ting'));
+    for (const command of ['brew install --cask bobuk-io/tap/ting', 'brew trust --cask bobuk-io/tap/ting', 'brew upgrade --cask --greedy bobuk-io/tap/ting']) {
+      assert.ok(app.includes(command), `${locale}: missing ${command}`);
+    }
+    const support = await html(pathFor(locale, 'apps/ting/support'));
+    assert.ok(support.includes('brew uninstall --cask bobuk-io/tap/ting'), locale);
+    assert.ok(support.includes('--zap'), locale);
+  }
+});
+
 test('every page has correct language, metadata, one h1, and working local links/assets/anchors', async () => {
   for (const file of await htmlFiles(dist)) {
     const source = await readFile(file, 'utf8');
