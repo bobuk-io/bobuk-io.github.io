@@ -3,19 +3,20 @@
     <channel>
         <title>Ting</title>
         <item>
-            <title>0.7.2</title>
-            <pubDate>Tue, 17 Nov 2026 00:00:19 +0200</pubDate>
+            <title>0.7.3</title>
+            <pubDate>Tue, 17 Nov 2026 00:25:19 +0200</pubDate>
             <link>https://bobuk.io/apps/ting/</link>
-            <sparkle:version>17</sparkle:version>
-            <sparkle:shortVersionString>0.7.2</sparkle:shortVersionString>
+            <sparkle:version>18</sparkle:version>
+            <sparkle:shortVersionString>0.7.3</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.2
+            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.3
 
-## Fix
+## New
 
-- Selecta no longer consumes ordinary keys during AppKit's key-equivalent
-  handling. Arrow keys and Return now reach the menu navigation added in 0.7.1.
-  Command shortcuts such as Command-Q remain blocked while the menu is open.
+- A small gear in the bottom-right corner of selecta and launcha opens the same
+  menu as Ting's menu-bar icon, including Settings, updates and pause.
+- The launcher closes before the menu opens so its keyboard handling does not
+  interfere with menu navigation. The gear also works when the menu-bar icon is hidden.
 
 ## Upgrade
 
@@ -23,7 +24,7 @@ Choose **Check for Updates…** in Ting. Settings, bindings, micro-apps and
 permissions are preserved. Requires macOS 14 or later; the signed, notarized
 and stapled universal app supports Apple Silicon and Intel.
 ]]></description>
-            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.2/Ting-0.7.2-universal.zip" length="7213597" type="application/octet-stream" sparkle:edSignature="CDjqzZNn8MoWLE5D4HfWV1lk1VFJ4dGCUJBvBtvLRoRzUL3eERn+fS3aRv4lH6z0vjmuBWre1YnXFm1+HvJoBw=="/>
+            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.3/Ting-0.7.3-universal.zip" length="7222101" type="application/octet-stream" sparkle:edSignature="pO3hnIv+HQa3KmDs5HhJ4qNd4PHYkoEp7rjUpqQfT9OWjzzjKT7pD+Ru5oNO33eCL0iW3zGM2pB+Fei76/elDw=="/>
         </item>
     </channel>
 </rss>

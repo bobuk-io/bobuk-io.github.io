@@ -366,3 +366,17 @@ test('no scaffold placeholders reach the built site', async () => {
     assert.ok(!source.includes('TODO(landing)'), `${file.pathname.slice(dist.pathname.length)} still has TODO(landing) text from npm run app:new`);
   }
 });
+
+
+test('Ting 0.7.3 announces the launcher menu gear in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  const position = { en: 'bottom-right', ru: 'справа внизу', uk: 'праворуч унизу' };
+  for (const locale of locales) {
+    for (const route of ['apps/ting', 'apps/ting/support']) {
+      const source = await html(pathFor(locale, route));
+      for (const text of ['Ting 0.7.3', position[locale], 'selecta', 'launcha', 'Settings', 'Check for Updates']) {
+        assert.ok(source.includes(text), `${locale}: missing ${text} on ${route}`);
+      }
+    }
+  }
+});
