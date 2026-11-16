@@ -173,6 +173,24 @@ test('Ting documents release 0.4.0 micro-apps and their security model in every 
   }
 });
 
+test('Ting documents release 0.5.0 steps, libraries and ting-micro in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  for (const locale of locales) {
+    const app = await html(pathFor(locale, 'apps/ting'));
+    for (const text of ['Ting 0.5.0', 'Python', 'Ollama', 'ting-micro']) {
+      assert.ok(app.includes(text), `${locale}: missing ${text} on the app page`);
+    }
+    const support = await html(pathFor(locale, 'apps/ting/support'));
+    for (const text of ['Ting 0.5.0', '~/.config/ting/micro/libs/', 'call', 'inherit', 'check-config', 'CONFIGURING.md', '300']) {
+      assert.ok(support.includes(text), `${locale}: missing ${text} on the support page`);
+    }
+    const privacy = await html(pathFor(locale, 'apps/ting/privacy'));
+    for (const text of ['url', 'ai', '300', 'ting-micro check']) {
+      assert.ok(privacy.includes(text), `${locale}: missing privacy fact ${text}`);
+    }
+  }
+});
+
 test('Ting has localized launcher copy and screenshots without HAScS claims', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   const expected = { en: 'Your next app. A few keys away.', ru: 'Нужное приложение. Несколькими клавишами.', uk: 'Потрібний застосунок. Кількома клавішами.' };
