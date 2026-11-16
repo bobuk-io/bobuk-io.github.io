@@ -4,18 +4,18 @@
 
 ## URL для App Store Connect
 
-Постоянные HTTPS-адреса на GitHub Pages:
+Постоянные HTTPS-адреса на bobuk.io:
 
-| Поле | URL (при SITE_URL=https://bobuk-io.github.io) |
+| Поле | URL |
 | --- | --- |
-| Marketing URL | https://bobuk-io.github.io/apps/splash-finish/ |
-| Support URL | https://bobuk-io.github.io/apps/splash-finish/support/ |
-| Privacy Policy URL | https://bobuk-io.github.io/apps/splash-finish/privacy/ |
-| HAScS Marketing URL | https://bobuk-io.github.io/apps/hascs/ |
-| HAScS Support URL | https://bobuk-io.github.io/apps/hascs/support/ |
-| HAScS Privacy Policy URL | https://bobuk-io.github.io/apps/hascs/privacy/ |
+| Marketing URL | https://bobuk.io/apps/splash-finish/ |
+| Support URL | https://bobuk.io/apps/splash-finish/support/ |
+| Privacy Policy URL | https://bobuk.io/apps/splash-finish/privacy/ |
+| HAScS Marketing URL | https://bobuk.io/apps/hascs/ |
+| HAScS Support URL | https://bobuk.io/apps/hascs/support/ |
+| HAScS Privacy Policy URL | https://bobuk.io/apps/hascs/privacy/ |
 
-В таблице английские URL. Для русской локализации добавьте `/ru` перед `/apps`, для украинской — `/uk`. Например: `https://bobuk-io.github.io/uk/apps/hascs/privacy/`. Все три локализации включают полный текст установки, поддержки и privacy. Пути не меняйте после публикации. Если меняется домен, настройте постоянные редиректы.
+В таблице английские URL. Для русской локализации добавьте `/ru` перед `/apps`, для украинской — `/uk`. Например: `https://bobuk.io/uk/apps/hascs/privacy/`. Все три локализации включают полный текст установки, поддержки и privacy. Пути не меняйте после публикации. Если меняется домен, настройте постоянные редиректы.
 
 ## Что уже есть
 

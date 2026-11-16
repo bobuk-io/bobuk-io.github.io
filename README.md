@@ -45,9 +45,21 @@ swift scripts/capture-windows.swift <pid или имя процесса> <пре
 
 ## Деплой
 
-Сайт: **https://bobuk-io.github.io/**. Репозиторий: [bobuk-io/bobuk-io.github.io](https://github.com/bobuk-io/bobuk-io.github.io).
+Сайт: **https://bobuk.io/**. Репозиторий: [bobuk-io/bobuk-io.github.io](https://github.com/bobuk-io/bobuk-io.github.io).
 
-GitHub Actions (`.github/workflows/pages.yml`) проверяет публичность репозиториев, собирает и тестирует сайт, затем публикует `dist/` в Pages. Запуск — при push в main, вручную и ежедневно в 05:23 UTC. Если GitHub API недоступен, деплой прервётся, последняя опубликованная версия останется доступна. Срочные изменения видимости требуют ручного запуска workflow.
+Сайт работает на сервере oranges.team, в стеке Sigma Stacks `/stacks/bobuk-io`. Контейнер static-web-server отдаёт файлы из `/stacks/bobuk-io/data/public`; сертификаты для `bobuk.io` и `www.bobuk.io` выпускает прокси (HTTP-01). DNS — A-запись `bobuk.io` в Cloudflare без проксирования; `*.bobuk.io` — CNAME на `bobuk.io`.
+
+Публикация — вручную с Mac, нужен SSH-доступ к `oranges.team`:
+
+```sh
+npm run deploy
+```
+
+Скрипт `scripts/deploy.sh` проверяет публичность репозиториев, собирает сайт с `SITE_URL=https://bobuk.io`, запускает тесты, копирует `dist/` через rsync и проверяет, что главные страницы отвечают HTTP 200. Static-web-server читает файлы при каждом запросе, поэтому перезапуск не нужен. HTML, `sitemap.xml` и `robots.txt` отдаются с `Cache-Control: no-cache`. Другой сервер или путь: `DEPLOY_HOST` и `DEPLOY_PATH`.
+
+Автоматической ежедневной сборки для bobuk.io нет. Если репозиторий приложения стал приватным, запустите `npm run deploy` вручную.
+
+Копия на **https://bobuk-io.github.io/** остаётся: GitHub Actions (`.github/workflows/pages.yml`) собирает её при push в main, вручную и ежедневно в 05:23 UTC. Она собирается с `SITE_URL=https://bobuk.io`, поэтому canonical, sitemap и Open Graph указывают на bobuk.io.
 
 Для другого хостинга подойдут Cloudflare Pages, Netlify, Vercel static или любой HTTPS-хостинг:
 
@@ -55,10 +67,10 @@ GitHub Actions (`.github/workflows/pages.yml`) проверяет публичн
 - Install: `npm ci`.
 - Build: `npm run sync:github && npm run build && npm test`.
 - Output: `dist`.
-- Установите `SITE_URL=https://ваш-домен` **до сборки**. Значение по умолчанию — `https://bobuk-io.github.io`. Домен bobuk.io не подключён; его DNS не меняется.
+- Установите `SITE_URL=https://ваш-домен` **до сборки**. Значение по умолчанию — `https://bobuk.io`.
 - Нужен хостинг из корня домена, не подпапки. Canonical, robots, sitemap и OG используют SITE_URL.
 - Настройте 404 на `404.html`; не используйте SPA-rewrite всех запросов на главную.
-- При переименовании продукта сохраните старые URL через 301/308 (на GitHub Pages — не меняйте slug).
+- При переименовании продукта не меняйте slug: старые URL должны продолжать работать.
 
 Клиенту не нужны API, ключи, база данных или аккаунт. Шрифты системные, изображения локальные, сторонние скрипты/аналитика не подключены. Технические логи зависят от выбранного хостинга.
 

@@ -30,7 +30,7 @@ jobs:
       - name: Build and validate
         run: npm run build && npm test
         env:
-          SITE_URL: https://bobuk-io.github.io
+          SITE_URL: https://bobuk.io
           ASTRO_TELEMETRY_DISABLED: '1'
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -10,7 +10,8 @@
     "sync:github": "node scripts/sync-github.mjs",
     "test": "node --test scripts/site.test.mjs",
     "app:new": "node scripts/new-app.mjs",
-    "app:shots": "node scripts/add-shots.mjs"
+    "app:shots": "node scripts/add-shots.mjs",
+    "deploy": "sh scripts/deploy.sh"
   },
   "dependencies": { "astro": "^7.4.7" },
   "devDependencies": { "@astrojs/check": "^0.9.5", "typescript": "^5.9.3" }
