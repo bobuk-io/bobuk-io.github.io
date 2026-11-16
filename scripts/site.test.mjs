@@ -153,6 +153,26 @@ test('Ting documents release 0.3.1 panel spacing and local launcha data in every
   }
 });
 
+test('Ting documents release 0.4.0 micro-apps and their security model in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  for (const locale of locales) {
+    const app = await html(pathFor(locale, 'apps/ting'));
+    assert.ok(app.includes('Ting 0.4.0'), `${locale}: missing 0.4.0 on the app page`);
+    for (const text of ['~/.config/ting/micro/', 'Copy Agent Prompt', 'Ting --check', '60']) {
+      assert.ok(app.includes(text), `${locale}: missing ${text} on the app page`);
+    }
+    assert.doesNotMatch(app, /Not yet\. Actions open apps or URLs only|Пока нет: только приложения и URL|Поки ні: лише застосунки та URL/);
+    const support = await html(pathFor(locale, 'apps/ting/support'));
+    for (const text of ['Ting 0.4.0', 'FORMAT.md', 'Command-Return', 'micro-errors.log', 'Copy Agent Prompt', 'Ting --check', 'config.json']) {
+      assert.ok(support.includes(text), `${locale}: missing ${text} on the support page`);
+    }
+    const privacy = await html(pathFor(locale, 'apps/ting/privacy'));
+    for (const text of ['/bin/sh -c', 'micro-approvals.json', 'micro-values.json', 'remember: false', 'TING_*', '~/Library/Application Support/Ting/', 'Sparkle']) {
+      assert.ok(privacy.includes(text), `${locale}: missing privacy fact ${text}`);
+    }
+  }
+});
+
 test('Ting has localized launcher copy and screenshots without HAScS claims', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   const expected = { en: 'Your next app. A few keys away.', ru: 'Нужное приложение. Несколькими клавишами.', uk: 'Потрібний застосунок. Кількома клавішами.' };
