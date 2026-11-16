@@ -1,10 +1,10 @@
 import type { Guide } from '../types';
 import type { Locale } from '../../i18n';
-// The micro-app guide of Ting 0.5.0. Facts come from FORMAT.md, CONFIGURING.md and the README of
+// The micro-app guide of Ting 0.6.0. Facts come from FORMAT.md, CONFIGURING.md and the README of
 // bobuk-io/ting; the YAML in the code blocks passes `ting-micro check`. Code is the same in every locale.
 
-const format = 'https://github.com/bobuk-io/ting/blob/v0.5.0/docs/micro-apps/FORMAT.md';
-const configuring = 'https://github.com/bobuk-io/ting/blob/v0.5.0/docs/CONFIGURING.md';
+const format = 'https://github.com/bobuk-io/ting/blob/v0.6.0/docs/micro-apps/FORMAT.md';
+const configuring = 'https://github.com/bobuk-io/ting/blob/v0.6.0/docs/CONFIGURING.md';
 
 const code = {
   request: `Write a new Ting micro-app: Leader t a should translate the
@@ -100,11 +100,29 @@ steps:
   - call: translate
     params:
       language: \${params.language}`,
+  context: `format: ting.microapp/2
+name: Sort selected lines
+description: Sort the lines of the selected text and put them in place of the selection.
+tools: [sort]
+
+context: [selection]
+input: none
+steps:
+  - command: LC_ALL=en_US.UTF-8 sort
+    stdin: \${context.selection.text}
+output:
+  to: [app]`,
+  keys: `input: clipboard
+steps:
+  - keys: cmd+t
+  - paste: \${input|trim}
+  - keys: return`,
   keychain: `security add-generic-password -s anthropic -a "$USER" -w`,
   cli: `MICRO=/Applications/Ting.app/Contents/MacOS/ting-micro
 "$MICRO" check sort-lines.yaml
 printf 'b\\na\\nb\\n' | "$MICRO" run sort-lines.yaml
 "$MICRO" run dns-lookup.yaml --param domain=example.com --verbose
+"$MICRO" run sort-selection.yaml --context "selection.text=$(printf 'b\\na')"
 "$MICRO" check-config`,
   binding: `{ "key": "t", "label": "Translate", "items": [
   { "key": "a", "label": "Translate to German", "micro": "translate-german" }
@@ -114,7 +132,7 @@ printf 'b\\na\\nb\\n' | "$MICRO" run sort-lines.yaml
 const guides: Record<Locale, Guide> = {
   en: {
     slug: 'micro-apps', nav: 'Micro-apps', eyebrow: 'Micro-apps', title: 'Micro-apps: your own tools behind a key',
-    intro: 'A micro-app is a small YAML file that Ting runs from a key: it reads the clipboard, asks for a few values, runs shell or Python code, HTTP requests or an AI model, and shows or copies the result. The easiest way to get one is to ask a coding agent to write it for you.',
+    intro: 'A micro-app is a small YAML file that Ting runs from a key: it reads the clipboard or what you were working on, asks for a few values, runs shell or Python code, HTTP requests or an AI model, and shows, copies or pastes the result. The easiest way to get one is to ask a coding agent to write it for you.',
     sections: [
       { id: 'agent', title: 'Ask a coding agent (recommended)', blocks: [
         'You do not have to learn the format. A coding agent such as Claude Code, Codex or pi reads the format guide shipped inside Ting.app, writes the file, checks it with `ting-micro` and puts it in place. It can also add the key binding to your `config.json`.',
@@ -157,8 +175,9 @@ const guides: Record<Locale, Guide> = {
           ['`description`', 'One line, required.'],
           ['`params`', 'Values Ting asks for before the run: `text` or `choice`. Required ones are always shown; optional ones need a `default` and sit behind Command-O.'],
           ['`input`', '`clipboard` (the text goes to the first step) or `none`.'],
+          ['`context`', 'What Ting reads at the start: `app`, `finder`, `browser`, `selection`, `window` (see “What you were working on”).'],
           ['`command` or `steps`', 'One shell command, or a list of steps (below).'],
-          ['`output`', '`to: [clipboard, panel]` and `as: markdown | console | text | code`. Without `output`, nothing is shown or copied.'],
+          ['`output`', '`to: [clipboard, panel]` (or `app`: pasted into the app you came from) and `as: markdown | console | text | code`. Without `output`, nothing is shown or copied.'],
           ['`timeout`', 'Seconds for the whole run: 60 by default, at most 300.'],
           ['`tools`', 'Programs the code needs on PATH, such as `[dig, jq]`.'],
           ['`hidden`, `remember`', '`hidden: true` keeps it out of launcha; `remember: false` does not offer the last values.'],
@@ -179,6 +198,8 @@ const guides: Record<Locale, Guide> = {
           ['`open`', 'Opens a URL or a file, optionally in a given `app`.'],
           ['`notify`', 'Shows a notification.'],
           ['`call`', 'Runs a library (see “Libraries”).'],
+          ['`keys`', 'Presses keys in the app you came from, such as `cmd+t` or `[cmd+a, return]`.'],
+          ['`paste`', 'Pastes text into that app and puts the clipboard back.'],
         ] },
         'Every step can have an `id` (later steps read its output as `${steps.ID}`), its own `stdin`, `timeout` and `params`. `stream: true` lets a `command` or `python` step read the output of the step before it while it comes.',
         'This micro-app asks Wikipedia for the clipboard word and shows the summary with its link:',
@@ -196,9 +217,26 @@ const guides: Record<Locale, Guide> = {
           ['`${steps.ID}`', 'The output of an earlier step.'],
           ['`${NAME}`', 'A variable of your login shell, such as `${OPENAI_API_KEY}`.'],
           ['`${keychain.SERVICE}`', 'A password from your login keychain.'],
+          ['`${context.SOURCE.FIELD}`', 'A value of the context, such as `${context.app.name}`.'],
         ] },
         'Filters after `|`: `url` (percent-encode), `json` (escape for a JSON string), `trim`, `base64`. For example `${input|trim|url}`.',
-        'Ting never puts text into shell or Python code. The code reads the same values from the environment: `$TING_NAME` for parameters, `$TING_STEP_ID` for step outputs, and the variables you set with `env:`. This keeps clipboard text from becoming a command.',
+        'Ting never puts text into shell or Python code. The code reads the same values from the environment: `$TING_NAME` for parameters, `$TING_STEP_ID` for step outputs, `$TING_CONTEXT_SOURCE_FIELD` for the context, and the variables you set with `env:`. This keeps clipboard text from becoming a command.',
+      ] },
+      { id: 'context', title: 'What you were working on', blocks: [
+        'Since Ting 0.6.0 a micro-app can read the moment it starts: list the sources in `context:`, and Ting reads only those, before the parameter panel. Steps read a value as `${context.SOURCE.FIELD}`, code as `$TING_CONTEXT_SOURCE_FIELD`.',
+        { table: [
+          ['Source', 'Values', 'Permission'],
+          ['`app`', '`name`, `bundle`, `path`, `pid` of the active app', 'none'],
+          ['`finder`', '`selection` (one path per line) and `folder` of the front Finder window, also when Finder is in the background', 'Automation for Finder'],
+          ['`browser`', '`url`, `title` of the front tab and `name` of the browser: Safari, Chrome, Arc, Brave, Edge, Vivaldi or Chromium', 'Automation for the browser'],
+          ['`selection`', '`text`: the selected text; where Accessibility gives none, Ting presses Command-C and puts the clipboard back', 'Accessibility'],
+          ['`window`', '`title` and `document` of the front window', 'Accessibility'],
+        ] },
+        'A micro-app can also send input to the app you came from: `keys` presses keys, `paste` pastes text, and `output` with `to: [app]` pastes the result. This one sorts the selected lines in place:',
+        { code: code.context },
+        'And this one opens a new browser tab and searches there for the clipboard text:',
+        { code: code.keys },
+        'macOS asks once to let Ting control Finder or the browser. Accessibility is turned on for Ting in System Settings › Privacy & Security › Accessibility. Without a permission the micro-app does not start, and the panel says what to allow.',
       ] },
       { id: 'libraries', title: 'Libraries', blocks: [
         'Steps that several micro-apps share live once in `~/.config/ting/micro/libs/NAME.yaml`, with `format: ting.microlib/1`. A library has no key and is not listed in launcha.',
@@ -215,19 +253,19 @@ const guides: Record<Locale, Guide> = {
         'and read it as `${keychain.anthropic}`. Do not type secrets into parameters that Ting remembers: remembered values are stored as plain text.',
       ] },
       { id: 'terminal', title: 'Check and run in the terminal', blocks: [
-        '`ting-micro` inside Ting.app checks and runs micro-apps without the panels. `run` reads the input from stdin and prints the result; it never touches the clipboard, your config or the approvals. `open` and `notify` steps run only with `--allow-effects`.',
+        '`ting-micro` inside Ting.app checks and runs micro-apps without the panels. `run` reads the input from stdin and prints the result; it never touches the clipboard, your config or the approvals. `open` and `notify` steps run only with `--allow-effects`. It reads no context: give values with `--context app.name=Safari`. `keys` and `paste` steps never send anything there.',
         { code: code.cli },
         '`check-config` checks `config.json`: JSON errors, keys used twice, bad URLs and micro-app ids that do not load. A micro-app binding looks like this:',
         { code: code.binding },
       ] },
       { id: 'safety', title: 'Safety', blocks: [
-        'A micro-app runs as you, with your full rights and no sandbox: it can read and change your files, use the network and start programs. That is why Ting runs a file only after you approve its exact text, and asks again after any change of the file or of a library it uses. Approve only what you understand, and keep `~/.config/ting/` writable only by your account.',
+        'A micro-app runs as you, with your full rights and no sandbox: it can read and change your files, use the network and start programs. That is why Ting runs a file only after you approve its exact text, and asks again after any change of the file or of a library it uses. Approve only what you understand, and keep `~/.config/ting/` writable only by your account. A micro-app that presses keys or pastes can do in the app in front what you can do with the keyboard: approve it as carefully as code.',
       ] },
     ],
   },
   ru: {
     slug: 'micro-apps', nav: 'Микро-приложения', eyebrow: 'Микро-приложения', title: 'Микро-приложения: свои инструменты на клавише',
-    intro: 'Микро-приложение — небольшой YAML-файл, который Ting запускает по клавише. Он читает буфер обмена, спрашивает несколько значений, выполняет код оболочки или Python, HTTP-запросы или обращается к модели ИИ и показывает или копирует результат. Проще всего получить такой файл — попросить агента для программирования написать его.',
+    intro: 'Микро-приложение — небольшой YAML-файл, который Ting запускает по клавише. Он читает буфер обмена или то, с чем вы работали, спрашивает несколько значений, выполняет код оболочки или Python, HTTP-запросы или обращается к модели ИИ и показывает, копирует или вставляет результат. Проще всего получить такой файл — попросить агента для программирования написать его.',
     sections: [
       { id: 'agent', title: 'Попросите агента (рекомендуем)', blocks: [
         'Изучать формат не обязательно. Агент, например Claude Code, Codex или pi, читает руководство по формату внутри Ting.app, пишет файл, проверяет его через `ting-micro` и кладёт на место. Он также может добавить привязку клавиши в ваш `config.json`.',
@@ -270,8 +308,9 @@ const guides: Record<Locale, Guide> = {
           ['`description`', 'Одна строка, обязательно.'],
           ['`params`', 'Значения, которые Ting спрашивает перед запуском: `text` или `choice`. Обязательные видны всегда; необязательным нужен `default`, они открываются по Command-O.'],
           ['`input`', '`clipboard` (текст идёт на вход первому шагу) или `none`.'],
+          ['`context`', 'Что Ting читает при запуске: `app`, `finder`, `browser`, `selection`, `window` (см. «С чем вы работали»).'],
           ['`command` или `steps`', 'Одна команда оболочки или список шагов (ниже).'],
-          ['`output`', '`to: [clipboard, panel]` и `as: markdown | console | text | code`. Без `output` ничего не показывается и не копируется.'],
+          ['`output`', '`to: [clipboard, panel]` (или `app`: вставить в приложение, из которого вы пришли) и `as: markdown | console | text | code`. Без `output` ничего не показывается и не копируется.'],
           ['`timeout`', 'Время всего запуска в секундах: по умолчанию 60, максимум 300.'],
           ['`tools`', 'Программы, которые нужны коду в PATH, например `[dig, jq]`.'],
           ['`hidden`, `remember`', '`hidden: true` скрывает из launcha; `remember: false` не предлагает прошлые значения.'],
@@ -292,6 +331,8 @@ const guides: Record<Locale, Guide> = {
           ['`open`', 'Открывает URL или файл, при желании в указанном приложении (`app`).'],
           ['`notify`', 'Показывает уведомление.'],
           ['`call`', 'Запускает библиотеку (см. «Библиотеки»).'],
+          ['`keys`', 'Нажимает клавиши в приложении, из которого вы пришли, например `cmd+t` или `[cmd+a, return]`.'],
+          ['`paste`', 'Вставляет текст в это приложение и возвращает буфер обмена.'],
         ] },
         'У каждого шага может быть `id` (следующие шаги читают его вывод как `${steps.ID}`), свои `stdin`, `timeout` и `params`. С `stream: true` шаг `command` или `python` читает вывод предыдущего шага по мере поступления.',
         'Это микро-приложение ищет слово из буфера обмена в Википедии и показывает краткое описание со ссылкой:',
@@ -309,9 +350,26 @@ const guides: Record<Locale, Guide> = {
           ['`${steps.ID}`', 'Вывод одного из предыдущих шагов.'],
           ['`${NAME}`', 'Переменная вашей оболочки входа, например `${OPENAI_API_KEY}`.'],
           ['`${keychain.SERVICE}`', 'Пароль из вашей связки ключей.'],
+          ['`${context.SOURCE.FIELD}`', 'Значение контекста, например `${context.app.name}`.'],
         ] },
         'Фильтры после `|`: `url` (кодирование для URL), `json` (экранирование для строки JSON), `trim`, `base64`. Например, `${input|trim|url}`.',
-        'Ting никогда не подставляет текст в код оболочки и Python. Код читает те же значения из окружения: `$TING_NAME` для параметров, `$TING_STEP_ID` для вывода шагов и переменные, заданные в `env:`. Так текст из буфера обмена не может стать командой.',
+        'Ting никогда не подставляет текст в код оболочки и Python. Код читает те же значения из окружения: `$TING_NAME` для параметров, `$TING_STEP_ID` для вывода шагов, `$TING_CONTEXT_SOURCE_FIELD` для контекста и переменные, заданные в `env:`. Так текст из буфера обмена не может стать командой.',
+      ] },
+      { id: 'context', title: 'С чем вы работали', blocks: [
+        'С Ting 0.6.0 микро-приложение может узнать, что было на экране при запуске: перечислите источники в `context:`, и Ting прочитает только их, до панели параметров. Шаги читают значение как `${context.SOURCE.FIELD}`, код — как `$TING_CONTEXT_SOURCE_FIELD`.',
+        { table: [
+          ['Источник', 'Значения', 'Разрешение'],
+          ['`app`', '`name`, `bundle`, `path`, `pid` активного приложения', 'не нужно'],
+          ['`finder`', '`selection` (по пути на строку) и `folder` переднего окна Finder, даже если Finder в фоне', 'автоматизация для Finder'],
+          ['`browser`', '`url`, `title` передней вкладки и `name` браузера: Safari, Chrome, Arc, Brave, Edge, Vivaldi или Chromium', 'автоматизация для браузера'],
+          ['`selection`', '`text`: выделенный текст; если универсальный доступ его не отдаёт, Ting нажимает Command-C и возвращает буфер обмена', 'универсальный доступ'],
+          ['`window`', '`title` и `document` переднего окна', 'универсальный доступ'],
+        ] },
+        'Микро-приложение может и отправлять ввод в приложение, из которого вы пришли: `keys` нажимает клавиши, `paste` вставляет текст, а `output` с `to: [app]` вставляет результат. Это микро-приложение сортирует выделенные строки на месте:',
+        { code: code.context },
+        'А это открывает новую вкладку браузера и ищет там текст из буфера обмена:',
+        { code: code.keys },
+        'macOS один раз спросит, можно ли Ting управлять Finder или браузером. Универсальный доступ для Ting включается в системных настройках, в разделе конфиденциальности и безопасности. Без разрешения микро-приложение не запускается, а панель говорит, что нужно разрешить.',
       ] },
       { id: 'libraries', title: 'Библиотеки', blocks: [
         'Шаги, общие для нескольких микро-приложений, хранятся один раз в `~/.config/ting/micro/libs/NAME.yaml` с `format: ting.microlib/1`. У библиотеки нет клавиши, и в launcha её нет.',
@@ -328,19 +386,19 @@ const guides: Record<Locale, Guide> = {
         'и читайте его как `${keychain.anthropic}`. Не вводите секреты в параметры, которые Ting запоминает: запомненные значения хранятся обычным текстом.',
       ] },
       { id: 'terminal', title: 'Проверка и запуск в терминале', blocks: [
-        '`ting-micro` внутри Ting.app проверяет и запускает микро-приложения без панелей. `run` читает вход из stdin и печатает результат; он не трогает буфер обмена, конфигурацию и одобрения. Шаги `open` и `notify` выполняются только с `--allow-effects`.',
+        '`ting-micro` внутри Ting.app проверяет и запускает микро-приложения без панелей. `run` читает вход из stdin и печатает результат; он не трогает буфер обмена, конфигурацию и одобрения. Шаги `open` и `notify` выполняются только с `--allow-effects`. Контекст он не читает: значения задаются через `--context app.name=Safari`. Шаги `keys` и `paste` там ничего не отправляют.',
         { code: code.cli },
         '`check-config` проверяет `config.json`: ошибки JSON, повторные клавиши, плохие URL и id микро-приложений, которые не загружаются. Привязка микро-приложения выглядит так:',
         { code: code.binding },
       ] },
       { id: 'safety', title: 'Безопасность', blocks: [
-        'Микро-приложение работает от вашего имени, со всеми вашими правами и без песочницы: оно может читать и менять файлы, работать с сетью и запускать программы. Поэтому Ting запускает файл только после того, как вы одобрите именно этот текст, и спрашивает снова после любого изменения файла или его библиотеки. Одобряйте только то, что понимаете, и оставьте запись в `~/.config/ting/` только своей учётной записи.',
+        'Микро-приложение работает от вашего имени, со всеми вашими правами и без песочницы: оно может читать и менять файлы, работать с сетью и запускать программы. Поэтому Ting запускает файл только после того, как вы одобрите именно этот текст, и спрашивает снова после любого изменения файла или его библиотеки. Одобряйте только то, что понимаете, и оставьте запись в `~/.config/ting/` только своей учётной записи. Микро-приложение, которое нажимает клавиши или вставляет текст, может сделать в переднем приложении всё, что вы делаете клавиатурой: одобряйте его так же внимательно, как код.',
       ] },
     ],
   },
   uk: {
     slug: 'micro-apps', nav: 'Мікрозастосунки', eyebrow: 'Мікрозастосунки', title: 'Мікрозастосунки: власні інструменти на клавіші',
-    intro: 'Мікрозастосунок — невеликий YAML-файл, який Ting запускає клавішею. Він читає буфер обміну, запитує кілька значень, виконує код оболонки чи Python, HTTP-запити або звертається до моделі ШІ та показує чи копіює результат. Найпростіше отримати такий файл — попросити агента для програмування написати його.',
+    intro: 'Мікрозастосунок — невеликий YAML-файл, який Ting запускає клавішею. Він читає буфер обміну або те, з чим ви працювали, запитує кілька значень, виконує код оболонки чи Python, HTTP-запити або звертається до моделі ШІ та показує, копіює чи вставляє результат. Найпростіше отримати такий файл — попросити агента для програмування написати його.',
     sections: [
       { id: 'agent', title: 'Попросіть агента (рекомендуємо)', blocks: [
         'Вивчати формат не обов’язково. Агент, наприклад Claude Code, Codex або pi, читає посібник із формату всередині Ting.app, пише файл, перевіряє його через `ting-micro` і кладе на місце. Він також може додати прив’язку клавіші у ваш `config.json`.',
@@ -383,8 +441,9 @@ const guides: Record<Locale, Guide> = {
           ['`description`', 'Один рядок, обов’язково.'],
           ['`params`', 'Значення, які Ting запитує перед запуском: `text` або `choice`. Обов’язкові видно завжди; необов’язковим потрібен `default`, вони відкриваються за Command-O.'],
           ['`input`', '`clipboard` (текст іде на вхід першому крокові) або `none`.'],
+          ['`context`', 'Що Ting читає під час запуску: `app`, `finder`, `browser`, `selection`, `window` (див. «З чим ви працювали»).'],
           ['`command` або `steps`', 'Одна команда оболонки або список кроків (нижче).'],
-          ['`output`', '`to: [clipboard, panel]` і `as: markdown | console | text | code`. Без `output` нічого не показується й не копіюється.'],
+          ['`output`', '`to: [clipboard, panel]` (або `app`: вставити в застосунок, з якого ви прийшли) і `as: markdown | console | text | code`. Без `output` нічого не показується й не копіюється.'],
           ['`timeout`', 'Час усього запуску в секундах: типово 60, щонайбільше 300.'],
           ['`tools`', 'Програми, потрібні коду в PATH, наприклад `[dig, jq]`.'],
           ['`hidden`, `remember`', '`hidden: true` приховує з launcha; `remember: false` не пропонує минулі значення.'],
@@ -405,6 +464,8 @@ const guides: Record<Locale, Guide> = {
           ['`open`', 'Відкриває URL або файл, за бажання у вказаному застосунку (`app`).'],
           ['`notify`', 'Показує сповіщення.'],
           ['`call`', 'Запускає бібліотеку (див. «Бібліотеки»).'],
+          ['`keys`', 'Натискає клавіші в застосунку, з якого ви прийшли, наприклад `cmd+t` або `[cmd+a, return]`.'],
+          ['`paste`', 'Вставляє текст у цей застосунок і повертає буфер обміну.'],
         ] },
         'Кожен крок може мати `id` (наступні кроки читають його вивід як `${steps.ID}`), власні `stdin`, `timeout` і `params`. З `stream: true` крок `command` або `python` читає вивід попереднього кроку в міру надходження.',
         'Цей мікрозастосунок шукає слово з буфера обміну у Вікіпедії та показує короткий опис із посиланням:',
@@ -422,9 +483,26 @@ const guides: Record<Locale, Guide> = {
           ['`${steps.ID}`', 'Вивід одного з попередніх кроків.'],
           ['`${NAME}`', 'Змінна вашої оболонки входу, наприклад `${OPENAI_API_KEY}`.'],
           ['`${keychain.SERVICE}`', 'Пароль із вашої зв’язки ключів.'],
+          ['`${context.SOURCE.FIELD}`', 'Значення контексту, наприклад `${context.app.name}`.'],
         ] },
         'Фільтри після `|`: `url` (кодування для URL), `json` (екранування для рядка JSON), `trim`, `base64`. Наприклад, `${input|trim|url}`.',
-        'Ting ніколи не підставляє текст у код оболонки та Python. Код читає ті самі значення із середовища: `$TING_NAME` для параметрів, `$TING_STEP_ID` для виводу кроків і змінні, задані в `env:`. Так текст із буфера обміну не може стати командою.',
+        'Ting ніколи не підставляє текст у код оболонки та Python. Код читає ті самі значення із середовища: `$TING_NAME` для параметрів, `$TING_STEP_ID` для виводу кроків, `$TING_CONTEXT_SOURCE_FIELD` для контексту і змінні, задані в `env:`. Так текст із буфера обміну не може стати командою.',
+      ] },
+      { id: 'context', title: 'З чим ви працювали', blocks: [
+        'З Ting 0.6.0 мікрозастосунок може дізнатися, що було на екрані під час запуску: перелічіть джерела в `context:`, і Ting прочитає лише їх, до панелі параметрів. Кроки читають значення як `${context.SOURCE.FIELD}`, код — як `$TING_CONTEXT_SOURCE_FIELD`.',
+        { table: [
+          ['Джерело', 'Значення', 'Дозвіл'],
+          ['`app`', '`name`, `bundle`, `path`, `pid` активного застосунку', 'не потрібен'],
+          ['`finder`', '`selection` (по шляху на рядок) і `folder` переднього вікна Finder, навіть якщо Finder у фоні', 'автоматизація для Finder'],
+          ['`browser`', '`url`, `title` передньої вкладки й `name` браузера: Safari, Chrome, Arc, Brave, Edge, Vivaldi або Chromium', 'автоматизація для браузера'],
+          ['`selection`', '`text`: виділений текст; якщо доступність його не віддає, Ting натискає Command-C і повертає буфер обміну', 'доступність'],
+          ['`window`', '`title` і `document` переднього вікна', 'доступність'],
+        ] },
+        'Мікрозастосунок може й надсилати введення в застосунок, з якого ви прийшли: `keys` натискає клавіші, `paste` вставляє текст, а `output` з `to: [app]` вставляє результат. Цей мікрозастосунок сортує виділені рядки на місці:',
+        { code: code.context },
+        'А цей відкриває нову вкладку браузера й шукає там текст із буфера обміну:',
+        { code: code.keys },
+        'macOS один раз запитає, чи можна Ting керувати Finder або браузером. Доступність для Ting вмикається в системних налаштуваннях, у розділі приватності й безпеки. Без дозволу мікрозастосунок не запускається, а панель каже, що треба дозволити.',
       ] },
       { id: 'libraries', title: 'Бібліотеки', blocks: [
         'Кроки, спільні для кількох мікрозастосунків, зберігаються один раз у `~/.config/ting/micro/libs/NAME.yaml` з `format: ting.microlib/1`. Бібліотека не має клавіші, і в launcha її немає.',
@@ -441,13 +519,13 @@ const guides: Record<Locale, Guide> = {
         'і читайте його як `${keychain.anthropic}`. Не вводьте секрети в параметри, які Ting запам’ятовує: запам’ятовані значення зберігаються звичайним текстом.',
       ] },
       { id: 'terminal', title: 'Перевірка й запуск у терміналі', blocks: [
-        '`ting-micro` усередині Ting.app перевіряє й запускає мікрозастосунки без панелей. `run` читає вхід зі stdin і друкує результат; він не чіпає буфер обміну, конфігурацію та схвалення. Кроки `open` і `notify` виконуються лише з `--allow-effects`.',
+        '`ting-micro` усередині Ting.app перевіряє й запускає мікрозастосунки без панелей. `run` читає вхід зі stdin і друкує результат; він не чіпає буфер обміну, конфігурацію та схвалення. Кроки `open` і `notify` виконуються лише з `--allow-effects`. Контекст він не читає: значення задаються через `--context app.name=Safari`. Кроки `keys` і `paste` там нічого не надсилають.',
         { code: code.cli },
         '`check-config` перевіряє `config.json`: помилки JSON, повторні клавіші, погані URL та id мікрозастосунків, які не завантажуються. Прив’язка мікрозастосунку виглядає так:',
         { code: code.binding },
       ] },
       { id: 'safety', title: 'Безпека', blocks: [
-        'Мікрозастосунок працює від вашого імені, з усіма вашими правами й без пісочниці: він може читати та змінювати файли, працювати з мережею й запускати програми. Тому Ting запускає файл лише після того, як ви схвалите саме цей текст, і запитує знову після будь-якої зміни файлу чи його бібліотеки. Схвалюйте лише те, що розумієте, і залиште запис у `~/.config/ting/` лише своєму обліковому запису.',
+        'Мікрозастосунок працює від вашого імені, з усіма вашими правами й без пісочниці: він може читати та змінювати файли, працювати з мережею й запускати програми. Тому Ting запускає файл лише після того, як ви схвалите саме цей текст, і запитує знову після будь-якої зміни файлу чи його бібліотеки. Схвалюйте лише те, що розумієте, і залиште запис у `~/.config/ting/` лише своєму обліковому запису. Мікрозастосунок, який натискає клавіші чи вставляє текст, може зробити в передньому застосунку все, що ви робите клавіатурою: схвалюйте його так само уважно, як код.',
       ] },
     ],
   },
