@@ -3,30 +3,36 @@
     <channel>
         <title>Ting</title>
         <item>
-            <title>0.6.1</title>
-            <pubDate>Mon, 16 Nov 2026 20:54:32 +0200</pubDate>
+            <title>0.7.0</title>
+            <pubDate>Mon, 16 Nov 2026 21:35:09 +0200</pubDate>
             <link>https://bobuk.io/apps/ting/</link>
-            <sparkle:version>13</sparkle:version>
-            <sparkle:shortVersionString>0.6.1</sparkle:shortVersionString>
+            <sparkle:version>14</sparkle:version>
+            <sparkle:shortVersionString>0.7.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Ting 0.6.1
+            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.0
 
 ## Changes
 
-- **An Accessibility window instead of an error.** When a micro-app needs
-  Accessibility (the selected text, the front window, `keys`, `paste` or
-  `output.to: [app]`) and Ting does not have it, Ting opens a window with the
-  steps: **Open Accessibility Settings** opens System Settings › Privacy &
-  Security › Accessibility, and the Ting icon in the window can be dragged
-  straight into its list of apps. The window stays above System Settings and
-  closes by itself once access is on; then start the micro-app again. A result
-  that could not be pasted stays on the clipboard. Ting no longer shows the
-  prompt of macOS for it.
-- **Accessibility in Settings.** Settings › Advanced shows whether Ting has
-  Accessibility; **Allow…** opens the same window.
-- **Readable buttons in the light theme.** Prominent buttons, such as
-  **Continue** in the welcome window, use a lighter amber, so their text stands
-  out.
+- **A calculator in launcha.** Type digits and an operator, such as `2*(3+4)`,
+  `1,5 × 4`, `200 + 15%`, `2^10` or `sqrt(2)`: the value comes first, above any
+  app or file, and `Return` copies it. Both `.` and `,` are decimal points.
+  `+ - * / ^`, `× ÷`, parentheses, `mod`, percent, `pi`, `e` and the functions
+  `sqrt`, `abs`, `round`, `floor`, `ceil`, `ln`, `log`, `exp`, `sin`, `cos`, `tan`
+  (radians) work; results keep up to 12 digits after the point. Ting computes
+  it itself, with decimal numbers, so `0.1 + 0.2` is `0.3`. It is on by default:
+  turn it off with **Calculate in launcha** in Settings › General, or with
+  `"calculator": false` under `launcha` in the config file.
+- **Updates are checked at bobuk.io.** Sparkle now reads the update feed at
+  `https://bobuk.io/apps/ting/appcast.xml`, so a new release shows up as soon as
+  it is published. The archives still come from GitHub Releases and are accepted
+  only with Ting's EdDSA signature, as before.
+
+## Privacy
+
+Each update check now goes to the bobuk.io server instead of GitHub, so that
+server sees ordinary request data, including your IP address. The download of a
+new release still goes to GitHub. Turn automatic checks off in Settings ›
+General if you prefer to check yourself.
 
 ## Upgrade and install
 
@@ -34,8 +40,10 @@ Requires **macOS 14 or later**. The universal ZIP supports **Apple Silicon and I
 
 To upgrade an installed copy, choose **Check for Updates…** in the menu-bar
 menu. Your settings, leader, bindings, micro-apps and permissions are kept.
+Ting 0.6.1 and older find this release through the GitHub feed; from 0.7.0 on,
+Ting checks bobuk.io.
 
-For a new or manual installation, download `Ting-0.6.1-universal.zip` from
+For a new or manual installation, download `Ting-0.7.0-universal.zip` from
 [Releases](https://github.com/bobuk-io/ting/releases/latest) and unzip it. Quit
 any running copy of Ting, move `Ting.app` to `/Applications` (replace the old
 copy for a manual upgrade), and open it. Ting lives in the menu bar and has no
@@ -44,10 +52,9 @@ Dock icon. On first launch, choose a leader key; there is no default leader.
 The official release is signed with Developer ID, notarized by Apple, and
 includes a stapled notarization ticket. Verify the archive with
 `SHA256SUMS.txt` if desired. Ting asks for Automation and Accessibility only
-when a micro-app needs them (see the
-[0.6.0 release notes](v0.6.0.md#permissions)) and never for Input Monitoring.
+when a micro-app needs them and never for Input Monitoring.
 ]]></description>
-            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.6.1/Ting-0.6.1-universal.zip" length="7134823" type="application/octet-stream" sparkle:edSignature="Psrvew+meAbz4tWNc1rep8Y/Egfx8lJH39NAEoIerHW3Zdm0ylRvBSkAJATEONL18eKOG7hRBe/PMbqq4xNEBw=="/>
+            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.0/Ting-0.7.0-universal.zip" length="7207773" type="application/octet-stream" sparkle:edSignature="fQwK/ktt2p9p3yMhOFZx+0WS4eFPHCgokL3kL4divFKn/G+RY1GIvSD7s3yKqAZdImqgDNbHk3ttZoIhB6hMBA=="/>
         </item>
     </channel>
 </rss>

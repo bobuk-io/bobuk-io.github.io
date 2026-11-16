@@ -173,6 +173,24 @@ test('Ting documents release 0.4.0 micro-apps and their security model in every 
   }
 });
 
+test('Ting documents release 0.7.0 calculator and the bobuk.io feed in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  for (const locale of locales) {
+    for (const route of ['apps/ting', 'apps/ting/support']) {
+      assert.ok((await html(pathFor(locale, route))).includes('Ting 0.7.0'), `${locale}: missing 0.7.0 on ${route}`);
+    }
+    const support = await html(pathFor(locale, 'apps/ting/support'));
+    for (const text of ['2*(3+4)', '1,5 × 4', 'Calculate in launcha', 'calculator', 'https://bobuk.io/apps/ting/appcast.xml']) {
+      assert.ok(support.includes(text), `${locale}: missing ${text} on the support page`);
+    }
+    const privacy = await html(pathFor(locale, 'apps/ting/privacy'));
+    for (const text of ['https://bobuk.io/apps/ting/appcast.xml', 'bobuk.io']) {
+      assert.ok(privacy.includes(text), `${locale}: missing privacy fact ${text}`);
+    }
+    assert.ok(!privacy.includes('this website uses GitHub Pages'), `${locale}: the site is hosted at bobuk.io`);
+  }
+});
+
 test('Ting update feed is served at apps/ting/appcast.xml and points to signed GitHub archives', async () => {
   const feed = await readFile(new URL('./apps/ting/appcast.xml', dist), 'utf8');
   assert.match(feed, /^<\?xml/);
