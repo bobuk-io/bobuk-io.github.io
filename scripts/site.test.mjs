@@ -173,6 +173,22 @@ test('Ting documents release 0.4.0 micro-apps and their security model in every 
   }
 });
 
+test('Ting documents release 0.5.1 performance and aligned keycaps in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  const facts = {
+    en: ['preloads app icons', 'activated directly', 'system shadow', 'same minimum width'],
+    ru: ['заранее загружает иконки', 'активируются напрямую', 'системную тень', 'одинаковую минимальную ширину'],
+    uk: ['заздалегідь завантажує іконки', 'активуються напряму', 'системну тінь', 'однакову мінімальну ширину'],
+  };
+  for (const locale of locales) {
+    for (const route of ['apps/ting', 'apps/ting/support']) {
+      assert.ok((await html(pathFor(locale, route))).includes('Ting 0.5.1'), `${locale}: missing 0.5.1 on ${route}`);
+    }
+    const support = await html(pathFor(locale, 'apps/ting/support'));
+    for (const fact of facts[locale]) assert.ok(support.includes(fact), `${locale}: missing ${fact}`);
+  }
+});
+
 test('Ting documents release 0.5.0 steps, libraries and ting-micro in every locale', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   for (const locale of locales) {
