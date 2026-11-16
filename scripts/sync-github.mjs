@@ -1,12 +1,24 @@
 import { readFile, writeFile, rename, rm } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 
-// Intentionally anonymous. Private repositories must never enter the snapshot,
-// even when the developer has a GitHub token in their environment.
-const api = path => fetch(`https://api.github.com/${path}`, {
-  headers: { Accept: 'application/vnd.github+json', 'User-Agent': 'bobuk-io-landing' },
-  signal: AbortSignal.timeout(20000),
-});
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
+
+const execFileAsync = promisify(execFile);
+// Use gh authentication, but accept only explicitly verified public repositories.
+// Credentials stay inside gh and are never written into the snapshot.
+const api = async path => {
+  try {
+    const { stdout } = await execFileAsync('gh', ['api', path], {
+      timeout: 20000, maxBuffer: 8 * 1024 * 1024,
+    });
+    const data = JSON.parse(stdout);
+    return { ok: true, status: 200, json: async () => data };
+  } catch (error) {
+    const status = Number(error.stderr?.match(/HTTP (\d{3})/)?.[1]) || 0;
+    return { ok: false, status };
+  }
+};
 const repositories = [];
 const pushedAt = {};
 for (let page = 1; ; page++) {
@@ -28,7 +40,7 @@ const previous = await readFile(target, 'utf8').then(JSON.parse).catch(() => ({}
 // The homepage lists the most recently updated app first: the date of its latest published
 // release (drafts and prereleases excluded), or the last push for a repository without releases.
 // Visibility above is critical; these dates are not. If a release lookup fails (for example,
-// the anonymous rate limit), keep the previous date rather than fail the deploy.
+// a rate limit), keep the previous date rather than fail the deploy.
 const updatedAt = {};
 for (const name of repositories) {
   const response = await api(`repos/bobuk-io/${encodeURIComponent(name)}/releases/latest`).catch(() => null);

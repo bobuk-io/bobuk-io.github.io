@@ -3,58 +3,41 @@
     <channel>
         <title>Ting</title>
         <item>
-            <title>0.7.0</title>
-            <pubDate>Mon, 16 Nov 2026 21:35:09 +0200</pubDate>
+            <title>0.7.1</title>
+            <pubDate>Mon, 16 Nov 2026 23:53:46 +0200</pubDate>
             <link>https://bobuk.io/apps/ting/</link>
-            <sparkle:version>14</sparkle:version>
-            <sparkle:shortVersionString>0.7.0</sparkle:shortVersionString>
+            <sparkle:version>16</sparkle:version>
+            <sparkle:shortVersionString>0.7.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.0
+            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.1
 
 ## Changes
 
-- **A calculator in launcha.** Type digits and an operator, such as `2*(3+4)`,
-  `1,5 × 4`, `200 + 15%`, `2^10` or `sqrt(2)`: the value comes first, above any
-  app or file, and `Return` copies it. Both `.` and `,` are decimal points.
-  `+ - * / ^`, `× ÷`, parentheses, `mod`, percent, `pi`, `e` and the functions
-  `sqrt`, `abs`, `round`, `floor`, `ceil`, `ln`, `log`, `exp`, `sin`, `cos`, `tan`
-  (radians) work; results keep up to 12 digits after the point. Ting computes
-  it itself, with decimal numbers, so `0.1 + 0.2` is `0.3`. It is on by default:
-  turn it off with **Calculate in launcha** in Settings › General, or with
-  `"calculator": false` under `launcha` in the config file.
-- **Updates are checked at bobuk.io.** Sparkle now reads the update feed at
-  `https://bobuk.io/apps/ting/appcast.xml`, so a new release shows up as soon as
-  it is published. The archives still come from GitHub Releases and are accepted
-  only with Ting's EdDSA signature, as before.
+- Selecta supports arrow-key selection and Return to open an action or group.
+  The selected row is highlighted; the existing binding keys still work.
 
-## Privacy
-
-Each update check now goes to the bobuk.io server instead of GitHub, so that
-server sees ordinary request data, including your IP address. The download of a
-new release still goes to GitHub. Turn automatic checks off in Settings ›
-General if you prefer to check yourself.
+- The amber top rule follows the rounded outline of the launcha, leader and
+  micro-app panels instead of extending beyond their upper corners.
+- Up, Down, Page Up and Page Down navigate launcha results even when keyboard
+  focus leaves the search field. Text composition and modified keys retain
+  their editing behavior.
+- Refreshing or reordering launcha results keeps the selected result in view
+  instead of scrolling back to the first row.
+- Command-arrow and Command-delete shortcuts reach the text editor in
+  micro-app panels, including combinations with Shift and Option.
 
 ## Upgrade and install
 
-Requires **macOS 14 or later**. The universal ZIP supports **Apple Silicon and Intel**.
+Requires macOS 14 or later. The universal ZIP supports Apple Silicon and Intel.
+Choose **Check for Updates…** in Ting to upgrade. Settings, bindings, micro-apps
+and permissions are preserved.
 
-To upgrade an installed copy, choose **Check for Updates…** in the menu-bar
-menu. Your settings, leader, bindings, micro-apps and permissions are kept.
-Ting 0.6.1 and older find this release through the GitHub feed; from 0.7.0 on,
-Ting checks bobuk.io.
-
-For a new or manual installation, download `Ting-0.7.0-universal.zip` from
-[Releases](https://github.com/bobuk-io/ting/releases/latest) and unzip it. Quit
-any running copy of Ting, move `Ting.app` to `/Applications` (replace the old
-copy for a manual upgrade), and open it. Ting lives in the menu bar and has no
-Dock icon. On first launch, choose a leader key; there is no default leader.
-
-The official release is signed with Developer ID, notarized by Apple, and
-includes a stapled notarization ticket. Verify the archive with
-`SHA256SUMS.txt` if desired. Ting asks for Automation and Accessibility only
-when a micro-app needs them and never for Input Monitoring.
+For a manual installation, download `Ting-0.7.1-universal.zip` from
+[Releases](https://github.com/bobuk-io/ting/releases/tag/v0.7.1), quit Ting,
+replace `/Applications/Ting.app` with the extracted app, and open it.
+The release is signed with Developer ID, notarized by Apple and stapled.
 ]]></description>
-            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.0/Ting-0.7.0-universal.zip" length="7207773" type="application/octet-stream" sparkle:edSignature="fQwK/ktt2p9p3yMhOFZx+0WS4eFPHCgokL3kL4divFKn/G+RY1GIvSD7s3yKqAZdImqgDNbHk3ttZoIhB6hMBA=="/>
+            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.1/Ting-0.7.1-universal.zip" length="7213570" type="application/octet-stream" sparkle:edSignature="7uruT1Q0HdotQhVEwq4gUux2k5XBWRreS69prAeecp1qZwDiGn8TmBvwtxEpcAiR4WE8e0E30ESk1t4U00unCA=="/>
         </item>
     </channel>
 </rss>
