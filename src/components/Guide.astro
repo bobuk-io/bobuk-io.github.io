@@ -1,0 +1,26 @@
+---
+import type { App } from '../data/apps';
+import type { Guide, GuideBlock } from '../data/types';
+import { ui, localPath } from '../i18n';
+import type { Locale } from '../i18n';
+interface Props { guide: Guide; app: App; locale: Locale; }
+const { guide, app, locale } = Astro.props;
+const t = ui[locale];
+// Text with `inline code`: odd parts of a split on backticks are code.
+const parts = (text: string) => text.split('`');
+const kind = (block: GuideBlock) => typeof block === 'string' ? 'text' : 'code' in block ? 'code' : 'list' in block ? 'list' : 'steps' in block ? 'steps' : 'table';
+---
+<article class="prose guide wrap">
+  <p class="eyebrow">{app.name} / {guide.eyebrow}</p><h1>{guide.title}</h1><p class="lead">{guide.intro}</p>
+  <nav class="guide-toc" aria-label={guide.title}><ol>{guide.sections.map(s => <li><a href={`#${s.id}`}>{s.title}</a></li>)}</ol></nav>
+  {guide.sections.map(s => <section id={s.id}><h2>{s.title}</h2>{s.blocks.map(block => {
+    const k = kind(block);
+    if (k === 'text') return <p>{parts(block as string).map((part, i) => i % 2 ? <code>{part}</code> : part)}</p>;
+    if (k === 'code') return <pre class="code-block"><code>{(block as { code: string }).code}</code></pre>;
+    if (k === 'list') return <ul>{(block as { list: string[] }).list.map(item => <li>{parts(item).map((part, i) => i % 2 ? <code>{part}</code> : part)}</li>)}</ul>;
+    if (k === 'steps') return <ol>{(block as { steps: string[] }).steps.map(item => <li>{parts(item).map((part, i) => i % 2 ? <code>{part}</code> : part)}</li>)}</ol>;
+    const [head, ...rows] = (block as { table: string[][] }).table;
+    return <div class="table-wrap"><table><thead><tr>{head.map(cell => <th>{cell}</th>)}</tr></thead><tbody>{rows.map(row => <tr>{row.map(cell => <td>{parts(cell).map((part, i) => i % 2 ? <code>{part}</code> : part)}</td>)}</tr>)}</tbody></table></div>;
+  })}</section>)}
+  <p class="document-link"><a href={localPath(locale, `apps/${app.slug}/support`)}>{t.support} →</a></p>
+</article>

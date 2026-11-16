@@ -191,6 +191,22 @@ test('Ting documents release 0.5.0 steps, libraries and ting-micro in every loca
   }
 });
 
+test('Ting has a micro-app guide in every locale that recommends coding agents', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  const nav = { en: 'Micro-apps', ru: 'Микро-приложения', uk: 'Мікрозастосунки' };
+  for (const locale of locales) {
+    const guide = await html(pathFor(locale, 'apps/ting/micro-apps'));
+    for (const text of ['Copy Agent Prompt', 'Claude Code', 'Codex', 'My task:', 'ting.microapp/2', 'ting.microlib/1',
+      'inherit: translate', 'call: translate', '${steps.ID}', '${keychain.SERVICE}', 'ting-micro', 'check-config',
+      'security add-generic-password', '--allow-effects', 'Command-Return', 'CONFIGURING.md', 'FORMAT.md']) {
+      assert.ok(guide.includes(text), `${locale}: missing ${text} on the guide page`);
+    }
+    for (const page of ['apps/ting', 'apps/ting/support', 'apps/ting/privacy']) {
+      assert.ok((await html(pathFor(locale, page))).includes(`href="${pathFor(locale, 'apps/ting/micro-apps').replace(/index\.html$/, '')}`) || (await html(pathFor(locale, page))).includes(nav[locale]), `${locale}: ${page} does not link the guide`);
+    }
+  }
+});
+
 test('Ting has localized launcher copy and screenshots without HAScS claims', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   const expected = { en: 'Your next app. A few keys away.', ru: 'Нужное приложение. Несколькими клавишами.', uk: 'Потрібний застосунок. Кількома клавішами.' };

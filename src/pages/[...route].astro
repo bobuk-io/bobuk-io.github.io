@@ -12,7 +12,7 @@ export function getStaticPaths() {
     const pages = [
       { route: '', app: undefined, section: '' },
       { route: 'support', app: undefined, section: '' },
-      ...apps.flatMap(app => ['', 'support', 'privacy'].map(section => ({ route: `apps/${app.slug}${section ? `/${section}` : ''}`, app, section }))),
+      ...apps.flatMap(app => ['', 'support', 'privacy', ...(app.translations[locale].guide ? ['guide'] : [])].map(section => ({ route: `apps/${app.slug}${section ? `/${section === 'guide' ? app.translations[locale].guide!.slug : section}` : ''}`, app, section }))),
     ];
     return pages.map(page => ({ params: { route: localPath(locale, page.route).replace(/^\/|\/$/g, '') || undefined }, props: { ...page, locale } }));
   });
@@ -21,8 +21,8 @@ interface Props { locale: Locale; route: string; app?: App; section: string; }
 const { locale, route, app, section } = Astro.props;
 const t = ui[locale];
 const copy = app?.translations[locale];
-const pageTitle = app && copy ? `${app.name} — ${section === 'support' ? t.support : section === 'privacy' ? t.privacy : copy.tagline}` : route === 'support' ? t.support : t.siteTitle;
-const description = app && copy ? section === 'support' ? copy.supportIntro : section === 'privacy' ? copy.privacyIntro : copy.description : route === 'support' ? t.supportHomeIntro : t.siteDescription;
+const pageTitle = app && copy ? `${app.name} — ${section === 'support' ? t.support : section === 'privacy' ? t.privacy : section === 'guide' ? copy.guide!.title : copy.tagline}` : route === 'support' ? t.support : t.siteTitle;
+const description = app && copy ? section === 'support' ? copy.supportIntro : section === 'privacy' ? copy.privacyIntro : section === 'guide' ? copy.guide!.intro : copy.description : route === 'support' ? t.supportHomeIntro : t.siteDescription;
 const schema = app && copy && !section ? { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: app.name, operatingSystem: app.platform, applicationCategory: 'UtilitiesApplication', description: copy.description, inLanguage: locale, url: new URL(localPath(locale, route), Astro.site).href, downloadUrl: `${app.repo}/releases/latest`, image: new URL(app.socialImage || app.icon, Astro.site).href } : undefined;
 ---
 <Base title={`${pageTitle} · bobuk.io`} description={description} locale={locale} route={route} image={app?.socialImage || app?.icon}>

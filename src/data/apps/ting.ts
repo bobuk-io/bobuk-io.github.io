@@ -1,5 +1,6 @@
 import type { AppCopy } from '../types';
 import type { Locale } from '../../i18n';
+import guides from '../guides/ting';
 // Real screenshots of Ting 0.3.3 with a demo config. The app UI is English; keycaps also show
 // the letter of the active keyboard layout (Russian here), as Ting does for any layout.
 const selecta = { src: '/images/shots/ting/selecta.webp', width: 340, height: 407 };
@@ -8,6 +9,7 @@ const light = { src: '/images/shots/ting/selecta-light.webp', width: 340, height
 const bindings = { src: '/images/shots/ting/bindings.webp', width: 820, height: 608 };
 const copy: Record<Locale, AppCopy> = {
   en: {
+    guide: guides.en,
     category: 'For your keyboard', tagline: 'Your next app. A few keys away.',
     shots: [
       { ...selecta, caption: 'Press the leader, then one key.', alt: 'Ting selecta menu in the dark theme: keycaps for Terminal, Safari, Notes, Calendar, Music, a Home scenes link, and Web and Tools groups. Each keycap shows the Latin key and the letter of the current keyboard layout.' },
@@ -66,6 +68,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
   },
   ru: {
+    guide: guides.ru,
     category: 'Для клавиатуры', tagline: 'Нужное приложение. Несколькими клавишами.',
     shots: [
       { ...selecta, caption: 'Ведущая клавиша, затем ещё одна.', alt: 'Меню selecta в Ting, тёмная тема: клавиши для Terminal, Safari, Notes, Calendar, Music, ссылка Home scenes и группы Web и Tools. На каждой клавише — латинская буква и буква текущей раскладки.' },
@@ -124,6 +127,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
   },
   uk: {
+    guide: guides.uk,
     category: 'Для клавіатури', tagline: 'Потрібний застосунок. Кількома клавішами.',
     shots: [
       { ...selecta, caption: 'Початкова клавіша, потім ще одна.', alt: 'Меню selecta в Ting, темна тема: клавіші для Terminal, Safari, Notes, Calendar, Music, посилання Home scenes і групи Web та Tools. На кожній клавіші — латинська літера й літера поточної розкладки.' },
