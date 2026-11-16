@@ -27,6 +27,8 @@ jobs:
       - run: npm ci
       - name: Verify public repository visibility
         run: npm run sync:github
+        env:
+          GH_TOKEN: ${{ github.token }}
       - name: Build and validate
         run: npm run build && npm test
         env:
