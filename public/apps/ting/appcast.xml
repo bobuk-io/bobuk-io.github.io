@@ -3,54 +3,50 @@
     <channel>
         <title>Ting</title>
         <item>
-            <title>0.7.5</title>
-            <pubDate>Tue, 17 Nov 2026 20:13:32 +0200</pubDate>
+            <title>0.7.6</title>
+            <pubDate>Tue, 17 Nov 2026 22:41:38 +0200</pubDate>
             <link>https://bobuk.io/apps/ting/</link>
-            <sparkle:version>20</sparkle:version>
-            <sparkle:shortVersionString>0.7.5</sparkle:shortVersionString>
+            <sparkle:version>21</sparkle:version>
+            <sparkle:shortVersionString>0.7.6</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.5
+            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.6
+
 
 ## New
 
-- **Links in micro-app results.** Markdown output (`output.as: markdown`) now
-  shows `[text](target)` links. The target is an `http`, `https` or `mailto`
-  URL, a `file` URL or an absolute path (`/…` or `~/…`); a target with spaces is
-  written as `[text](<~/My Folder>)`. A click opens a web or mail link, opens a
-  folder in Finder, and shows any other file selected in Finder. A file link
-  never opens the file itself, so a result from the web or an AI cannot start a
-  script or an app. Other targets stay plain text.
-- Links are underlined. A web or mail link has the link colour; a file link
-  keeps the colour of the text around it, with a faint underline, so a list of
-  files stays readable.
-- The first click on a link shows a warning in the result panel: a link comes
-  from the micro-app's output, which can carry text from the web or an AI, and
-  may lead to a harmful site. The warning shows where the link goes. **Open
-  Link** (Return) follows it and the warning does not show again; **Cancel**
-  (Esc) closes the warning and leaves the result open.
-- **Links in a monospaced tree.** A code block fenced as ```` ```links ```` keeps
-  its monospaced lines, so a `├──` tree stays aligned, and its links work. See
-  [the format](../micro-apps/FORMAT.md).
-- **A converter in launcha.** Next to the calculator, launcha converts units
-  (`5 yd to m`, `100 f in c`, `60 mph to km/h`), number bases (`255 to hex`,
-  `0xff`), Unix time (`1700000000 to date`, `now to unix`) and dates
-  (`now + 2 days`, `3 days ago`, `2026-12-25 - today`). The value comes first and
-  `Return` copies it. Ting converts with the units and calendar of macOS; US and
-  imperial units use their exact legal factors. Turn it off with **Convert in
-  launcha** in Settings › General, or with `"converter": false` under `launcha`.
-- **Global shortcuts for apps.** Select an app in launcha and press `⌘⇧K` to
-  record a shortcut that opens that exact app bundle. Saving replaces the app's
-  previous shortcut and, after confirmation, any other app's assignment to the
-  same keys. The leader and launcha shortcuts stay protected. Shortcuts appear
-  on app rows and can be changed or removed from the row's menu.
+- **Clipbawd, a clipboard history.** Search for Clipbawd in launcha, use its optional hotkey (Settings ›
+  Clipbawd), a selecta binding (`"open": "clipbawd"`) or **Open Clipbawd**
+  in Ting's menu. Search on top, the items of this session on the left, newest
+  first, and a preview of the selected item on the right: the text, the image,
+  the files or the color, with its type, source app, length or size, image
+  dimensions and format, and when it was copied. `Return` pastes the item into
+  the app in front, `⌘Return` copies it, `⇧⌘⌫` removes it. Search also
+  understands text typed with the wrong keyboard layout.
+- Copying the same thing again moves it to the top and counts it (`×3`) instead
+  of adding it twice. When an app puts a picture of the copied text next to it,
+  as Word does, clipbawd keeps the text.
+- **This session only.** The history stays in memory, up to 200 items by
+  default, and is gone when Ting quits.
+- **Off if you do not want it.** Turn off **Use Clipbawd** in Settings ›
+  Clipbawd (`"enabled": false`): Ting stops reading the clipboard, forgets the
+  history, frees the hotkey and removes the menu item.
+- **What is never kept:** copies while Secure Keyboard Entry is on, copies that
+  password managers mark as secret, copies from Firefox private windows it recognises (requires Accessibility and a matching window title) and,
+  after you allow it, Chrome, Brave, Edge and Vivaldi incognito windows. Add apps
+  to **Never keep copies from** with **Never Keep from…** in clipbawd or in
+  Settings, and list text starts such as `sk-` or `ghp_` under **Never keep text
+  that starts with**. Safari does not tell other apps about its private windows.
+- **Link previews, off by default.** With **Fetch link titles, icons and images**
+  on, a copied link shows its page title and favicon, or the image and its size
+  for an image link. Ting sends one plain GET without cookies or scripts and
+  checks for local network addresses before fetching. DNS results are not pinned
+  to the connection; keep previews off where DNS rebinding is a concern.
+- **Window bindings.** A selecta binding can open launcha or clipbawd:
+  `{"key": "v", "open": "clipbawd"}`. Add one from **+** in Settings ›
+  Bindings.
 
-## Fix
-
-- The release scripts build and check with the Xcode 27 toolchain.
-  `package_app.sh` builds with the native build system, and `release.sh` checks
-  one architecture per `lipo` call, as the newer `lipo` refuses several after
-  `-verify_arch`. The service tests find `Sparkle.framework` under Swift Build
-  again.
+- **History in micro-apps.** Approved templates can read `${clipboard[-1]}` for the newest entry or `${clipboard[-2]}` for the preceding entry. A snapshot stays fixed for the run. Text, links and colors give text; files give newline-separated paths. Images, missing entries and unavailable history fail explicitly. Shell steps must use `env:`, not interpolate history into code. The approval panel warns about history access. Headless runs cannot read Ting’s session history.
+- Single-click selects an item for preview; double-click or Return pastes it.
 
 ## Upgrade
 
@@ -59,7 +55,7 @@ choose **Update Ting via Homebrew…** in Ting's menu. Settings, bindings,
 micro-apps and permissions are preserved. Requires macOS 14 or later; the
 signed, notarized and stapled universal app supports Apple Silicon and Intel.
 ]]></description>
-            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.5/Ting-0.7.5-universal.zip" length="7911244" type="application/octet-stream" sparkle:edSignature="teL1fsjpM+Ryxu5EIkPj9FhUVBY9EmfkaykLg7RLHYAda4bRZk5iTMOADpo+sIpBaykA8IkgwDfr+/mw7eLZAQ=="/>
+            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.6/Ting-0.7.6-universal.zip" length="8578132" type="application/octet-stream" sparkle:edSignature="cpbO2hPqofHZDAhYYcxzxKZ2wSdwmMuwFvVHH+plBxMtsh/DaxhFKfZCOXSTk9eZ7gkzLFiGgfkPDkLyySvFBA=="/>
         </item>
     </channel>
 </rss>
