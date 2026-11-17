@@ -3,81 +3,63 @@
     <channel>
         <title>Ting</title>
         <item>
-            <title>0.7.4</title>
-            <pubDate>Tue, 17 Nov 2026 16:59:13 +0200</pubDate>
+            <title>0.7.5</title>
+            <pubDate>Tue, 17 Nov 2026 20:13:32 +0200</pubDate>
             <link>https://bobuk.io/apps/ting/</link>
-            <sparkle:version>19</sparkle:version>
-            <sparkle:shortVersionString>0.7.4</sparkle:shortVersionString>
+            <sparkle:version>20</sparkle:version>
+            <sparkle:shortVersionString>0.7.5</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.4
+            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.5
 
 ## New
 
-- Micro-apps can now ask for text during a run with an `ask` step. It supports
-  an initial `default`, a `placeholder`, optional input with `required: false`,
-  and a multiline editor with `multiline: true`. Return continues in a
-  single-line field; Command-Return continues in a multiline editor.
-- A `choose` step shows a filterable list from the previous step. Supply one
-  option per nonempty line or a JSON array of strings or objects with `title`,
-  optional `subtitle` and string `value`. Up/Down selects and Return confirms.
-  Only the selected value reaches the next step; even one option requires
-  confirmation. An empty list stops the run.
-- Both steps pass their answer to the next step and expose it as `${steps.ID}`
-  when an `id` is set. Esc cancels the entire run. Answers are not remembered,
-  and waiting does not consume execution timeouts, including inside libraries.
-  They require Ting's panel: `ting-micro check` validates the file, but headless
-  `ting-micro run` rejects interactive steps before running any part of it.
-- Settings now lets you choose the macOS system sound played when the leader
-  menu opens and set its volume. Choosing a sound or releasing the volume
-  slider previews it. The config keys are `sound` (default `Tink`) and
-  `soundVolume` (0 to 1, default 0.5); an unavailable name falls back to `Tink`.
+- **Links in micro-app results.** Markdown output (`output.as: markdown`) now
+  shows `[text](target)` links. The target is an `http`, `https` or `mailto`
+  URL, a `file` URL or an absolute path (`/…` or `~/…`); a target with spaces is
+  written as `[text](<~/My Folder>)`. A click opens a web or mail link, opens a
+  folder in Finder, and shows any other file selected in Finder. A file link
+  never opens the file itself, so a result from the web or an AI cannot start a
+  script or an app. Other targets stay plain text.
+- Links are underlined. A web or mail link has the link colour; a file link
+  keeps the colour of the text around it, with a faint underline, so a list of
+  files stays readable.
+- The first click on a link shows a warning in the result panel: a link comes
+  from the micro-app's output, which can carry text from the web or an AI, and
+  may lead to a harmful site. The warning shows where the link goes. **Open
+  Link** (Return) follows it and the warning does not show again; **Cancel**
+  (Esc) closes the warning and leaves the result open.
+- **Links in a monospaced tree.** A code block fenced as ```` ```links ```` keeps
+  its monospaced lines, so a `├──` tree stays aligned, and its links work. See
+  [the format](../micro-apps/FORMAT.md).
+- **A converter in launcha.** Next to the calculator, launcha converts units
+  (`5 yd to m`, `100 f in c`, `60 mph to km/h`), number bases (`255 to hex`,
+  `0xff`), Unix time (`1700000000 to date`, `now to unix`) and dates
+  (`now + 2 days`, `3 days ago`, `2026-12-25 - today`). The value comes first and
+  `Return` copies it. Ting converts with the units and calendar of macOS; US and
+  imperial units use their exact legal factors. Turn it off with **Convert in
+  launcha** in Settings › General, or with `"converter": false` under `launcha`.
+- **Global shortcuts for apps.** Select an app in launcha and press `⌘⇧K` to
+  record a shortcut that opens that exact app bundle. Saving replaces the app's
+  previous shortcut and, after confirmation, any other app's assignment to the
+  same keys. The leader and launcha shortcuts stay protected. Shortcuts appear
+  on app rows and can be changed or removed from the row's menu.
 
 ## Fix
 
-- A copy of Ting installed with Homebrew no longer runs Sparkle. It does not
-  check for updates on its own and never shows the Sparkle update window.
-- In such a copy, Ting's menu (the menu-bar icon and the gear of selecta and
-  launcha) and the Updates section of Settings offer **Update Ting via
-  Homebrew…** instead of **Check for Updates…**. It runs exactly
-  `brew upgrade --cask --greedy bobuk-io/tap/ting` with the `brew` of the
-  Homebrew prefix that installed Ting. It never upgrades anything else.
-- A window shows the command, the live output of brew and the real result:
-  updated, already up to date, cancelled, or the error with brew's output and
-  exit code (for example no network, a Homebrew lock or a password prompt that
-  cannot be answered). If Ting stops while brew replaces it, a copy of
-  Ting made before brew started shows the progress window until the end, even
-  while no Ting.app is installed. After an update, Ting starts
-  again from its installed place and shows the same result. A copy that you downloaded yourself still
-  updates with Sparkle, as before.
-- The launcher (selecta or launcha) now stays on the screen, in the same state, when
-  the gear opens Ting's menu. Before, it closed first. While the menu is shown, the
-  launcher and the leader and launcha hotkeys do not react to keys. If the menu closes
-  with no choice, the launcher takes keys again.
-
-## Cause
-
-Before this release, Ting started Sparkle in every release copy that had an
-update feed and key. It never checked who installed the app, so a copy that
-Homebrew manages offered Sparkle updates too. Ting now counts a copy as
-Homebrew-managed only when a Caskroom record `<prefix>/Caskroom/ting/<version>/Ting.app`
-of the cask `ting` resolves to the running Ting.app. Ting looks in `/opt/homebrew`,
-`/usr/local`, `HOMEBREW_PREFIX` and the prefix of a `brew` found in `PATH`. In an
-unclear case Ting keeps Sparkle.
-
-The exact error of the Sparkle install in a Homebrew copy was not reproduced
-for this release, so its cause is not known. This release no longer runs
-Sparkle in such a copy, so that failure cannot occur there.
+- The release scripts build and check with the Xcode 27 toolchain.
+  `package_app.sh` builds with the native build system, and `release.sh` checks
+  one architecture per `lipo` call, as the newer `lipo` refuses several after
+  `-verify_arch`. The service tests find `Sparkle.framework` under Swift Build
+  again.
 
 ## Upgrade
 
-A downloaded copy: choose **Check for Updates…** in Ting. A Homebrew copy of
-0.7.3 or older still has the Sparkle update; quit Ting, run
-`brew upgrade --cask --greedy bobuk-io/tap/ting` in a terminal, and open it
-again. Later updates then work from Ting's menu. Settings, bindings,
+A downloaded copy: choose **Check for Updates…** in Ting. A Homebrew copy:
+choose **Update Ting via Homebrew…** in Ting's menu. Settings, bindings,
 micro-apps and permissions are preserved. Requires macOS 14 or later; the
 signed, notarized and stapled universal app supports Apple Silicon and Intel.
 ]]></description>
-            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.4/Ting-0.7.4-universal.zip" length="7509437" type="application/octet-stream" sparkle:edSignature="wmx2xCIjbqJ4a/qD7YNueHDqcYfUBsyRgc8oxcxwbwyRj7B3bKu5+YWucujxyCSoyhMJkGiGhS5TxNiuVRRtAA=="/>
+            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.5/Ting-0.7.5-universal.zip" length="7911244" type="application/octet-stream" sparkle:edSignature="teL1fsjpM+Ryxu5EIkPj9FhUVBY9EmfkaykLg7RLHYAda4bRZk5iTMOADpo+sIpBaykA8IkgwDfr+/mw7eLZAQ=="/>
         </item>
     </channel>
 </rss>
