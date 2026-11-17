@@ -413,6 +413,17 @@ test('Ting 0.7.3 announces the launcher menu gear in every locale', async () => 
   }
 });
 
+test('Ting describes upcoming Clipbawd and history access in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  const upcoming = { en: 'not in the current download', ru: 'в текущей загрузке его ещё нет', uk: 'у поточному завантаженні його ще немає' };
+  for (const locale of locales) {
+    const page = await html(pathFor(locale, 'apps/ting'));
+    for (const text of ['Clipbawd', 'Use Clipbawd', 'launcha', '${clipboard[-1]}', '${clipboard[-2]}', 'env:', 'Safari', upcoming[locale]]) {
+      assert.ok(page.includes(text), `${locale}: missing ${text} in Clipbawd copy`);
+    }
+  }
+});
+
 test('Ting 0.7.5 announces shortcuts and other new features in all locales', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   const localized = { en: ['links', 'converter'], ru: ['ссылки', 'конвертер'], uk: ['посилання', 'конвертер'] };
