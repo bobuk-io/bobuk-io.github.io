@@ -1,12 +1,31 @@
 import type { Guide } from '../types';
 import type { Locale } from '../../i18n';
-// The micro-app guide of Ting 0.6.1. Facts come from FORMAT.md, CONFIGURING.md and the README of
+// Released examples target Ting 0.6.1; interactive steps were added in Ting 0.7.4.
+// Facts come from FORMAT.md, CONFIGURING.md and the README of
 // bobuk-io/ting; the YAML in the code blocks passes `ting-micro check`. Code is the same in every locale.
 
 const format = 'https://github.com/bobuk-io/ting/blob/v0.6.1/docs/micro-apps/FORMAT.md';
 const configuring = 'https://github.com/bobuk-io/ting/blob/v0.6.1/docs/CONFIGURING.md';
 
 const code = {
+  interaction: `format: ting.microapp/2
+description: Choose a question and write notes.
+input: none
+steps:
+  - text: |
+      What should change?
+      What already works?
+  - choose: Choose a question
+    id: question
+  - ask: Your notes
+    placeholder: Enter details
+    multiline: true
+    required: false
+  - text: |
+      Question: \${steps.question}
+      Notes: \${input}
+output:
+  to: [panel]`,
   request: `Write a new Ting micro-app: Leader t a should translate the
 clipboard into German and copy the translation.`,
   prompt: `Change my Ting setup. Read /Applications/Ting.app/Contents/Resources/CONFIGURING.md
@@ -208,6 +227,13 @@ const guides: Record<Locale, Guide> = {
         { code: code.ai },
         { code: code.python },
       ] },
+      { id: 'interactive', title: 'Ting 0.7.4: choose and ask', blocks: [
+        'Ting 0.7.4 adds these interactive steps. Use the FORMAT.md shipped with your installed Ting to check which steps it supports.',
+        '`choose` shows a filterable list from the previous step: one nonempty line per option, or a JSON array of strings or objects with title, optional subtitle and string value. It passes the chosen value to the next step. Up/Down selects, Return confirms; even one option needs confirmation. An empty list stops the run.',
+        '`ask` requests text at that point in the run. It accepts default (with variables), placeholder, multiline and required. The default is an empty, required, single-line field. Set default: ${input} explicitly to edit the previous output. Return continues; with multiline: true, Return adds a line and Command-Return continues.',
+        'Both answers can be read later as ${steps.ID} when the step has an id. Esc cancels the whole run, answers are not remembered, and waiting pauses execution timeouts, including in libraries. These steps require the Ting panel: ting-micro check validates them, but ting-micro run rejects the file before any step runs.',
+        { code: code.interaction },
+      ] },
       { id: 'variables', title: 'Variables', blocks: [
         'Every value of a step, except shell and Python code, can hold variables:',
         { table: [
@@ -341,6 +367,13 @@ const guides: Record<Locale, Guide> = {
         { code: code.ai },
         { code: code.python },
       ] },
+      { id: 'interactive', title: 'Ting 0.7.4: choose и ask', blocks: [
+        'В Ting 0.7.4 появились эти интерактивные шаги. Доступные шаги проверяйте по FORMAT.md внутри установленного Ting.',
+        '`choose` показывает список из предыдущего шага с фильтром: один вариант на непустую строку или JSON-массив строк либо объектов с title, необязательным subtitle и строковым value. Следующий шаг получает выбранное значение. Стрелки выбирают, Return подтверждает. Даже один вариант требует подтверждения; пустой список останавливает запуск.',
+        '`ask` запрашивает текст в нужном месте сценария. Он принимает default (с переменными), placeholder, multiline и required. По умолчанию поле пустое, обязательное и однострочное. Для редактирования предыдущего вывода явно укажите default: ${input}. Return продолжает; при multiline: true он добавляет строку, а Command-Return продолжает.',
+        'Если указан id, ответ доступен позже как ${steps.ID}. Esc отменяет весь запуск. Ответы не запоминаются; ожидание приостанавливает таймауты выполнения, в том числе внутри библиотек. Нужна панель Ting: ting-micro check проверяет такие файлы, но ting-micro run отклоняет их до выполнения первого шага.',
+        { code: code.interaction },
+      ] },
       { id: 'variables', title: 'Переменные', blocks: [
         'Любое значение шага, кроме кода оболочки и Python, может содержать переменные:',
         { table: [
@@ -473,6 +506,13 @@ const guides: Record<Locale, Guide> = {
         'Крок ШІ та крок Python:',
         { code: code.ai },
         { code: code.python },
+      ] },
+      { id: 'interactive', title: 'Ting 0.7.4: choose та ask', blocks: [
+        'У Ting 0.7.4 з’явилися ці інтерактивні кроки. Доступні кроки перевіряйте за FORMAT.md усередині встановленого Ting.',
+        '`choose` показує список із попереднього кроку з фільтром: один варіант на непорожній рядок або JSON-масив рядків чи об’єктів із title, необов’язковим subtitle та рядковим value. Наступний крок отримує вибране значення. Стрілки вибирають, Return підтверджує. Навіть один варіант потребує підтвердження; порожній список зупиняє запуск.',
+        '`ask` запитує текст у потрібному місці сценарію. Він приймає default (зі змінними), placeholder, multiline та required. Типово поле порожнє, обов’язкове й однорядкове. Для редагування попереднього виводу явно вкажіть default: ${input}. Return продовжує; з multiline: true він додає рядок, а Command-Return продовжує.',
+        'Якщо вказано id, відповідь доступна пізніше як ${steps.ID}. Esc скасовує весь запуск. Відповіді не запам’ятовуються; очікування призупиняє таймаути виконання, зокрема всередині бібліотек. Потрібна панель Ting: ting-micro check перевіряє такі файли, але ting-micro run відхиляє їх до виконання першого кроку.',
+        { code: code.interaction },
       ] },
       { id: 'variables', title: 'Змінні', blocks: [
         'Будь-яке значення кроку, крім коду оболонки та Python, може містити змінні:',

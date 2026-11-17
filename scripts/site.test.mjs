@@ -380,3 +380,30 @@ test('Ting 0.7.3 announces the launcher menu gear in every locale', async () => 
     }
   }
 });
+
+test('Ting 0.7.4 documents interactive steps and sound in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  for (const locale of locales) {
+    const guide = await html(pathFor(locale, 'apps/ting/micro-apps'));
+    for (const text of ['Ting 0.7.4', 'choose', 'ask', 'placeholder', 'multiline', 'required', '${steps.ID}', 'Command-Return']) {
+      assert.ok(guide.includes(text), `${locale}: missing ${text} in the interactive guide`);
+    }
+    const support = await html(pathFor(locale, 'apps/ting/support'));
+    for (const text of ['Ting 0.7.4', 'choose', 'ask', 'soundVolume', 'Tink', '0.5']) {
+      assert.ok(support.includes(text), `${locale}: missing ${text} in support`);
+    }
+    assert.ok((await html(pathFor(locale, 'apps/ting'))).includes('choose'));
+  }
+});
+
+test('Ting 0.7.4 announces Homebrew updates in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  for (const locale of locales) {
+    for (const route of ['apps/ting', 'apps/ting/support']) {
+      const source = await html(pathFor(locale, route));
+      for (const text of ['Ting 0.7.4', 'Update Ting via Homebrew', 'brew upgrade --cask --greedy bobuk-io/tap/ting', 'Sparkle']) {
+        assert.ok(source.includes(text), `${locale}: missing ${text} on ${route}`);
+      }
+    }
+  }
+});
