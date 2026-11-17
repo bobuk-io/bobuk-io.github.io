@@ -13,6 +13,38 @@ async function htmlFiles(directory) {
 }
 const html = path => readFile(new URL('.' + path + 'index.html', dist), 'utf8');
 
+test('Splash Finish documents both install methods, updater ownership and removal in every locale', async () => {
+  if (!snapshot.repositories.includes('splash-finish')) return;
+  for (const locale of locales) {
+    const app = await html(pathFor(locale, 'apps/splash-finish'));
+    for (const text of ['0.3.13', 'brew install --cask bobuk-io/tap/splash-finish',
+      'brew trust --cask bobuk-io/tap/splash-finish', 'brew upgrade --cask --greedy bobuk-io/tap/splash-finish',
+      'Update Splash Finish via Homebrew', 'Sparkle', 'https://bobuk.io/apps/splash-finish/appcast.xml',
+      'install.py', 'python3 -']) assert.ok(app.includes(text), `${locale}: ${text}`);
+    const support = await html(pathFor(locale, 'apps/splash-finish/support'));
+    for (const text of ['brew uninstall --cask bobuk-io/tap/splash-finish', '--zap', 'splash-finish install-skills']) {
+      assert.ok(support.includes(text), `${locale}: ${text}`);
+    }
+    const privacy = await html(pathFor(locale, 'apps/splash-finish/privacy'));
+    for (const text of ['bobuk.io/apps/splash-finish/appcast.xml', 'Homebrew', 'GitHub']) {
+      assert.ok(privacy.includes(text), `${locale}: ${text}`);
+    }
+  }
+});
+
+test('Splash Finish feed serves signed versioned GitHub archives', async () => {
+  const feed = await readFile(new URL('./apps/splash-finish/appcast.xml', dist), 'utf8');
+  assert.match(feed, /^<\?xml/);
+  assert.match(feed, /sparkle:version>\d+</);
+  const version = feed.match(/sparkle:shortVersionString>([^<]+)</)?.[1];
+  assert.ok(version);
+  const urls = [...feed.matchAll(/<enclosure\b[^>]*\burl="([^"]+)"/g)].map(match => match[1]);
+  assert.ok(urls.length > 0);
+  for (const url of urls) assert.ok(url.startsWith('https://github.com/bobuk-io/splash-finish/releases/download/v'));
+  assert.ok(urls[0].endsWith(`/v${version}/SplashFinish-${version}-universal.zip`));
+  assert.match(feed, /sparkle:edSignature="[^"]+"/);
+});
+
 test('Ting documents Homebrew installation, updates and safe removal in every locale', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   for (const locale of locales) {

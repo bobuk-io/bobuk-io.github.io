@@ -1,0 +1,25 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Splash Finish</title>
+        <item>
+            <title>0.3.13</title>
+            <pubDate>Tue, 17 Nov 2026 18:47:53 +0200</pubDate>
+            <link>https://bobuk.io/apps/splash-finish/</link>
+            <sparkle:version>19</sparkle:version>
+            <sparkle:shortVersionString>0.3.13</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[# Splash Finish 0.3.13
+
+- Install with `brew install --cask bobuk-io/tap/splash-finish`, including the `splash-finish` CLI, or keep using the standalone installer.
+- Homebrew-managed copies offer **Update Splash Finish via Homebrew…**. Only this cask is upgraded; the window shows progress, errors and cancellation, survives app replacement, and restarts the updated copy. Sparkle stays disabled for these copies.
+- Standalone copies use the signed Sparkle feed at `https://bobuk.io/apps/splash-finish/appcast.xml`. Archives remain on GitHub Releases. The old GitHub feed remains available to migrate 0.3.12 and older installations.
+- Fix startup and `doctor` crashes caused by looking for bundled resources outside `Contents/Resources`. Missing resources now produce a recoverable error instead of a crash.
+- Fix CLI version and executable detection through `PATH` and symlinks.
+
+Your inbox and agent integrations are retained. When switching from the standalone installation to Homebrew, quit the app and remove only the old app and CLI symlink, then install with Homebrew and run `splash-finish install-skills` to refresh integration paths. Keep the Application Support folder.
+]]></description>
+            <enclosure url="https://github.com/bobuk-io/splash-finish/releases/download/v0.3.13/SplashFinish-0.3.13-universal.zip" length="3145463" type="application/octet-stream" sparkle:edSignature="cw46T49aukhG3TK59064dWkuA6McHtfMbBWyuL8UfrF21RWs2UZdNNzx5Qe6qOuM81oiAIF4RvqC20TWUSzpCw=="/>
+        </item>
+    </channel>
+</rss>
