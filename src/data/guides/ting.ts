@@ -4,10 +4,19 @@ import type { Locale } from '../../i18n';
 // Facts come from FORMAT.md, CONFIGURING.md and the README of
 // bobuk-io/ting; the YAML in the code blocks passes `ting-micro check`. Code is the same in every locale.
 
-const format = 'https://github.com/bobuk-io/ting/blob/v0.6.1/docs/micro-apps/FORMAT.md';
-const configuring = 'https://github.com/bobuk-io/ting/blob/v0.6.1/docs/CONFIGURING.md';
+const format = 'https://github.com/bobuk-io/ting/blob/v0.7.6/docs/micro-apps/FORMAT.md';
+const configuring = 'https://github.com/bobuk-io/ting/blob/v0.7.6/docs/CONFIGURING.md';
 
 const code = {
+  history: `format: ting.microapp/2
+description: Show the preceding clipboard history entry
+input: none
+steps:
+  - command: 'printf "%s" "$CLIP"'
+    env:
+      CLIP: \${clipboard[-2]}
+output:
+  to: [panel]`,
   interaction: `format: ting.microapp/2
 description: Choose a question and write notes.
 input: none
@@ -234,6 +243,12 @@ const guides: Record<Locale, Guide> = {
         'Both answers can be read later as ${steps.ID} when the step has an id. Esc cancels the whole run, answers are not remembered, and waiting pauses execution timeouts, including in libraries. These steps require the Ting panel: ting-micro check validates them, but ting-micro run rejects the file before any step runs.',
         { code: code.interaction },
       ] },
+      { id: 'clipboard-history', title: 'Ting 0.7.6: Clipbawd history', blocks: [
+        'Use ${clipboard[-1]} for the newest entry, ${clipboard[-2]} for the preceding entry and ${clipboard[-3]} for the third newest. Only negative integers are accepted. Use the full ${clipboard[-1]} syntax, not $clipboard[-1].',
+        'An approved run takes a fixed snapshot after its parameter form; copying during the run does not change the indices. Text, links and colors give text; files give newline-separated paths. Images, missing entries, disabled history and headless ting-micro run fail explicitly. Indices count images too, without skipping them. Clipbawd exclusions still apply; the approval panel identifies history access.',
+        'Use templates in step fields or env:, never interpolate history into shell or Python code. Quote the shell variable. Filters work too: ${clipboard[-1]|trim|url}.',
+        { code: code.history },
+      ] },
       { id: 'variables', title: 'Variables', blocks: [
         'Every value of a step, except shell and Python code, can hold variables:',
         { table: [
@@ -374,6 +389,12 @@ const guides: Record<Locale, Guide> = {
         'Если указан id, ответ доступен позже как ${steps.ID}. Esc отменяет весь запуск. Ответы не запоминаются; ожидание приостанавливает таймауты выполнения, в том числе внутри библиотек. Нужна панель Ting: ting-micro check проверяет такие файлы, но ting-micro run отклоняет их до выполнения первого шага.',
         { code: code.interaction },
       ] },
+      { id: 'clipboard-history', title: 'Ting 0.7.6: история Clipbawd', blocks: [
+        'Используйте ${clipboard[-1]} для последней записи, ${clipboard[-2]} для предыдущей и ${clipboard[-3]} для третьей с конца. Допустимы только отрицательные целые числа. Нужна полная запись ${clipboard[-1]}, а не $clipboard[-1].',
+        'Одобренный запуск получает неизменный снимок после формы параметров; копирование во время выполнения не меняет индексы. Текст, ссылки и цвета возвращают текст, файлы — пути через перевод строки. Изображения, отсутствующие записи, выключенная история и консольный ting-micro run дают явную ошибку. Индексы учитывают и изображения, не пропуская их. Исключения Clipbawd действуют; панель одобрения сообщает о чтении истории.',
+        'Используйте шаблоны в полях шагов или env:, не вставляйте историю в код shell или Python. Берите переменную shell в кавычки. Работают и фильтры: ${clipboard[-1]|trim|url}.',
+        { code: code.history },
+      ] },
       { id: 'variables', title: 'Переменные', blocks: [
         'Любое значение шага, кроме кода оболочки и Python, может содержать переменные:',
         { table: [
@@ -513,6 +534,12 @@ const guides: Record<Locale, Guide> = {
         '`ask` запитує текст у потрібному місці сценарію. Він приймає default (зі змінними), placeholder, multiline та required. Типово поле порожнє, обов’язкове й однорядкове. Для редагування попереднього виводу явно вкажіть default: ${input}. Return продовжує; з multiline: true він додає рядок, а Command-Return продовжує.',
         'Якщо вказано id, відповідь доступна пізніше як ${steps.ID}. Esc скасовує весь запуск. Відповіді не запам’ятовуються; очікування призупиняє таймаути виконання, зокрема всередині бібліотек. Потрібна панель Ting: ting-micro check перевіряє такі файли, але ting-micro run відхиляє їх до виконання першого кроку.',
         { code: code.interaction },
+      ] },
+      { id: 'clipboard-history', title: 'Ting 0.7.6: історія Clipbawd', blocks: [
+        'Використовуйте ${clipboard[-1]} для найновішого запису, ${clipboard[-2]} для попереднього та ${clipboard[-3]} для третього з кінця. Дозволені лише від’ємні цілі числа. Потрібен повний запис ${clipboard[-1]}, а не $clipboard[-1].',
+        'Схвалений запуск отримує незмінний знімок після форми параметрів; копіювання під час виконання не змінює індекси. Текст, посилання й кольори повертають текст, файли — шляхи через новий рядок. Зображення, відсутні записи, вимкнена історія та консольний ting-micro run дають явну помилку. Індекси враховують і зображення, не пропускаючи їх. Виключення Clipbawd діють; панель схвалення повідомляє про читання історії.',
+        'Використовуйте шаблони в полях кроків чи env:, не вставляйте історію в код shell або Python. Беріть змінну shell у лапки. Працюють і фільтри: ${clipboard[-1]|trim|url}.',
+        { code: code.history },
       ] },
       { id: 'variables', title: 'Змінні', blocks: [
         'Будь-яке значення кроку, крім коду оболонки та Python, може містити змінні:',
