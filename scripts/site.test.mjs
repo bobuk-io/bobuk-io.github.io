@@ -413,6 +413,18 @@ test('Ting 0.7.3 announces the launcher menu gear in every locale', async () => 
   }
 });
 
+test('Ting 0.7.5 announces shortcuts and other new features in all locales', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  const localized = { en: ['links', 'converter'], ru: ['ссылки', 'конвертер'], uk: ['посилання', 'конвертер'] };
+  for (const locale of locales) {
+    const page = await html(pathFor(locale, 'apps/ting'));
+    for (const text of ['Ting 0.7.5', 'Command-Shift-K', 'Set Global Shortcut', 'Remove Global Shortcut', 'appHotkeys', 'config.json', ...localized[locale]]) {
+      assert.ok(page.includes(text), `${locale}: missing ${text} on Ting 0.7.5 page`);
+    }
+    assert.ok(!page.includes('not yet in a published release'), `${locale}: stale unreleased shortcut copy`);
+  }
+});
+
 test('Ting 0.7.4 documents interactive steps and sound in every locale', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   for (const locale of locales) {
