@@ -453,6 +453,24 @@ test('Ting 0.7.3 announces the launcher menu gear in every locale', async () => 
   }
 });
 
+test('Ting 0.7.8 documents lowkey integration, privacy and Purr in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  for (const locale of locales) {
+    const app = await html(pathFor(locale, 'apps/ting'));
+    const support = await html(pathFor(locale, 'apps/ting/support'));
+    const privacy = await html(pathFor(locale, 'apps/ting/privacy'));
+    for (const text of ['Ting 0.7.8', 'lowkey', 'Open', 'Toggle', 'BobukKit', 'Purr']) {
+      assert.ok(app.includes(text), `${locale}: Ting 0.7.8 missing ${text}`);
+    }
+    for (const text of ['lowkey://alias/open', 'lowkey://alias/toggle', 'Purr', 'PATH']) {
+      assert.ok(support.includes(text), `${locale}: Ting support missing ${text}`);
+    }
+    for (const text of ['~/.config/lowkey/config.json', 'cookies', 'io.bobuk.lowkey']) {
+      assert.ok(privacy.includes(text), `${locale}: Ting privacy missing ${text}`);
+    }
+  }
+});
+
 test('Ting 0.7.7 documents empty new bindings and explicit saving in every locale', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   const localized = {
@@ -513,7 +531,7 @@ test('Ting 0.7.4 documents interactive steps and sound in every locale', async (
       assert.ok(guide.includes(text), `${locale}: missing ${text} in the interactive guide`);
     }
     const support = await html(pathFor(locale, 'apps/ting/support'));
-    for (const text of ['Ting 0.7.4', 'choose', 'ask', 'soundVolume', 'Tink', '0.5']) {
+    for (const text of ['Ting 0.7.4', 'choose', 'ask', 'soundVolume', 'Purr', '0.5']) {
       assert.ok(support.includes(text), `${locale}: missing ${text} in support`);
     }
     assert.ok((await html(pathFor(locale, 'apps/ting'))).includes('choose'));
