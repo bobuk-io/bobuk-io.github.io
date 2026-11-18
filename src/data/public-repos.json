@@ -1,16 +1,20 @@
 {
   "organization": "bobuk-io",
   "repositories": [
+    "BobukKit",
     "HAScS",
     "bobuk-io.github.io",
     "homebrew-tap",
+    "lowkey",
     "splash-finish",
     "ting"
   ],
   "updatedAt": {
+    "BobukKit": "2026-11-18T13:28:32Z",
     "HAScS": "2026-11-06T17:48:30Z",
     "bobuk-io.github.io": "2026-11-18T11:42:26Z",
     "homebrew-tap": "2026-11-18T11:42:15Z",
+    "lowkey": "2026-11-18T13:01:23Z",
     "splash-finish": "2026-11-17T16:48:12Z",
     "ting": "2026-11-18T11:42:13Z"
   }
