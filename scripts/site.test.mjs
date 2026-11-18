@@ -146,6 +146,17 @@ test('Splash Finish release and upgrade instructions are available in every loca
   }
 });
 
+test('Splash Finish 0.3.14 announces the BobukKit window in every locale', async () => {
+  if (!snapshot.repositories.includes('splash-finish')) return;
+  for (const locale of locales) {
+    const app = await html(pathFor(locale, 'apps/splash-finish'));
+    for (const text of ['0.3.14', 'BobukKit', 'Ting', 'Lowkey']) {
+      assert.ok(app.includes(text), `${locale}: missing ${text}`);
+    }
+    assert.ok(app.indexOf('0.3.14') < app.indexOf('0.3.13'), `${locale}: 0.3.14 must come first`);
+  }
+});
+
 test('Splash Finish 0.3.12 documents Rex setup in every locale', async () => {
   if (!snapshot.repositories.includes('splash-finish')) return;
   for (const locale of locales) {
