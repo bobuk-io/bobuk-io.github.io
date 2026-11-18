@@ -384,7 +384,7 @@ test('Ting has a micro-app guide in every locale that recommends coding agents',
 
 test('Ting has localized launcher copy and screenshots without HAScS claims', async () => {
   if (!snapshot.repositories.includes('ting')) return;
-  const expected = { en: 'Your next app. A few keys away.', ru: 'Нужное приложение. Несколькими клавишами.', uk: 'Потрібний застосунок. Кількома клавішами.' };
+  const expected = { en: 'Your next app. A few keys away.', ru: 'Нужное приложение. Парой клавиш.', uk: 'Потрібний застосунок. Парою клавіш.' };
   for (const locale of locales) {
     const source = await html(pathFor(locale, 'apps/ting'));
     assert.ok(source.includes(expected[locale]));
@@ -585,4 +585,46 @@ test('Ukrainian home page closing text says "розберемося"', async () 
   const source = await html('/uk/');
   assert.ok(source.includes('А якщо щось пішло не так — розберемося.'));
   assert.ok(!source.includes('розберімося'));
+});
+
+test('Reviewed site copy uses the agreed wording in every locale', async () => {
+  const shared = {
+    ru: ['Инструмент для конкретной задачи.', 'Не универсальный трансформер на все случаи жизни, а компактный инструмент, которому есть место в повседневности.', 'Код — не тайна.', 'У каждого приложения свои инструкции, информация о данных и отдельная страница поддержки.', 'Посмотреть'],
+    uk: ['Інструмент для конкретної справи.', 'Не універсальний трансформер на всі випадки життя, а компактний інструмент, якому є місце у повсякденні.', 'Код — не таємниця.', 'Кожен застосунок має свої інструкції, інформацію про дані та окрему сторінку підтримки.', 'Ознайомитися'],
+  };
+  const apps = {
+    ting: {
+      ru: ['Нужное приложение. Парой клавиш.', 'откроется приложение или URL либо запустится микро-приложение.'],
+      uk: ['Потрібний застосунок. Парою клавіш.', 'Лаунчер для macOS через початкову клавішу. Натисніть початкову клавішу, а далі — призначену клавішу або послідовність для запуску застосунку, URL або мікрозастосунку. Наприклад: Home, потім w, g — і ви на GitHub. Натисніть початкову клавішу двічі, щоб відкрити пошук застосунків launcha.'],
+    },
+    lowkey: {
+      ru: ['Компактный браузер для macOS на системном WebKit. Без вкладок и постоянной адресной строки: сохранённые сайты открываются по алиасу, каждый с отдельным профилем и авторизацией.'],
+      uk: ['Компактний браузер для macOS на системному WebKit. Без вкладок і постійного адресного рядка: збережені сайти відкриваються за аліасом, кожен з окремим профілем і авторизацією.'],
+    },
+    hascs: { ru: ['Нажмите номер, чтобы запустить сцену.'], uk: ['Натисніть номер, щоб запустити сцену.'] },
+    'splash-finish': {
+      en: ['One tidy inbox for Claude Code, Codex, and pi. Know when work is done or an agent needs a decision, then return to the right session.'],
+      ru: ['Один чистый инбокс для Claude Code, Codex и pi. Узнавайте, что работа закончена или что агенту нужно ваше решение, — и возвращайтесь к нужной сессии.'],
+      uk: ['Один чистий інбокс для Claude Code, Codex і pi. Дізнавайтеся, що роботу завершено або що агенту потрібне ваше рішення, — і повертайтесь до потрібної сесії.'],
+    },
+  };
+  for (const locale of ['ru', 'uk']) {
+    const home = await html(pathFor(locale));
+    for (const text of shared[locale]) assert.ok(home.includes(text), `${locale} home: ${text}`);
+  }
+  for (const [slug, byLocale] of Object.entries(apps)) {
+    const repo = catalog.find(app => app.slug === slug)?.repo ?? slug;
+    if (!snapshot.repositories.includes(repo)) continue;
+    for (const [locale, texts] of Object.entries(byLocale)) {
+      const page = await html(pathFor(locale, `apps/${slug}`));
+      for (const text of texts) assert.ok(page.includes(text), `${locale} ${slug}: ${text}`);
+    }
+  }
+  const old = ['Кількома клавішами', 'Несколькими клавишами', 'Познайомитися', 'Познакомиться', 'тихий інбокс', 'тихий инбокс', 'quiet inbox',
+    'Одна справа. Добре.', 'Одна задача. Хорошо.', 'комбайн', 'Код — не секрет.', 'Натисніть цифру', 'Нажмите цифру',
+    'невеликий мікрозастосунок', 'небольшое микро-приложение', 'Невеликий браузер', 'Небольшой браузер'];
+  for (const file of await htmlFiles(dist)) {
+    const source = await readFile(file, 'utf8');
+    for (const text of old) assert.ok(!source.includes(text), `${file.pathname}: ${text}`);
+  }
 });

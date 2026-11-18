@@ -9,7 +9,7 @@ const light = { src: '/images/shots/splash-finish/inbox-light.webp', width: 470,
 const copy: Record<Locale, AppCopy> = {
   en: {
     category: 'For working with AI', tagline: 'Your agents work. You stay focused.',
-    description: 'One quiet inbox for Claude Code, Codex, and pi. Know when work is done or an agent needs a decision, then return to the right session.',
+    description: 'One tidy inbox for Claude Code, Codex, and pi. Know when work is done or an agent needs a decision, then return to the right session.',
     shots: [
       { ...inbox, caption: 'Every agent in one inbox.', alt: 'Splash Finish inbox in the dark theme: Claude Code asks to approve a database migration; three tasks from Claude Code, pi, and Codex are complete.' },
       { ...question, caption: 'Answer pi right in the inbox.', alt: 'A pi question in Splash Finish: choose a rollout plan from three options, with fields for your own answer and a note, and Answer in pi and Submit buttons.' },
@@ -58,7 +58,7 @@ const copy: Record<Locale, AppCopy> = {
   },
   ru: {
     category: 'Для работы с AI', tagline: 'Агенты работают. Вы — не отвлекаетесь.',
-    description: 'Один тихий инбокс для Claude Code, Codex и pi. Узнайте, когда работа закончена или агенту нужно ваше решение, — и вернитесь к нужной сессии.',
+    description: 'Один чистый инбокс для Claude Code, Codex и pi. Узнавайте, что работа закончена или что агенту нужно ваше решение, — и возвращайтесь к нужной сессии.',
     shots: [
       { ...inbox, caption: 'Все агенты — в одном инбоксе.', alt: 'Инбокс Splash Finish в тёмной теме: Claude Code просит подтвердить миграцию базы данных; три задачи от Claude Code, pi и Codex завершены.' },
       { ...question, caption: 'Ответ для pi — прямо в инбоксе.', alt: 'Вопрос от pi в Splash Finish: выбор плана выкатки из трёх вариантов, поля для своего ответа и заметки, кнопки Answer in pi и Submit.' },
@@ -107,7 +107,7 @@ const copy: Record<Locale, AppCopy> = {
   },
   uk: {
     category: 'Для роботи з AI', tagline: 'Агенти працюють. Ви — не відволікаєтеся.',
-    description: 'Один тихий інбокс для Claude Code, Codex і pi. Дізнайтеся, коли роботу завершено або агенту потрібне ваше рішення, — і поверніться до потрібної сесії.',
+    description: 'Один чистий інбокс для Claude Code, Codex і pi. Дізнавайтеся, що роботу завершено або що агенту потрібне ваше рішення, — і повертайтесь до потрібної сесії.',
     shots: [
       { ...inbox, caption: 'Усі агенти — в одному інбоксі.', alt: 'Інбокс Splash Finish у темній темі: Claude Code просить підтвердити міграцію бази даних; три завдання від Claude Code, pi та Codex завершено.' },
       { ...question, caption: 'Відповідь для pi — просто в інбоксі.', alt: 'Запитання від pi у Splash Finish: вибір плану розгортання з трьох варіантів, поля для власної відповіді й нотатки, кнопки Answer in pi і Submit.' },
