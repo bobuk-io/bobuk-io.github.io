@@ -150,10 +150,29 @@ test('Splash Finish 0.3.14 announces the BobukKit window in every locale', async
   if (!snapshot.repositories.includes('splash-finish')) return;
   for (const locale of locales) {
     const app = await html(pathFor(locale, 'apps/splash-finish'));
-    for (const text of ['0.3.14', 'BobukKit', 'Ting', 'Lowkey']) {
+    for (const text of ['0.3.14', 'BobukKit', 'Ting', 'lowkey']) {
       assert.ok(app.includes(text), `${locale}: missing ${text}`);
     }
     assert.ok(app.indexOf('0.3.14') < app.indexOf('0.3.13'), `${locale}: 0.3.14 must come first`);
+  }
+});
+
+test('lowkey has lowercase branding and complete public release facts in every locale', async () => {
+  if (!snapshot.repositories.includes('lowkey')) return;
+  const entry = catalog.find(app => app.slug === 'lowkey');
+  assert.equal(entry?.name, 'lowkey');
+  for (const locale of locales) {
+    const app = await html(pathFor(locale, 'apps/lowkey'));
+    const support = await html(pathFor(locale, 'apps/lowkey/support'));
+    const privacy = await html(pathFor(locale, 'apps/lowkey/privacy'));
+    for (const text of ['0.1.0', 'lowkey.app', '/Applications', 'Command-Shift-L', 'GitHub Releases', 'SHA-256', 'Homebrew']) {
+      assert.ok(app.includes(text), `${locale}: missing lowkey fact ${text}`);
+    }
+    for (const text of ['~/.config/lowkey/config.json', 'Library/Application Support/Lowkey/history.json', 'WebKit']) {
+      assert.ok(support.includes(text), `${locale}: lowkey support missing ${text}`);
+      assert.ok(privacy.includes(text), `${locale}: lowkey privacy missing ${text}`);
+    }
+    assert.ok(!app.includes('TODO(landing)'), `${locale}: unfinished lowkey copy`);
   }
 });
 

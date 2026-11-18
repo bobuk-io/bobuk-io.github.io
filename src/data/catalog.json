@@ -34,5 +34,17 @@
     "icon": "/images/ting-icon.png",
     "socialImage": "/images/ting.png",
     "companions": []
+  },
+  {
+    "slug": "lowkey",
+    "repoName": "lowkey",
+    "name": "lowkey",
+    "repo": "https://github.com/bobuk-io/lowkey",
+    "platform": "macOS",
+    "icon": "/images/lowkey-icon.png",
+    "companions": [
+      "Ting"
+    ],
+    "socialImage": "/images/lowkey.png"
   }
 ]
