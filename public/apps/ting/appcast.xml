@@ -3,49 +3,19 @@
     <channel>
         <title>Ting</title>
         <item>
-            <title>0.7.8</title>
-            <pubDate>Wed, 18 Nov 2026 16:13:26 +0200</pubDate>
+            <title>0.7.9</title>
+            <pubDate>Wed, 18 Nov 2026 19:31:50 +0200</pubDate>
             <link>https://bobuk.io/apps/ting/</link>
-            <sparkle:version>23</sparkle:version>
-            <sparkle:shortVersionString>0.7.8</sparkle:shortVersionString>
+            <sparkle:version>24</sparkle:version>
+            <sparkle:shortVersionString>0.7.9</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.8
+            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.9
 
-## Changed
-
-- The default sound for opening an app, link or file is now **Purr**. This also
-  applies to existing configurations that do not specify a sound. Your selected
-  sound is preserved.
-
-## New
-
-- Shared BobukKit picker rows, rounded panel frames and wrapping shortcut hints
-  in selecta, launcha and Clipbawd, with Ting's palette and commands unchanged.
-
-- **lowkey saved sites.** If lowkey is installed, Settings › Bindings › + › lowkey
-  offers **Open** and **Toggle** for each saved site. These create regular URL
-  bindings (`lowkey://alias/open` or `lowkey://alias/toggle`).
-- Launcha lists lowkey sites alongside apps and micro-apps. Search by title, alias
-  or host and press Return to open the site in its lowkey profile. Successful
-  opens participate in the usual usage ranking.
-- Ting reads only the saved-site metadata in `~/.config/lowkey/config.json`, not
-  cookies or website data. The lists refresh while open and pick up changes on
-  the next open. Sites disappear from the lists if lowkey is uninstalled.
-
-## Fixed
-
-- `ting-micro` started from a terminal no longer waits five seconds for the
-  login shell and then falls back to a short `PATH`. Micro-app commands now run
-  in their own session, without the terminal of the process that started them.
-
-## Upgrade
-
-A downloaded copy: choose **Check for Updates…** in Ting. A Homebrew copy:
-choose **Update Ting via Homebrew…** in Ting's menu. Settings, bindings,
-micro-apps and permissions are preserved. Requires macOS 14 or later; the
-signed, notarized and stapled universal app supports Apple Silicon and Intel.
+- Existing single-site lowkey bindings use the `lowkeyctl` helper when available, so toggling one site does not bring another forward.
+- Use the native `lowkey` micro-app step with lowkey 0.1.1 to control saved windows, inspect a page, wait, click, fill, select or attach a file. `status` and `inspect` support JSON output.
+- Use `preview` to review text, Markdown, code or console output in the panel before the next step. Continue preserves the input; Esc cancels. Console runs reject interactive previews and require `--allow-effects` for lowkey actions.
 ]]></description>
-            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.8/Ting-0.7.8-universal.zip" length="8691681" type="application/octet-stream" sparkle:edSignature="xO2RR+WAU133GGcyPtuPf5PcG1q+PqXlWRl2HoxRDWmAkk6YYGlLyNeizKHEUVy5pyrwv9luoCKzAxS6q41BCQ=="/>
+            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.9/Ting-0.7.9-universal.zip" length="8737650" type="application/octet-stream" sparkle:edSignature="XIFBoyuOvntCK1vIWLHKRlAG4nmUIhhn0Dc7xiI570J8XHJFevqUCjvfX8vxeMDFY0T7gUyhKlBI/8tTQDA7Aw=="/>
         </item>
     </channel>
 </rss>
