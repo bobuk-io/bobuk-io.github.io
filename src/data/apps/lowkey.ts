@@ -1,3 +1,4 @@
+import { lowkeyGuide } from '../guides/lowkey';
 import type { AppCopy } from '../types';
 import type { Locale } from '../../i18n';
 // lowkey 0.1.0. Real release-source windows with demo sites only; never real profiles.
@@ -6,6 +7,7 @@ const prompt = { src: '/images/shots/lowkey/prompt.webp', width: 560, height: 16
 const settings = { src: '/images/shots/lowkey/settings.webp', width: 680, height: 502 };
 const copy: Record<Locale, AppCopy> = {
   en: {
+    guide: lowkeyGuide('en'),
     category: 'A quieter browser', tagline: 'One site. Its own space.',
     description: 'A small macOS browser using the system WebKit. No tabs or permanent address bar: open saved sites by alias, each with its own profile and sign-in state.',
     shots: [
@@ -46,6 +48,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
   },
   ru: {
+    guide: lowkeyGuide('ru'),
     category: 'Спокойный браузер', tagline: 'Один сайт. Своё пространство.',
     description: 'Небольшой браузер для macOS на системном WebKit. Без вкладок и постоянной адресной строки: сохранённые сайты открываются по алиасу, каждый со своим профилем и авторизацией.',
     shots: [
@@ -86,6 +89,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
   },
   uk: {
+    guide: lowkeyGuide('uk'),
     category: 'Спокійний браузер', tagline: 'Один сайт. Власний простір.',
     description: 'Невеликий браузер для macOS на системному WebKit. Без вкладок і постійного адресного рядка: збережені сайти відкриваються за аліасом, кожен зі своїм профілем і авторизацією.',
     shots: [

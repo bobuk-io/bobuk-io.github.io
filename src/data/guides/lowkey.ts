@@ -1,0 +1,31 @@
+import type { Guide } from '../types';
+import type { Locale } from '../../i18n';
+
+const install = 'curl -fsSLo install-lowkey-cli.sh https://bobuk.io/apps/lowkey/install-cli.sh && sh install-lowkey-cli.sh\ncommand -v lowkeyctl\nlowkeyctl --help';
+const commands = [
+  ['open', 'Show or create the site window.', 'Показать или открыть окно сайта.', 'Показати або відкрити вікно сайту.'],
+  ['hide', 'Hide without closing.', 'Скрыть, не закрывая.', 'Сховати, не закриваючи.'],
+  ['toggle', 'Hide the frontmost window; otherwise show it.', 'Скрыть активное окно сайта, иначе показать его.', 'Сховати активне вікно сайту, інакше показати його.'],
+  ['rewind', 'Show the window and load the configured start URL.', 'Показать окно и перейти на стартовый адрес сайта.', 'Показати вікно й перейти на початкову адресу сайту.'],
+  ['status [--json]', 'Read the window state without raising it.', 'Узнать состояние окна, не поднимая его.', 'Дізнатися стан вікна, не піднімаючи його.'],
+  ['inspect [--json]', 'List control types and labels, not entered values.', 'Получить типы и подписи элементов. Введённые значения не выводятся.', 'Отримати типи й підписи елементів без введених значень.'],
+  ['wait [LABEL] [--timeout SECONDS]', 'Wait for DOM readiness or one visible enabled control. Default: 10 seconds; range: 1–300.', 'Дождаться готовности документа или одного видимого и доступного элемента. По умолчанию 10 секунд; допустимо 1–300.', 'Дочекатися готовності документа або одного видимого й доступного елемента. Типово 10 секунд; діапазон 1–300.'],
+  ['click LABEL', 'Click one button or link.', 'Нажать одну кнопку или ссылку.', 'Натиснути одну кнопку або посилання.'],
+  ['fill FIELD VALUE', 'Set text in a labelled field; password fields are excluded.', 'Заполнить текстовое поле по подписи. Поля паролей исключены.', 'Заповнити текстове поле за підписом. Поля паролів виключено.'],
+  ['select FIELD VALUE', 'Select one option by its display text.', 'Выбрать пункт из списка по его тексту.', 'Вибрати пункт зі списку за його текстом.'],
+  ['upload FILE [--field LABEL]', 'Attach one file (up to 8 MiB). Specify the field if there is more than one file input.', 'Прикрепить один файл до 8 МиБ. Если на странице несколько полей для файлов, укажите подпись.', 'Прикріпити один файл до 8 МіБ. Якщо на сторінці кілька полів для файлів, укажіть підпис.'],
+];
+const copy = {
+  en: ['Control a saved site from Terminal', 'Install the command', 'Install lowkey 0.1.1 or later in /Applications, then run the commands below. The script only links the bundled helper. It does not need sudo or change your shell configuration.', 'The script uses ~/.local/bin, ~/bin or ~/.bin if already on PATH. Otherwise it creates the link in ~/.local/bin and prints the PATH setting. Updating the app in place preserves the link. To uninstall the command, remove only the link printed by the script.', 'Command reference', 'Use lowkeyctl ALIAS COMMAND. Replace HA with your saved alias. Quote labels containing spaces.', 'Command', 'Result', 'Working with a page', 'Open the site before using page commands. Labels match exactly after whitespace normalization, in the main document and open shadow roots on the saved origin. Missing or ambiguous matches fail. A click returning success means it was dispatched. Upload does not submit the form, but the site may send the file immediately.'],
+  ru: ['Управление сохранённым сайтом из Терминала', 'Установка команды', 'Поместите lowkey 0.1.1 или новее в /Applications, затем выполните команды ниже. Скрипт создаст ссылку на утилиту внутри приложения. Он не требует sudo и не меняет настройки оболочки.', 'Скрипт выбирает ~/.local/bin, ~/bin или ~/.bin, если каталог уже входит в PATH. Иначе он создаёт ссылку в ~/.local/bin и подсказывает, как добавить каталог в PATH. При обновлении приложения ссылка сохранится. Для удаления команды удалите только ссылку, путь к которой вывел скрипт.', 'Справочник команд', 'Формат: lowkeyctl АЛИАС КОМАНДА. Замените HA своим алиасом. Подписи с пробелами берите в кавычки.', 'Команда', 'Результат', 'Работа со страницей', 'Сначала откройте окно сайта. Команды ищут точные подписи без учёта лишних пробелов в основном документе и открытых теневых деревьях, только в пределах исходного origin. Если нет совпадений или найдено несколько, команда вернёт ошибку. Успешный click означает, что нажатие передано странице. Команда upload не отправляет форму, но сайт может сразу загрузить файл.'],
+  uk: ['Керування збереженим сайтом із Термінала', 'Встановлення команди', 'Помістіть lowkey 0.1.1 або новішу версію в /Applications, потім виконайте команди нижче. Скрипт створить посилання на утиліту всередині застосунку. Він не потребує sudo й не змінює налаштування оболонки.', 'Скрипт вибирає ~/.local/bin, ~/bin або ~/.bin, якщо каталог уже входить до PATH. Інакше створює посилання в ~/.local/bin і підказує, як додати каталог до PATH. Після оновлення застосунку посилання збережеться. Щоб видалити команду, видаліть лише посилання за шляхом, який вивів скрипт.', 'Довідник команд', 'Формат: lowkeyctl АЛІАС КОМАНДА. Замініть HA своїм аліасом. Підписи з пробілами беріть у лапки.', 'Команда', 'Результат', 'Робота зі сторінкою', 'Спочатку відкрийте вікно сайту. Команди шукають точні підписи без урахування зайвих пробілів в основному документі й відкритих тіньових деревах, лише в межах початкового origin. Якщо збігів немає або їх кілька, команда поверне помилку. Успішний click означає, що натискання передано сторінці. Команда upload не надсилає форму, але сайт може одразу завантажити файл.'],
+};
+export function lowkeyGuide(locale: Locale): Guide {
+  const [intro, setup, installIntro, path, ref, syntax, command, result, pages, limits] = copy[locale];
+  const i = { en: 1, ru: 2, uk: 3 }[locale];
+  return { slug: 'lowkeyctl', nav: 'lowkeyctl', eyebrow: 'lowkey', title: 'lowkeyctl', intro, sections: [
+    { id: 'install', title: setup, blocks: [installIntro, { code: install }, path] },
+    { id: 'commands', title: ref, blocks: [syntax, { table: [[command, result], ...commands.map(row => [row[0], row[i]])] }] },
+    { id: 'page', title: pages, blocks: [limits, { code: 'lowkeyctl HA open\nlowkeyctl HA inspect --json\nlowkeyctl HA wait "Refresh list" --timeout 20 && lowkeyctl HA click "Refresh list"' }] },
+  ] };
+}
