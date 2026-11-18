@@ -394,6 +394,10 @@ test('Ting has localized launcher copy and screenshots without HAScS claims', as
     assert.ok(source.includes('Home') && source.includes('F13'));
     assert.ok(!source.includes('Home Assistant'));
     assert.ok(!source.includes('apps.apple.com'));
+    if (locale === 'uk') {
+      assert.ok(source.includes('Темна чи світла тема — на вибір.'));
+      assert.ok(!source.includes('Світла чи темна тема'));
+    }
     for (const section of ['support', 'privacy']) {
       const page = await html(pathFor(locale, `apps/ting/${section}`));
       assert.ok(page.includes('~/.config/ting/'));

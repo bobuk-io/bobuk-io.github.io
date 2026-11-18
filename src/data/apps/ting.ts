@@ -209,7 +209,7 @@ const copy: Record<Locale, AppCopy> = {
     shots: [
       { ...selecta, caption: 'Початкова клавіша, потім ще одна.', alt: 'Меню selecta в Ting, темна тема: клавіші для Terminal, Safari, Notes, Calendar, Music, посилання Home scenes і групи Web та Tools. На кожній клавіші — латинська літера й літера поточної розкладки.' },
       { ...launcha, caption: 'Подвійне натискання — пошук застосунків.', alt: 'Пошук launcha в Ting: за запитом «system» знайдено System Information і System Settings.' },
-      { ...light, caption: 'Світла чи темна тема — на вибір.', alt: 'Меню selecta в Ting у світлій темі.' },
+      { ...light, caption: 'Темна чи світла тема — на вибір.', alt: 'Меню selecta в Ting у світлій темі.' },
       { ...sites, caption: 'Сайти lowkey — поруч із застосунками.', alt: 'За запитом notes у launcha видно демо-сайти lowkey Field Notes і Project Notes та застосунок Notes. Під сайтами вказано аліас і хост.' },
       { ...bindings, caption: 'Усі послідовності — в одній таблиці.', alt: 'Налаштування Ting, вкладка Bindings: таблиця послідовностей клавіш, назв і дій, зокрема групи Web та Tools.' },
     ],
