@@ -628,3 +628,20 @@ test('Reviewed site copy uses the agreed wording in every locale', async () => {
     for (const text of old) assert.ok(!source.includes(text), `${file.pathname}: ${text}`);
   }
 });
+
+test('Ukrainian pages use the agreed terms', async () => {
+  const unescape = text => text.replaceAll('&#39;', "'").replaceAll('&#x27;', "'").replaceAll('&amp;', '&');
+  const files = (await htmlFiles(new URL('uk/', dist))).filter(file => file.pathname.includes('/uk/'));
+  assert.ok(files.length > 0, 'no built Ukrainian pages');
+  for (const file of files) {
+    const page = await readFile(file, 'utf8');
+    assert.doesNotMatch(page, /типов|сполучен/i, `old term in ${file.pathname}`);
+  }
+  const ting = unescape(await html('/uk/apps/ting/'));
+  for (const text of ['За замовчуванням selecta з’являється одразу', 'відтворює звуковий сигнал', 'вікно закривається самостійно', 'показує, що саме мікрозастосунок читає й надсилає', 'зокрема кирилицею']) {
+    assert.ok(ting.includes(text), `missing: ${text}`);
+  }
+  for (const text of ['Новий типовий звук', 'явно вибраний звук не змінюється', 'закривається саме', 'зокрема українською та російською']) {
+    assert.ok(!ting.includes(text), `still present: ${text}`);
+  }
+});
