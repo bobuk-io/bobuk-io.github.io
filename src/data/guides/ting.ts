@@ -8,6 +8,16 @@ const format = 'https://github.com/bobuk-io/ting/blob/v0.7.6/docs/micro-apps/FOR
 const configuring = 'https://github.com/bobuk-io/ting/blob/v0.7.6/docs/CONFIGURING.md';
 
 const code = {
+  lowkey: `format: ting.microapp/2
+description: Show the state of a saved lowkey window.
+input: none
+steps:
+  - lowkey: notes
+    action: status
+    as: json
+output:
+  to: [panel]
+  as: code`,
   history: `format: ting.microapp/2
 description: Show the preceding clipboard history entry
 input: none
@@ -236,6 +246,10 @@ const guides: Record<Locale, Guide> = {
         { code: code.ai },
         { code: code.python },
       ] },
+      { id: 'lowkey', title: 'Read a lowkey window’s status', blocks: [
+        'Requires a Ting build whose bundled FORMAT.md lists the lowkey step, and lowkey with lowkeyctl in /Applications. Replace notes with your saved alias. This example reports window state without opening a page. To list controls in an already-open window, change status to inspect.',
+        { code: code.lowkey },
+      ] },
       { id: 'interactive', title: 'Ting 0.7.4: choose and ask', blocks: [
         'Ting 0.7.4 adds these interactive steps. Use the FORMAT.md shipped with your installed Ting to check which steps it supports.',
         '`choose` shows a filterable list from the previous step: one nonempty line per option, or a JSON array of strings or objects with title, optional subtitle and string value. It passes the chosen value to the next step. Up/Down selects, Return confirms; even one option needs confirmation. An empty list stops the run.',
@@ -382,6 +396,10 @@ const guides: Record<Locale, Guide> = {
         { code: code.ai },
         { code: code.python },
       ] },
+      { id: 'lowkey', title: 'Проверить состояние окна lowkey', blocks: [
+        'Нужна сборка Ting, в которой FORMAT.md описывает шаг lowkey, и приложение lowkey с утилитой lowkeyctl в /Applications. Замените notes своим алиасом. Пример покажет состояние окна, не открывая страницу. Чтобы получить список элементов уже открытой страницы, замените status на inspect.',
+        { code: code.lowkey },
+      ] },
       { id: 'interactive', title: 'Ting 0.7.4: choose и ask', blocks: [
         'В Ting 0.7.4 появились эти интерактивные шаги. Доступные шаги проверяйте по FORMAT.md внутри установленного Ting.',
         '`choose` показывает список из предыдущего шага с фильтром: один вариант на непустую строку или JSON-массив строк либо объектов с title, необязательным subtitle и строковым value. Следующий шаг получает выбранное значение. Стрелки выбирают, Return подтверждает. Даже один вариант требует подтверждения; пустой список останавливает запуск.',
@@ -527,6 +545,10 @@ const guides: Record<Locale, Guide> = {
         'Крок ШІ та крок Python:',
         { code: code.ai },
         { code: code.python },
+      ] },
+      { id: 'lowkey', title: 'Перевірити стан вікна lowkey', blocks: [
+        'Потрібна збірка Ting, у якій FORMAT.md описує крок lowkey, і застосунок lowkey з утилітою lowkeyctl у /Applications. Замініть notes своїм аліасом. Приклад покаже стан вікна, не відкриваючи сторінку. Щоб отримати список елементів уже відкритої сторінки, замініть status на inspect.',
+        { code: code.lowkey },
       ] },
       { id: 'interactive', title: 'Ting 0.7.4: choose та ask', blocks: [
         'У Ting 0.7.4 з’явилися ці інтерактивні кроки. Доступні кроки перевіряйте за FORMAT.md усередині встановленого Ting.',

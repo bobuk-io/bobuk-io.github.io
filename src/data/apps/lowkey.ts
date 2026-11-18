@@ -2,7 +2,7 @@ import type { AppCopy } from '../types';
 import type { Locale } from '../../i18n';
 // lowkey 0.1.0. Real release-source windows with demo sites only; never real profiles.
 const browser = { src: '/images/shots/lowkey/browser.webp', width: 1100, height: 760 };
-const prompt = { src: '/images/shots/lowkey/prompt.webp', width: 560, height: 246 };
+const prompt = { src: '/images/shots/lowkey/prompt.webp', width: 560, height: 166 };
 const settings = { src: '/images/shots/lowkey/settings.webp', width: 680, height: 502 };
 const copy: Record<Locale, AppCopy> = {
   en: {
@@ -10,26 +10,26 @@ const copy: Record<Locale, AppCopy> = {
     description: 'A small macOS browser using the system WebKit. No tabs or permanent address bar: open saved sites by alias, each with its own profile and sign-in state.',
     shots: [
       { ...browser, caption: 'The page, without the browser clutter.', alt: 'A real lowkey window displaying a local Field Notes demo website. A thin strip holds close, back, start page and forward controls; there are no tabs or permanent address bar.' },
-      { ...prompt, caption: 'An alias is enough.', alt: 'The dark address prompt in lowkey lists three demo sites and one submitted URL. Alias badges share a width, and shortcut hints appear below the list.' },
+      { ...prompt, caption: 'An alias is enough.', alt: 'The dark address prompt in lowkey lists two configured demo sites. Alias badges share a width, and shortcut hints appear below the list.' },
       { ...settings, caption: 'Give each site its own profile.', alt: 'lowkey Settings with three demo aliases. Field Notes has an alias, a start URL and a setting to open external links in the default browser.' },
     ],
     features: [
       { title: 'Separate sign-ins', text: 'Every saved site has a persistent WebKit profile. Ordinary windows share a default profile; popups retain their opener’s profile. Closing a window keeps its cookies.' },
-      { title: 'Type less', text: 'Command-L accepts aliases, HTTP(S) URLs and bare hosts. Suggestions use saved sites and submitted-input history, with Russian/Ukrainian ↔ US keyboard-layout matching.' },
+      { title: 'Type less', text: 'Command-L accepts aliases, HTTP(S) URLs and bare hosts. The empty prompt lists only saved sites. Typing also searches submitted addresses, with Russian/Ukrainian ↔ US keyboard-layout matching.' },
       { title: 'Stay in this profile', text: 'Command-Shift-L opens a URL or alias in the exact current window and profile, including sign-in windows. Later links follow the normal policy. Some identity providers still block embedded browsers.' },
       { title: 'A place in your workflow', text: 'Use lowkey://alias/open and lowkey://alias/toggle from launchers such as Ting. Hide a site without closing its page. Choose Page, System, Light or Dark appearance and your own palette.' },
     ],
-    installNote: 'Version 0.1.0 is a universal ZIP for Apple Silicon and Intel. No automatic updater or Homebrew cask.',
+    installNote: 'Version 0.1.1 includes lowkeyctl for targeted window and page actions. Download the universal ZIP for Apple Silicon and Intel. No automatic updater or Homebrew cask.',
     steps: [
       { title: 'Download and install', text: 'Download the universal ZIP from GitHub Releases, unzip it and move lowkey.app to /Applications. Official releases are Developer ID signed, notarized and stapled, with SHA-256 checksums.' },
       { title: 'Add your sites', text: 'Open lowkey, press Command-comma and add an alias, optional title and start URL in Settings. Each site gets its own profile. Command-L opens the alias or an address.' },
       { title: 'Open from your launcher', text: 'This example opens the saved alias notes. Replace it with an alias you have configured. It does not create a site.', command: "open 'lowkey://notes/open'" },
-      { title: 'Update without losing sign-ins', text: 'Quit lowkey, download the new GitHub release and replace only the app. Configuration, input history and website profiles remain. Launching shows the address prompt, not old windows.' },
+      { title: 'Update without losing sign-ins', text: 'Quit lowkey, download the new GitHub release and replace only the app. Configuration, input history and website profiles remain. Old windows do not reopen. While lowkey is running, click its Dock icon to open the address prompt, even if a site window is visible.' },
     ],
     faq: [
       { question: 'Does every sign-in flow work?', answer: 'No. Google and other providers may reject embedded user agents. lowkey shares profiles with sign-in windows but does not impersonate Safari, bypass certificates or copy another browser’s cookies. Complex OAuth callbacks are not guaranteed.' },
       { question: 'What does closing a site do?', answer: 'Command-W hides a saved-site window while its page keeps running. Shift-Command-W closes it but retains the profile. Ordinary windows close with Command-W. Removing a saved site in Settings asks before deleting its profile.' },
-      { question: 'Does it search the web or support extensions?', answer: 'Not in 0.1.0. There is no search-engine fallback, browser extension support, password-manager integration or automatic update service.' },
+      { question: 'Does it search the web or support extensions?', answer: 'No. There is no search-engine fallback, browser extension support, password-manager integration or automatic update service.' },
     ],
     supportIntro: 'Setup, profile behavior and troubleshooting for lowkey. Use a demo page when reporting a problem; never publish credentials or private URLs.',
     support: [
@@ -50,26 +50,26 @@ const copy: Record<Locale, AppCopy> = {
     description: 'Небольшой браузер для macOS на системном WebKit. Без вкладок и постоянной адресной строки: сохранённые сайты открываются по алиасу, каждый со своим профилем и авторизацией.',
     shots: [
       { ...browser, caption: 'Страница без лишних панелей.', alt: 'Настоящее окно lowkey с локальным демо-сайтом Field Notes. В узкой полосе — закрытие, назад, начальная страница и вперёд. Вкладок и постоянной адресной строки нет.' },
-      { ...prompt, caption: 'Достаточно алиаса.', alt: 'Тёмная адресная панель lowkey: три демо-сайта и один введённый адрес. Бейджи алиасов одной ширины, снизу — подсказки клавиш.' },
+      { ...prompt, caption: 'Достаточно алиаса.', alt: 'Тёмная адресная панель lowkey: два настроенных демо-сайта. Бейджи алиасов одной ширины, снизу — подсказки клавиш.' },
       { ...settings, caption: 'У каждого сайта — свой профиль.', alt: 'Настройки lowkey с тремя демо-алиасами. У Field Notes заданы алиас, начальный адрес и открытие внешних ссылок в браузере по умолчанию.' },
     ],
     features: [
       { title: 'Раздельные авторизации', text: 'У каждого сохранённого сайта — постоянный профиль WebKit. Обычные окна используют общий профиль, всплывающие — профиль родителя. Закрытие окна не удаляет cookies.' },
-      { title: 'Меньше ввода', text: 'Command-L принимает алиасы, HTTP(S)-адреса и имена хостов. Подсказки используют сайты и историю ввода, включая соответствия русской и украинской раскладок с US.' },
+      { title: 'Меньше ввода', text: 'Command-L принимает алиасы, HTTP(S)-адреса и имена хостов. Пустая панель показывает только сохранённые сайты. При вводе появляются и подходящие адреса из истории. Поиск учитывает русскую, украинскую и американскую раскладки.' },
       { title: 'Остаться в этом профиле', text: 'Command-Shift-L открывает адрес или алиас в текущем окне и том же профиле, в том числе в окне авторизации. Последующие ссылки подчиняются обычным правилам. Некоторые провайдеры всё равно блокируют встроенные браузеры.' },
       { title: 'В вашем рабочем процессе', text: 'Вызывайте lowkey://alias/open и lowkey://alias/toggle из лаунчера, например Ting. Скрывайте сайт, не закрывая страницу. Выбирайте тему Page, System, Light или Dark и свою палитру.' },
     ],
-    installNote: 'Версия 0.1.0 — универсальный ZIP для Apple Silicon и Intel. Автообновления и Homebrew cask нет.',
+    installNote: 'В версии 0.1.1 утилита lowkeyctl управляет выбранным окном и элементами страницы. Скачайте универсальный ZIP для Apple Silicon и Intel. Автообновления и Homebrew cask нет.',
     steps: [
       { title: 'Скачайте и установите', text: 'Скачайте универсальный ZIP из GitHub Releases, распакуйте и перенесите lowkey.app в /Applications. Официальные сборки подписаны Developer ID, нотарифицированы Apple и содержат stapled-билет. В релизе есть SHA-256.' },
       { title: 'Добавьте сайты', text: 'Откройте lowkey и нажмите Command-запятая. В Settings задайте алиас, необязательное название и начальный адрес. Каждый сайт получит свой профиль. Command-L открывает алиас или адрес.' },
       { title: 'Откройте из лаунчера', text: 'Пример открывает сохранённый алиас notes. Замените его на свой настроенный алиас. Команда не создаёт сайт.', command: "open 'lowkey://notes/open'" },
-      { title: 'Обновите без потери авторизации', text: 'Завершите lowkey, скачайте новый релиз с GitHub и замените только приложение. Конфигурация, история ввода и профили останутся. При запуске открывается адресная панель, а не прежние окна.' },
+      { title: 'Обновите без потери авторизации', text: 'Завершите lowkey, скачайте новый релиз с GitHub и замените только приложение. Конфигурация, история ввода и профили останутся. Прежние окна не открываются. Когда lowkey запущен, нажмите значок в Dock, чтобы открыть адресную панель. Это работает и при открытом окне сайта.' },
     ],
     faq: [
       { question: 'Любая авторизация работает?', answer: 'Нет. Google и другие провайдеры могут отклонять встроенные браузеры. Окна авторизации используют нужный профиль, но lowkey не выдаёт себя за Safari, не обходит проверку сертификатов и не переносит cookies другого браузера. Сложные OAuth-сценарии не гарантируются.' },
       { question: 'Что происходит при закрытии сайта?', answer: 'Command-W скрывает сохранённый сайт, страница продолжает работать. Shift-Command-W закрывает окно, сохраняя профиль. Обычное окно закрывается по Command-W. Удаление сайта в Settings требует подтверждения перед удалением профиля.' },
-      { question: 'Есть веб-поиск и расширения?', answer: 'В 0.1.0 нет поиска через поисковую систему, расширений, интеграции с менеджером паролей и службы автоматических обновлений.' },
+      { question: 'Есть веб-поиск и расширения?', answer: 'Нет поиска через поисковую систему, расширений, интеграции с менеджером паролей и службы автоматических обновлений.' },
     ],
     supportIntro: 'Настройка, профили и помощь по lowkey. Для отчёта об ошибке используйте демо-страницу; не публикуйте учётные данные и частные адреса.',
     support: [
@@ -90,26 +90,26 @@ const copy: Record<Locale, AppCopy> = {
     description: 'Невеликий браузер для macOS на системному WebKit. Без вкладок і постійного адресного рядка: збережені сайти відкриваються за аліасом, кожен зі своїм профілем і авторизацією.',
     shots: [
       { ...browser, caption: 'Сторінка без зайвих панелей.', alt: 'Справжнє вікно lowkey з локальним демо-сайтом Field Notes. На вузькій смузі — закриття, назад, початкова сторінка та вперед. Вкладок і постійного адресного рядка немає.' },
-      { ...prompt, caption: 'Достатньо аліаса.', alt: 'Темна адресна панель lowkey: три демо-сайти й одна введена адреса. Бейджі аліасів однакової ширини, внизу — підказки клавіш.' },
+      { ...prompt, caption: 'Достатньо аліаса.', alt: 'Темна адресна панель lowkey: два налаштовані демо-сайти. Бейджі аліасів однакової ширини, внизу — підказки клавіш.' },
       { ...settings, caption: 'У кожного сайту — власний профіль.', alt: 'Налаштування lowkey із трьома демо-аліасами. Для Field Notes задано аліас, початкову адресу та відкриття зовнішніх посилань у типовому браузері.' },
     ],
     features: [
       { title: 'Окремі авторизації', text: 'Кожен збережений сайт має постійний профіль WebKit. Звичайні вікна використовують спільний профіль, спливні — профіль батьківського вікна. Закриття вікна не видаляє cookies.' },
-      { title: 'Менше введення', text: 'Command-L приймає аліаси, HTTP(S)-адреси та імена хостів. Підказки використовують сайти й історію введення, зокрема відповідності української та російської розкладок з US.' },
+      { title: 'Менше введення', text: 'Command-L приймає аліаси, HTTP(S)-адреси та імена хостів. Порожня панель показує лише збережені сайти. Коли ви вводите текст, з’являються також відповідні адреси з історії. Пошук враховує українську, російську й американську розкладки.' },
       { title: 'Залишитися в цьому профілі', text: 'Command-Shift-L відкриває адресу або аліас у поточному вікні та тому самому профілі, зокрема у вікні авторизації. Подальші посилання дотримуються звичайних правил. Деякі провайдери все одно блокують вбудовані браузери.' },
       { title: 'У вашому робочому процесі', text: 'Викликайте lowkey://alias/open і lowkey://alias/toggle з лаунчера, наприклад Ting. Приховуйте сайт, не закриваючи сторінку. Вибирайте тему Page, System, Light або Dark і власну палітру.' },
     ],
-    installNote: 'Версія 0.1.0 — універсальний ZIP для Apple Silicon та Intel. Автооновлення й Homebrew cask немає.',
+    installNote: 'У версії 0.1.1 утиліта lowkeyctl керує вибраним вікном та елементами сторінки. Завантажте універсальний ZIP для Apple Silicon та Intel. Автооновлення й Homebrew cask немає.',
     steps: [
       { title: 'Завантажте та встановіть', text: 'Завантажте універсальний ZIP із GitHub Releases, розпакуйте й перенесіть lowkey.app до /Applications. Офіційні збірки підписані Developer ID, нотаризовані Apple та мають stapled-квиток. Реліз містить SHA-256.' },
       { title: 'Додайте сайти', text: 'Відкрийте lowkey та натисніть Command-кома. У Settings задайте аліас, необов’язкову назву й початкову адресу. Кожен сайт отримає власний профіль. Command-L відкриває аліас або адресу.' },
       { title: 'Відкрийте з лаунчера', text: 'Приклад відкриває збережений аліас notes. Замініть його своїм налаштованим аліасом. Команда не створює сайт.', command: "open 'lowkey://notes/open'" },
-      { title: 'Оновіть без втрати авторизації', text: 'Завершіть lowkey, завантажте новий реліз із GitHub і замініть лише застосунок. Конфігурація, історія введення та профілі залишаться. Після запуску відкривається адресна панель, а не попередні вікна.' },
+      { title: 'Оновіть без втрати авторизації', text: 'Завершіть lowkey, завантажте новий реліз із GitHub і замініть лише застосунок. Конфігурація, історія введення та профілі залишаться. Попередні вікна не відкриваються. Коли lowkey запущено, натисніть значок у Dock, щоб відкрити адресну панель. Це працює й тоді, коли вікно сайту відкрите.' },
     ],
     faq: [
       { question: 'Будь-яка авторизація працює?', answer: 'Ні. Google та інші провайдери можуть відхиляти вбудовані браузери. Вікна авторизації використовують потрібний профіль, але lowkey не видає себе за Safari, не обходить перевірку сертифікатів і не переносить cookies іншого браузера. Складні OAuth-сценарії не гарантовані.' },
       { question: 'Що відбувається після закриття сайту?', answer: 'Command-W приховує збережений сайт, сторінка продовжує працювати. Shift-Command-W закриває вікно, зберігаючи профіль. Звичайне вікно закривається за Command-W. Видалення сайту в Settings потребує підтвердження перед видаленням профілю.' },
-      { question: 'Є вебпошук і розширення?', answer: 'У 0.1.0 немає пошуку через пошукову систему, розширень, інтеграції з менеджером паролів і служби автоматичних оновлень.' },
+      { question: 'Є вебпошук і розширення?', answer: 'Немає пошуку через пошукову систему, розширень, інтеграції з менеджером паролів і служби автоматичних оновлень.' },
     ],
     supportIntro: 'Налаштування, профілі та допомога з lowkey. Для звіту про помилку використовуйте демо-сторінку; не публікуйте облікові дані й приватні адреси.',
     support: [

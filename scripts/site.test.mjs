@@ -175,7 +175,7 @@ test('lowkey has lowercase branding and complete public release facts in every l
     const app = await html(pathFor(locale, 'apps/lowkey'));
     const support = await html(pathFor(locale, 'apps/lowkey/support'));
     const privacy = await html(pathFor(locale, 'apps/lowkey/privacy'));
-    for (const text of ['0.1.0', 'lowkey.app', '/Applications', 'Command-Shift-L', 'GitHub Releases', 'SHA-256', 'Homebrew']) {
+    for (const text of ['0.1.1', 'lowkeyctl', 'lowkey.app', '/Applications', 'Command-Shift-L', 'GitHub Releases', 'SHA-256', 'Homebrew']) {
       assert.ok(app.includes(text), `${locale}: missing lowkey fact ${text}`);
     }
     for (const text of ['~/.config/lowkey/config.json', 'Library/Application Support/Lowkey/history.json', 'WebKit']) {
