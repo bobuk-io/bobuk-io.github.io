@@ -3,19 +3,17 @@
     <channel>
         <title>Ting</title>
         <item>
-            <title>0.7.9</title>
-            <pubDate>Wed, 18 Nov 2026 19:31:50 +0200</pubDate>
+            <title>0.7.10</title>
+            <pubDate>Wed, 18 Nov 2026 20:38:13 +0200</pubDate>
             <link>https://bobuk.io/apps/ting/</link>
-            <sparkle:version>24</sparkle:version>
-            <sparkle:shortVersionString>0.7.9</sparkle:shortVersionString>
+            <sparkle:version>25</sparkle:version>
+            <sparkle:shortVersionString>0.7.10</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.9
+            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.10
 
-- Existing single-site lowkey bindings use the `lowkeyctl` helper when available, so toggling one site does not bring another forward.
-- Use the native `lowkey` micro-app step with lowkey 0.1.1 to control saved windows, inspect a page, wait, click, fill, select or attach a file. `status` and `inspect` support JSON output.
-- Use `preview` to review text, Markdown, code or console output in the panel before the next step. Continue preserves the input; Esc cancels. Console runs reject interactive previews and require `--allow-effects` for lowkey actions.
+Selecting 1Password now asks macOS to reopen its window if the app is already running. Previously, selecting it with the main window closed could appear to do nothing. Existing shortcuts need no changes; switching to other apps works as before.
 ]]></description>
-            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.9/Ting-0.7.9-universal.zip" length="8737650" type="application/octet-stream" sparkle:edSignature="XIFBoyuOvntCK1vIWLHKRlAG4nmUIhhn0Dc7xiI570J8XHJFevqUCjvfX8vxeMDFY0T7gUyhKlBI/8tTQDA7Aw=="/>
+            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.10/Ting-0.7.10-universal.zip" length="8738656" type="application/octet-stream" sparkle:edSignature="cKgEJjEMDxmntep+59Qxg5foXGF2kxGgSa3xoA0q8wirhqiSjio+t/v0n8UAFV21t94b/NvmXi4JFzXHe5DWDQ=="/>
         </item>
     </channel>
 </rss>
