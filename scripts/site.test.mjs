@@ -413,6 +413,27 @@ test('Ting 0.7.3 announces the launcher menu gear in every locale', async () => 
   }
 });
 
+test('Ting 0.7.7 documents empty new bindings and explicit saving in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  const localized = {
+    en: ['starts empty', 'leaves no new binding'],
+    ru: ['начинается без клавиш', 'отменяет создание привязки'],
+    uk: ['починається без клавіш', 'скасовує створення прив’язки'],
+  };
+  for (const locale of locales) {
+    for (const route of ['apps/ting', 'apps/ting/support']) {
+      const page = await html(pathFor(locale, route));
+      for (const text of ['Ting 0.7.7', 'Done', 'Cancel', 'Escape']) {
+        assert.ok(page.includes(text), `${locale}: missing ${text} on ${route}`);
+      }
+    }
+    const support = await html(pathFor(locale, 'apps/ting/support'));
+    for (const text of localized[locale]) {
+      assert.ok(support.includes(text), `${locale}: missing ${text} in binding support`);
+    }
+  }
+});
+
 test('Ting 0.7.6 documents Clipbawd and negative history indices in every locale', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   for (const locale of locales) {
