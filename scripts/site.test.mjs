@@ -580,3 +580,9 @@ test('Ting 0.7.4 announces Homebrew updates in every locale', async () => {
     }
   }
 });
+
+test('Ukrainian home page closing text says "розберемося"', async () => {
+  const source = await html('/uk/');
+  assert.ok(source.includes('А якщо щось пішло не так — розберемося.'));
+  assert.ok(!source.includes('розберімося'));
+});
