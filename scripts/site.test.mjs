@@ -453,6 +453,15 @@ test('Ting 0.7.3 announces the launcher menu gear in every locale', async () => 
   }
 });
 
+test('Ting 0.7.10 documents reopening 1Password in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  for (const locale of locales) {
+    for (const route of ['apps/ting', 'apps/ting/support']) {
+      assert.match(await html(pathFor(locale, route)), /Ting 0\.7\.10[^<]*1Password/);
+    }
+  }
+});
+
 test('Ting 0.7.9 documents lowkey actions and preview in every locale', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   for (const locale of locales) {
