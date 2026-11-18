@@ -453,6 +453,14 @@ test('Ting 0.7.3 announces the launcher menu gear in every locale', async () => 
   }
 });
 
+test('Ting 0.7.11 documents the selecta delay in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  for (const locale of locales) {
+    assert.ok((await html(pathFor(locale, 'apps/ting'))).includes('Ting 0.7.11'));
+    assert.match(await html(pathFor(locale, 'apps/ting/support')), /Show menu after/);
+  }
+});
+
 test('Ting 0.7.10 documents reopening 1Password in every locale', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   for (const locale of locales) {
