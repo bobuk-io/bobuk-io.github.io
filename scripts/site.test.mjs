@@ -453,6 +453,16 @@ test('Ting 0.7.3 announces the launcher menu gear in every locale', async () => 
   }
 });
 
+test('Ting 0.7.9 documents lowkey actions and preview in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  for (const locale of locales) {
+    const app = await html(pathFor(locale, 'apps/ting'));
+    const support = await html(pathFor(locale, 'apps/ting/support'));
+    for (const text of ['Ting 0.7.9', 'lowkey', 'preview']) assert.ok(app.includes(text), `${locale}: missing ${text}`);
+    for (const text of ['lowkeyctl', 'action: inspect', '--allow-effects']) assert.ok(support.includes(text), `${locale}: missing ${text}`);
+  }
+});
+
 test('Ting 0.7.8 documents lowkey integration, privacy and Purr in every locale', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   for (const locale of locales) {
