@@ -157,6 +157,16 @@ test('Splash Finish 0.3.14 announces the BobukKit window in every locale', async
   }
 });
 
+test('HAScS 0.3.3 announces shared localized hints in every locale', async () => {
+  if (!snapshot.repositories.includes('HAScS')) return;
+  for (const locale of locales) {
+    const app = await html(pathFor(locale, 'apps/hascs'));
+    for (const text of ['0.3.3', 'BobukKit', 'Keychain']) {
+      assert.ok(app.includes(text), `${locale}: HAScS missing ${text}`);
+    }
+  }
+});
+
 test('lowkey has lowercase branding and complete public release facts in every locale', async () => {
   if (!snapshot.repositories.includes('lowkey')) return;
   const entry = catalog.find(app => app.slug === 'lowkey');

@@ -1,6 +1,6 @@
 import type { AppCopy } from '../types';
 import type { Locale } from '../../i18n';
-// Real screenshots of HAScS 0.3.2 with five demo scenes; the app UI follows the page language.
+// Real screenshots of HAScS 0.3.3 with five demo scenes; the app UI follows the page language.
 const shot = (name: string, locale: Locale, width = 622, height = 505) => ({ src: `/images/shots/hascs/${name}-${locale}.webp`, width, height });
 const copy: Record<Locale, AppCopy> = {
   en: {
@@ -25,6 +25,7 @@ const copy: Record<Locale, AppCopy> = {
       { title: 'Open the remote', text: 'Click the house icon to choose a scene. The panel immediately accepts number keys. This command only opens the panel; it does not itself run a scene.', command: "open 'hascs://scenes'" },
     ],
     faq: [
+      { question: 'What’s new in 0.3.3?', answer: 'The footer uses BobukKit, the shared bobuk.io component library, for keyboard hints. Each key stays next to its action. English, Ukrainian and Russian are retained; the scene grid, close button, reordering and activation are unchanged. Replace the app to update; your Keychain connection and saved scene assignments remain.' },
       { question: 'Do I need Home Assistant?', answer: 'Yes. HAScS is a remote for scenes in your own Home Assistant instance, not a replacement server. Up to nine scenes are available.' },
       { question: 'Does a successful request mean every device changed?', answer: 'No. The confirmation means Home Assistant accepted the request, not that every device reached its final state. Do not use this as a safety-critical controller.' },
       { question: 'Is it in the App Store?', answer: 'Not yet. Download the signed and notarized universal build from GitHub Releases. Global hotkeys and launch at login are not implemented yet.' },
@@ -67,6 +68,7 @@ const copy: Record<Locale, AppCopy> = {
       { title: 'Откройте пульт', text: 'Нажмите на значок дома для выбора сцены. Панель сразу принимает цифровые клавиши. Эта команда только открывает панель и сама не запускает сцену.', command: "open 'hascs://scenes'" },
     ],
     faq: [
+      { question: 'Что нового в 0.3.3?', answer: 'Подсказки клавиш внизу панели теперь рисует BobukKit — общая библиотека компонентов bobuk.io. Клавиша остаётся рядом с действием. Английский, украинский и русский сохранены; сетка сцен, кнопка закрытия, изменение порядка и запуск сцен работают как раньше. Для обновления замените приложение; подключение в Keychain и назначенные номера сцен останутся.' },
       { question: 'Нужен ли Home Assistant?', answer: 'Да. HAScS — пульт для сцен в вашем Home Assistant, а не замена сервера. Доступно до девяти сцен.' },
       { question: 'Успешный запрос означает, что все устройства переключились?', answer: 'Нет. Подтверждение означает, что Home Assistant принял запрос, а не что каждое устройство достигло нужного состояния. Не используйте приложение для критичных систем безопасности.' },
       { question: 'Приложение есть в App Store?', answer: 'Пока нет. Подписанная и нотарифицированная универсальная сборка доступна в GitHub Releases. Глобальная горячая клавиша и запуск при входе пока не реализованы.' },
@@ -109,6 +111,7 @@ const copy: Record<Locale, AppCopy> = {
       { title: 'Відкрийте пульт', text: 'Натисніть значок будинку для вибору сцени. Панель одразу приймає цифрові клавіші. Ця команда лише відкриває панель і сама не запускає сцену.', command: "open 'hascs://scenes'" },
     ],
     faq: [
+      { question: 'Що нового в 0.3.3?', answer: 'Підказки клавіш унизу панелі тепер використовують спільну бібліотеку компонентів bobuk.io — BobukKit. Клавіша залишається поруч із дією. Англійську, українську й російську збережено; сітка сцен, кнопка закриття, зміна порядку й запуск сцен працюють як і раніше. Для оновлення замініть застосунок; підключення в Keychain і призначені номери сцен залишаться.' },
       { question: 'Чи потрібен Home Assistant?', answer: 'Так. HAScS — пульт для сцен у вашому Home Assistant, а не заміна сервера. Доступно до дев’яти сцен.' },
       { question: 'Успішний запит означає, що всі пристрої перемкнулися?', answer: 'Ні. Підтвердження означає, що Home Assistant прийняв запит, а не що кожен пристрій досяг потрібного стану. Не використовуйте застосунок для критичних систем безпеки.' },
       { question: 'Чи є застосунок в App Store?', answer: 'Поки ні. Підписана та нотаризована універсальна збірка доступна в GitHub Releases. Глобальна гаряча клавіша та запуск під час входу поки не реалізовані.' },
