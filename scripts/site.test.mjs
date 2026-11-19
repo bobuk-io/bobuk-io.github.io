@@ -269,7 +269,11 @@ test('Ting documents release 0.3.1 panel spacing and local launcha data in every
     for (const text of ['launcha-history.json', 'launcha-consent.json', '~/Library', 'Desktop']) {
       assert.ok(privacy.includes(text), `${locale}: missing privacy fact ${text}`);
     }
-    assert.doesNotMatch(source, /unreleased|ещё не выпущено|ще не випущено/);
+    // Check the historical release sections, not unrelated previews of future versions.
+    const released = [...source.matchAll(/<section>[\s\S]*?<\/section>/g)]
+      .map(match => match[0]).filter(section => section.includes('Ting 0.3.'));
+    assert.ok(released.length > 0, `${locale}: missing released 0.3.x sections`);
+    for (const section of released) assert.doesNotMatch(section, /unreleased|ещё не выпущено|ще не випущено/);
   }
 });
 
@@ -554,6 +558,20 @@ test('Ting 0.7.7 documents empty new bindings and explicit saving in every local
     const support = await html(pathFor(locale, 'apps/ting/support'));
     for (const text of localized[locale]) {
       assert.ok(support.includes(text), `${locale}: missing ${text} in binding support`);
+    }
+  }
+});
+
+test('Ting previews searchable settings and opt-in clipboard retention in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  for (const locale of locales) {
+    const support = await html(pathFor(locale, 'apps/ting/support'));
+    for (const text of ['Keys &amp; Launch', 'Micro-apps', 'Tools', 'Retention limits', '100', '50 MiB', '30', '32 MiB', 'MP4/MOV/M4V', 'Keep history between launches']) {
+      assert.ok(support.includes(text), `${locale}: missing ${text} in upcoming clipboard/settings copy`);
+    }
+    const privacy = await html(pathFor(locale, 'apps/ting/privacy'));
+    for (const text of ['~/Library/Application Support/Ting/Clipbawd/', 'Clear History', 'Use Clipbawd']) {
+      assert.ok(privacy.includes(text), `${locale}: missing ${text} in upcoming history privacy copy`);
     }
   }
 });
