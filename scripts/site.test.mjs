@@ -562,11 +562,11 @@ test('Ting 0.7.7 documents empty new bindings and explicit saving in every local
   }
 });
 
-test('Ting previews searchable settings and opt-in clipboard retention in every locale', async () => {
+test('Ting 0.7.17 documents searchable settings and opt-in clipboard retention in every locale', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   for (const locale of locales) {
     const support = await html(pathFor(locale, 'apps/ting/support'));
-    for (const text of ['Keys &amp; Launch', 'Micro-apps', 'Tools', 'Retention limits', '100', '50 MiB', '30', '32 MiB', 'MP4/MOV/M4V', 'Keep history between launches']) {
+    for (const text of ['Ting 0.7.17', 'Keys &amp; Launch', 'Micro-apps', 'Tools', 'Retention limits', '100', '50 MiB', '30', '32 MiB', 'MP4/MOV/M4V', 'Keep history between launches']) {
       assert.ok(support.includes(text), `${locale}: missing ${text} in upcoming clipboard/settings copy`);
     }
     const privacy = await html(pathFor(locale, 'apps/ting/privacy'));
