@@ -196,6 +196,21 @@ test('lowkey has lowercase branding and complete public release facts in every l
   }
 });
 
+test('Ting 0.7.16 documents native lowkey PDF steps in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  for (const locale of locales) {
+    const app = await html(pathFor(locale, 'apps/ting'));
+    const guide = await html(pathFor(locale, 'apps/ting/micro-apps'));
+    for (const text of ['0.7.16', '0.1.2', 'save-pdf']) {
+      assert.ok(app.includes(text), `${locale}: missing PDF release ${text}`);
+      assert.ok(guide.includes(text), `${locale}: missing PDF guide ${text}`);
+    }
+    for (const text of ['demo-page.pdf', 'timeout: 60', 'A4']) {
+      assert.ok(guide.includes(text), `${locale}: missing PDF example ${text}`);
+    }
+  }
+});
+
 test('lowkey guide documents PDF export in every locale', async () => {
   if (!snapshot.repositories.includes('lowkey')) return;
   for (const locale of locales) {

@@ -4,10 +4,19 @@ import type { Locale } from '../../i18n';
 // Facts come from FORMAT.md, CONFIGURING.md and the README of
 // bobuk-io/ting; the YAML in the code blocks passes `ting-micro check`. Code is the same in every locale.
 
-const format = 'https://github.com/bobuk-io/ting/blob/v0.7.6/docs/micro-apps/FORMAT.md';
+const format = 'https://github.com/bobuk-io/ting/blob/v0.7.16/docs/micro-apps/FORMAT.md';
 const configuring = 'https://github.com/bobuk-io/ting/blob/v0.7.6/docs/CONFIGURING.md';
 
 const code = {
+  lowkeyPDF: `format: ting.microapp/2
+description: Save a demo page as PDF.
+input: none
+timeout: 60
+steps:
+  - lowkey: demo
+    action: save-pdf
+    file: ~/Desktop/demo-page.pdf
+    timeout: 60`,
   lowkey: `format: ting.microapp/2
 description: Show the state of a saved lowkey window.
 input: none
@@ -247,8 +256,9 @@ const guides: Record<Locale, Guide> = {
         { code: code.python },
       ] },
       { id: 'lowkey', title: 'Read a lowkey window’s status', blocks: [
-        'Requires a Ting build whose bundled FORMAT.md lists the lowkey step, and lowkey with lowkeyctl in /Applications. Replace notes with your saved alias. This example reports window state without opening a page. To list controls in an already-open window, change status to inspect.',
+        'Requires a Ting build whose bundled FORMAT.md lists the lowkey step, and lowkey with lowkeyctl in /Applications. Replace notes with your saved alias. This example reports window state without opening a page. To list controls in an already-open window, change status to inspect. Starting with Ting 0.7.16 and lowkey 0.1.2, the second example exports an open demo site to A4 PDF using print styles. It requires the saved origin, never overwrites an existing file, and does not load lazy content or expand virtualized lists.',
         { code: code.lowkey },
+        { code: code.lowkeyPDF },
       ] },
       { id: 'interactive', title: 'Ting 0.7.4: choose and ask', blocks: [
         'Ting 0.7.4 adds these interactive steps. Use the FORMAT.md shipped with your installed Ting to check which steps it supports.',
@@ -397,8 +407,9 @@ const guides: Record<Locale, Guide> = {
         { code: code.python },
       ] },
       { id: 'lowkey', title: 'Проверить состояние окна lowkey', blocks: [
-        'Нужна сборка Ting, в которой FORMAT.md описывает шаг lowkey, и приложение lowkey с утилитой lowkeyctl в /Applications. Замените notes своим алиасом. Пример покажет состояние окна, не открывая страницу. Чтобы получить список элементов уже открытой страницы, замените status на inspect.',
+        'Нужна сборка Ting, в которой FORMAT.md описывает шаг lowkey, и приложение lowkey с утилитой lowkeyctl в /Applications. Замените notes своим алиасом. Пример покажет состояние окна, не открывая страницу. Чтобы получить список элементов уже открытой страницы, замените status на inspect. Начиная с Ting 0.7.16 и lowkey 0.1.2, второй пример сохраняет открытый демо-сайт в PDF формата A4 со стилями печати. Нужен сохранённый origin. Существующий файл не перезаписывается. Отложенный контент не загружается, виртуальные списки не раскрываются.',
         { code: code.lowkey },
+        { code: code.lowkeyPDF },
       ] },
       { id: 'interactive', title: 'Ting 0.7.4: choose и ask', blocks: [
         'В Ting 0.7.4 появились эти интерактивные шаги. Доступные шаги проверяйте по FORMAT.md внутри установленного Ting.',
@@ -547,8 +558,9 @@ const guides: Record<Locale, Guide> = {
         { code: code.python },
       ] },
       { id: 'lowkey', title: 'Перевірити стан вікна lowkey', blocks: [
-        'Потрібна збірка Ting, у якій FORMAT.md описує крок lowkey, і застосунок lowkey з утилітою lowkeyctl у /Applications. Замініть notes своїм аліасом. Приклад покаже стан вікна, не відкриваючи сторінку. Щоб отримати список елементів уже відкритої сторінки, замініть status на inspect.',
+        'Потрібна збірка Ting, у якій FORMAT.md описує крок lowkey, і застосунок lowkey з утилітою lowkeyctl у /Applications. Замініть notes своїм аліасом. Приклад покаже стан вікна, не відкриваючи сторінку. Щоб отримати список елементів уже відкритої сторінки, замініть status на inspect. Починаючи з Ting 0.7.16 і lowkey 0.1.2, другий приклад зберігає відкритий демо-сайт у PDF формату A4 зі стилями друку. Потрібен збережений origin. Наявний файл не перезаписується. Відкладений вміст не завантажується, віртуальні списки не розгортаються.',
         { code: code.lowkey },
+        { code: code.lowkeyPDF },
       ] },
       { id: 'interactive', title: 'Ting 0.7.4: choose та ask', blocks: [
         'У Ting 0.7.4 з’явилися ці інтерактивні кроки. Доступні кроки перевіряйте за FORMAT.md усередині встановленого Ting.',
