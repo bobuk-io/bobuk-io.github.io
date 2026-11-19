@@ -657,3 +657,12 @@ test('Ting announces the version in its update feed in every locale', async () =
     }
   }
 });
+
+test('Ting 0.7.14 documents Finder and Safari search in every locale', async () => {
+  for (const locale of locales) {
+    for (const route of ['apps/ting', 'apps/ting/support']) {
+      const page = await html(pathFor(locale, route));
+      assert.match(page, /Ting 0\.7\.14<[^>]+>\s*<p[^>]*>[^<]*Finder[^<]*Safari/);
+    }
+  }
+});

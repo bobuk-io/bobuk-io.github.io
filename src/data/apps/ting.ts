@@ -21,6 +21,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
     description: 'A leader-key launcher for macOS. Press your leader key, then a key or short sequence to open an app or URL, or to start a small micro-app. Home, then w, g — and you’re on GitHub. Double-tap the leader to search apps with launcha.',
     features: [
+      { title: 'Ting 0.7.14', text: 'launcha now finds Finder and Safari. You can search by the app’s display name or its .app filename.' },
       { title: 'Ting 0.7.13', text: "Open Ting and choose Check for Updates… to install this release." },
       { title: 'Ting 0.7.12', text: "Open Ting and choose Check for Updates… to install this release." },
       { title: 'Ting 0.7.11: menu and launch timing', text: 'Selecta appears immediately by default. Ting sends the app launch request before playing the sound.' },
@@ -70,6 +71,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
     supportIntro: 'Leader keys, bindings, and help from the project. Keep private URLs and tokens out of public reports.',
     support: [
+      { title: 'Ting 0.7.14', paragraphs: ['Open launcha and type Finder or Safari. Finder also matches by its English filename when macOS displays a localized name. Safari appears when it is installed.'] },
       { title: 'Ting 0.7.13', paragraphs: ["Open Ting and choose Check for Updates… to install this release."] },
       { title: 'Ting 0.7.12', paragraphs: ["Open Ting and choose Check for Updates… to install this release."] },
       { title: 'Leader or sequence not working?', paragraphs: [], items: ['Choose a non-modifier key, optionally with modifiers. Right Option alone cannot be a leader; Home or F13 can.', 'Check the sequence in Settings → Bindings. Finish recording with Done. Esc closes the menu and Delete goes back one group.', 'Check the menu delay and unknown key behaviour in General. The default delay is 0.25 s; quick sequences may finish before the menu appears.'] },
@@ -122,6 +124,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
     description: 'Лаунчер для macOS с ведущей клавишей. Нажмите её, затем одну клавишу или короткую последовательность — откроется приложение или URL либо запустится микро-приложение. Home, затем w, g — и вы на GitHub. Двойное нажатие ведущей клавиши открывает поиск приложений launcha.',
     features: [
+      { title: 'Ting 0.7.14', text: 'Теперь launcha находит Finder и Safari. Приложение можно искать по отображаемому имени или по имени файла .app.' },
       { title: 'Ting 0.7.13', text: "Откройте Ting и выберите Check for Updates…, чтобы установить эту версию." },
       { title: 'Ting 0.7.12', text: "Откройте Ting и выберите Check for Updates…, чтобы установить эту версию." },
       { title: 'Ting 0.7.11: меню без задержки', text: 'По умолчанию selecta появляется сразу. При запуске приложения Ting сначала отправляет запрос macOS, а затем воспроизводит звук.' },
@@ -171,6 +174,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
     supportIntro: 'Ведущая клавиша, привязки и помощь проекта. Не публикуйте приватные URL и токены из конфигурации.',
     support: [
+      { title: 'Ting 0.7.14', paragraphs: ['Откройте launcha и введите Finder или Safari. Запрос Finder работает и в том случае, когда macOS показывает локализованное название. Safari появится в результатах, если он установлен.'] },
       { title: 'Ting 0.7.13', paragraphs: ["Откройте Ting и выберите Check for Updates…, чтобы установить эту версию."] },
       { title: 'Ting 0.7.12', paragraphs: ["Откройте Ting и выберите Check for Updates…, чтобы установить эту версию."] },
       { title: 'Клавиша или последовательность не срабатывает?', paragraphs: [], items: ['Выберите клавишу, отличную от модификатора, при желании — в сочетании с модификаторами. Один Right Option не подойдёт, а Home или F13 подойдут.', 'Проверьте последовательность в Settings → Bindings. Завершите запись кнопкой Done. Esc закрывает меню, Delete возвращает на одну группу назад.', 'Проверьте задержку меню и поведение при неизвестной клавише в General. По умолчанию задержка — 0.25 с: быстрая последовательность может завершиться раньше, чем появится меню.'] },
@@ -223,6 +227,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
     description: 'Лаунчер для macOS через початкову клавішу. Натисніть початкову клавішу, а далі — призначену клавішу або послідовність для запуску застосунку, URL або мікрозастосунку. Наприклад: Home, потім w, g — і ви на GitHub. Натисніть початкову клавішу двічі, щоб відкрити пошук застосунків launcha.',
     features: [
+      { title: 'Ting 0.7.14', text: 'Тепер launcha знаходить Finder і Safari. Для пошуку можна ввести назву програми або ім’я її файлу .app.' },
       { title: 'Ting 0.7.13', text: "Відкрийте Ting і виберіть Check for Updates…, щоб установити цю версію." },
       { title: 'Ting 0.7.12', text: "Відкрийте Ting і виберіть Check for Updates…, щоб установити цю версію." },
       { title: 'Ting 0.7.11: меню без затримки', text: 'За замовчуванням selecta з’являється одразу. Під час запуску застосунку Ting спочатку надсилає запит macOS, а потім відтворює звуковий сигнал.' },
@@ -272,6 +277,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
     supportIntro: 'Початкова клавіша, прив’язки та допомога проєкту. Не публікуйте приватні URL і токени з конфігурації.',
     support: [
+      { title: 'Ting 0.7.14', paragraphs: ['Відкрийте launcha та введіть Finder або Safari. Запит Finder працює й тоді, коли macOS показує локалізовану назву. Safari з’явиться в результатах, якщо його встановлено.'] },
       { title: 'Ting 0.7.13', paragraphs: ["Відкрийте Ting і виберіть Check for Updates…, щоб установити цю версію."] },
       { title: 'Ting 0.7.12', paragraphs: ["Відкрийте Ting і виберіть Check for Updates…, щоб установити цю версію."] },
       { title: 'Клавіша чи послідовність не спрацьовує?', paragraphs: [], items: ['Виберіть клавішу, відмінну від модифікатора, за бажанням — разом із модифікаторами. Сам Right Option не підійде, а Home або F13 підійдуть.', 'Перевірте послідовність у Settings → Bindings. Завершіть запис кнопкою Done. Esc закриває меню, Delete повертає на одну групу назад.', 'Перевірте затримку меню та поведінку за невідомої клавіші в General. Затримка за замовчуванням — 0.25 с: швидка послідовність може завершитися раніше, ніж з’явиться меню.'] },
