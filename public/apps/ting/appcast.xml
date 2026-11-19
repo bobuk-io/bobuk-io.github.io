@@ -3,18 +3,17 @@
     <channel>
         <title>Ting</title>
         <item>
-            <title>0.7.11</title>
-            <pubDate>Wed, 18 Nov 2026 21:29:25 +0200</pubDate>
+            <title>0.7.12</title>
+            <pubDate>Thu, 19 Nov 2026 02:49:11 +0200</pubDate>
             <link>https://bobuk.io/apps/ting/</link>
-            <sparkle:version>26</sparkle:version>
-            <sparkle:shortVersionString>0.7.11</sparkle:shortVersionString>
+            <sparkle:version>27</sparkle:version>
+            <sparkle:shortVersionString>0.7.12</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.11
+            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.12
 
-- Selecta now shows its menu immediately by default. An explicitly configured delay is unchanged; adjust **Settings › General › Show menu after** to hide the menu during fast sequences.
-- Ting now sends the application launch or activation request before playing the launch sound, so switching apps does not wait for audio playback.
+- Accept `pause` as a hotkey key name (alias of F15)
 ]]></description>
-            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.11/Ting-0.7.11-universal.zip" length="8743549" type="application/octet-stream" sparkle:edSignature="10B6nmNQmL5SqNd/8TjFWc/phDFxahOfxKvum9kwDYUhv2xHy++cid78vtZuJCrxDi395dGrZO90i5+VgicDBA=="/>
+            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.12/Ting-0.7.12-universal.zip" length="8744141" type="application/octet-stream" sparkle:edSignature="cEw+jezUbs0feCBhUtcE0LPGcK8KPjeludNLDreIKPtHoAHTMNEu1IZz4XlaQv/tZTPP1D+3fuhFCQYruu0hBQ=="/>
         </item>
     </channel>
 </rss>
