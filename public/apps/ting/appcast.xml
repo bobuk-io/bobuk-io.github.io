@@ -3,19 +3,38 @@
     <channel>
         <title>Ting</title>
         <item>
-            <title>0.7.15</title>
-            <pubDate>Thu, 19 Nov 2026 20:38:17 +0200</pubDate>
+            <title>0.7.16</title>
+            <pubDate>Thu, 19 Nov 2026 21:54:11 +0200</pubDate>
             <link>https://bobuk.io/apps/ting/</link>
-            <sparkle:version>30</sparkle:version>
-            <sparkle:shortVersionString>0.7.15</sparkle:shortVersionString>
+            <sparkle:version>31</sparkle:version>
+            <sparkle:shortVersionString>0.7.16</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.15
+            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.16
 
-- If you switch between keyboards, record another shortcut in **Settings › General › Second leader**. Both leader keys open the same selecta bindings, and either works with double tap for launcha. Your existing leader and bindings carry over.
-- Both leader keys are reserved when assigning global shortcuts. Settings and hotkey registration now use the same rules to resolve conflicts.
-- launcha keeps each search result attached to its original target as it ranks matches, including the exact app bundle when multiple copies share a bundle identifier.
+## Save lowkey pages as PDF from a micro-app
+
+The native `lowkey` step now supports `action: save-pdf` with a required, templated `file:` path. This calls the bundled `lowkeyctl` directly, without a shell or synthetic input.
+
+```yaml
+format: ting.microapp/2
+description: Save a demo page as PDF.
+input: none
+timeout: 60
+steps:
+  - lowkey: demo
+    action: save-pdf
+    file: ~/Desktop/demo-page.pdf
+    timeout: 60
+```
+
+- Requires lowkey 0.1.2 or later in `/Applications` and an already-open saved-site window on its saved origin.
+- Prints the entire current document to A4 PDF using WebKit's print styles, not just the visible viewport. Lazy content and virtualized lists are not automatically loaded or expanded.
+- `~` expands to the current user's home directory. Paths with spaces are passed as one argument. Existing files are never overwritten.
+- Input passes through unchanged on success. Failures stop the run without retry. Console runs require `--allow-effects`.
+
+The checker rejects a missing or empty `file:` and fields that do not apply to this action.
 ]]></description>
-            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.15/Ting-0.7.15-universal.zip" length="8799288" type="application/octet-stream" sparkle:edSignature="1OcmMwSWYaHDnhYW35Von7MGomqqyHPMi7BIdTCe3pCqY3YWfk5MELJnV79qjpBKpxbOjcT1ovPrahsilMFbDw=="/>
+            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.16/Ting-0.7.16-universal.zip" length="8800047" type="application/octet-stream" sparkle:edSignature="u7Fdim/IYm32U1pcoAr57/4G26bYwRfdZnS91wAKFHR5/2vYV9URVsj/i4UjNxc4HAROvmd93qwcmC+/k/rJCA=="/>
         </item>
     </channel>
 </rss>
