@@ -45,6 +45,16 @@ test('Splash Finish feed serves signed versioned GitHub archives', async () => {
   assert.match(feed, /sparkle:edSignature="[^"]+"/);
 });
 
+test('Ting shows how to set a second leader in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  for (const locale of locales) {
+    const app = await html(pathFor(locale, 'apps/ting'));
+    const support = await html(pathFor(locale, 'apps/ting/support'));
+    assert.ok(app.includes('Ting 0.7.15'), locale);
+    assert.ok(support.includes('Settings › General › Second leader'), locale);
+  }
+});
+
 test('Ting documents Homebrew installation, updates and safe removal in every locale', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   for (const locale of locales) {
