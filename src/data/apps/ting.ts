@@ -21,6 +21,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
     description: 'A leader-key launcher for macOS. Press your leader key, then a key or short sequence to open an app or URL, or to start a small micro-app. Home, then w, g — and you’re on GitHub. Double-tap the leader to search apps with launcha.',
     features: [
+      { title: "Ting 0.7.16", text: "The release notes and the signed download are available on GitHub Releases." },
       { title: 'Ting 0.7.15', text: 'Switch keyboards without changing your shortcuts. Either leader opens the same selecta bindings.' },
       { title: 'Ting 0.7.14', text: 'launcha now finds Finder and Safari. You can search by the app’s display name or its .app filename.' },
       { title: 'Ting 0.7.13', text: "Open Ting and choose Check for Updates… to install this release." },
@@ -72,6 +73,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
     supportIntro: 'Leader keys, bindings, and help from the project. Keep private URLs and tokens out of public reports.',
     support: [
+      { title: "Ting 0.7.16", paragraphs: ["The release notes and the signed download are available on GitHub Releases."] },
       { title: 'Ting 0.7.15', paragraphs: ['Record the other key in Settings › General › Second leader. Double-tap either leader to open launcha when double tap is enabled.'] },
       { title: 'Ting 0.7.14', paragraphs: ['Open launcha and type Finder or Safari. Finder also matches by its English filename when macOS displays a localized name. Safari appears when it is installed.'] },
       { title: 'Ting 0.7.13', paragraphs: ["Open Ting and choose Check for Updates… to install this release."] },
@@ -126,6 +128,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
     description: 'Лаунчер для macOS с ведущей клавишей. Нажмите её, затем одну клавишу или короткую последовательность — откроется приложение или URL либо запустится микро-приложение. Home, затем w, g — и вы на GitHub. Двойное нажатие ведущей клавиши открывает поиск приложений launcha.',
     features: [
+      { title: "Ting 0.7.16", text: "Описание изменений и подписанная сборка доступны в GitHub Releases." },
       { title: 'Ting 0.7.15', text: 'При смене клавиатуры можно пользоваться любой из двух ведущих клавиш. Обе открывают один и тот же набор биндингов в selecta.' },
       { title: 'Ting 0.7.14', text: 'Теперь launcha находит Finder и Safari. Приложение можно искать по отображаемому имени или по имени файла .app.' },
       { title: 'Ting 0.7.13', text: "Откройте Ting и выберите Check for Updates…, чтобы установить эту версию." },
@@ -177,6 +180,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
     supportIntro: 'Ведущая клавиша, привязки и помощь проекта. Не публикуйте приватные URL и токены из конфигурации.',
     support: [
+      { title: "Ting 0.7.16", paragraphs: ["Описание изменений и подписанная сборка доступны в GitHub Releases."] },
       { title: 'Ting 0.7.15', paragraphs: ['Запишите вторую клавишу в Settings › General › Second leader. Если включено двойное нажатие, дважды нажмите любую из ведущих клавиш, чтобы открыть launcha.'] },
       { title: 'Ting 0.7.14', paragraphs: ['Откройте launcha и введите Finder или Safari. Запрос Finder работает и в том случае, когда macOS показывает локализованное название. Safari появится в результатах, если он установлен.'] },
       { title: 'Ting 0.7.13', paragraphs: ["Откройте Ting и выберите Check for Updates…, чтобы установить эту версию."] },
@@ -231,6 +235,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
     description: 'Лаунчер для macOS через початкову клавішу. Натисніть початкову клавішу, а далі — призначену клавішу або послідовність для запуску застосунку, URL або мікрозастосунку. Наприклад: Home, потім w, g — і ви на GitHub. Натисніть початкову клавішу двічі, щоб відкрити пошук застосунків launcha.',
     features: [
+      { title: "Ting 0.7.16", text: "Опис змін і підписана збірка доступні в GitHub Releases." },
       { title: 'Ting 0.7.15', text: 'Коли змінюєте клавіатуру, користуйтеся будь-якою з двох початкових клавіш. Обидві відкривають ті самі прив’язки в selecta.' },
       { title: 'Ting 0.7.14', text: 'Тепер launcha знаходить Finder і Safari. Для пошуку можна ввести назву програми або ім’я її файлу .app.' },
       { title: 'Ting 0.7.13', text: "Відкрийте Ting і виберіть Check for Updates…, щоб установити цю версію." },
@@ -282,6 +287,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
     supportIntro: 'Початкова клавіша, прив’язки та допомога проєкту. Не публікуйте приватні URL і токени з конфігурації.',
     support: [
+      { title: "Ting 0.7.16", paragraphs: ["Опис змін і підписана збірка доступні в GitHub Releases."] },
       { title: 'Ting 0.7.15', paragraphs: ['Запишіть другу клавішу в Settings › General › Second leader. Якщо ввімкнено подвійне натискання, двічі натисніть будь-яку початкову клавішу, щоб відкрити launcha.'] },
       { title: 'Ting 0.7.14', paragraphs: ['Відкрийте launcha та введіть Finder або Safari. Запит Finder працює й тоді, коли macOS показує локалізовану назву. Safari з’явиться в результатах, якщо його встановлено.'] },
       { title: 'Ting 0.7.13', paragraphs: ["Відкрийте Ting і виберіть Check for Updates…, щоб установити цю версію."] },
