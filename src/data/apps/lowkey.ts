@@ -29,12 +29,14 @@ const copy: Record<Locale, AppCopy> = {
       { title: 'Update without losing sign-ins', text: 'Quit lowkey, download the new GitHub release and replace only the app. Configuration, input history and website profiles remain. Old windows do not reopen. While lowkey is running, click its Dock icon to open the address prompt, even if a site window is visible.' },
     ],
     faq: [
+      { question: "lowkey 0.1.2", answer: "The release notes and the signed download are available on GitHub Releases." },
       { question: 'Does every sign-in flow work?', answer: 'No. Google and other providers may reject embedded user agents. lowkey shares profiles with sign-in windows but does not impersonate Safari, bypass certificates or copy another browser’s cookies. Complex OAuth callbacks are not guaranteed.' },
       { question: 'What does closing a site do?', answer: 'Command-W hides a saved-site window while its page keeps running. Shift-Command-W closes it but retains the profile. Ordinary windows close with Command-W. Removing a saved site in Settings asks before deleting its profile.' },
       { question: 'Does it search the web or support extensions?', answer: 'No. There is no search-engine fallback, browser extension support, password-manager integration or automatic update service.' },
     ],
     supportIntro: 'Setup, profile behavior and troubleshooting for lowkey. Use a demo page when reporting a problem; never publish credentials or private URLs.',
     support: [
+      { title: "lowkey 0.1.2", paragraphs: ["The release notes and the signed download are available on GitHub Releases."] },
       { title: 'Check the address and profile', paragraphs: ['Use an HTTP(S) URL or bare host. Saved aliases are case-insensitive. Command-L can open an ordinary window from a saved site; Command-Shift-L explicitly reuses the current profile.', 'If a provider blocks sign-in, use a supported browser. Extra origins and external-link settings are navigation rules, not a security sandbox.'] },
       { title: 'Report a problem safely', paragraphs: ['Include lowkey and macOS versions and minimal reproduction steps. Hide cookies, credentials, URL tokens, private hosts and your config.json. Source builds require Swift 6.2 / Xcode 26 or later.', 'For local checks, LOWKEY_CONFIG isolates settings and input history, not the default WebKit profile. Use random site IDs or nonpersistent stores and a local mock site.'] },
       { title: 'Remove the app', paragraphs: ['To delete a saved site’s website data, remove that site in Settings before quitting. Then delete lowkey.app. Deleting only the app retains profiles, configuration and input history.', 'Configuration: ~/.config/lowkey/config.json. Input history: ~/Library/Application Support/Lowkey/history.json (the historical directory spelling is retained). Ordinary-window website data is managed by WebKit; never delete another browser’s files.'] },
@@ -70,12 +72,14 @@ const copy: Record<Locale, AppCopy> = {
       { title: 'Обновите без потери авторизации', text: 'Завершите lowkey, скачайте новый релиз с GitHub и замените только приложение. Конфигурация, история ввода и профили останутся. Прежние окна не открываются. Когда lowkey запущен, нажмите значок в Dock, чтобы открыть адресную панель. Это работает и при открытом окне сайта.' },
     ],
     faq: [
+      { question: "lowkey 0.1.2", answer: "Описание изменений и подписанная сборка доступны в GitHub Releases." },
       { question: 'Любая авторизация работает?', answer: 'Нет. Google и другие провайдеры могут отклонять встроенные браузеры. Окна авторизации используют нужный профиль, но lowkey не выдаёт себя за Safari, не обходит проверку сертификатов и не переносит cookies другого браузера. Сложные OAuth-сценарии не гарантируются.' },
       { question: 'Что происходит при закрытии сайта?', answer: 'Command-W скрывает сохранённый сайт, страница продолжает работать. Shift-Command-W закрывает окно, сохраняя профиль. Обычное окно закрывается по Command-W. Удаление сайта в Settings требует подтверждения перед удалением профиля.' },
       { question: 'Есть веб-поиск и расширения?', answer: 'Нет поиска через поисковую систему, расширений, интеграции с менеджером паролей и службы автоматических обновлений.' },
     ],
     supportIntro: 'Настройка, профили и помощь по lowkey. Для отчёта об ошибке используйте демо-страницу; не публикуйте учётные данные и частные адреса.',
     support: [
+      { title: "lowkey 0.1.2", paragraphs: ["Описание изменений и подписанная сборка доступны в GitHub Releases."] },
       { title: 'Проверьте адрес и профиль', paragraphs: ['Используйте HTTP(S)-адрес или имя хоста. Алиасы не зависят от регистра. Command-L из сохранённого сайта может открыть обычное окно; Command-Shift-L явно использует текущий профиль.', 'Если провайдер блокирует вход, используйте поддерживаемый браузер. Дополнительные origins и правила внешних ссылок управляют навигацией, а не создают изолированную среду безопасности.'] },
       { title: 'Безопасный отчёт об ошибке', paragraphs: ['Укажите версии lowkey и macOS, затем минимальные шаги воспроизведения. Скройте cookies, пароли, токены в адресах, частные хосты и config.json. Сборка из исходников требует Swift 6.2 / Xcode 26 или новее.', 'LOWKEY_CONFIG изолирует конфигурацию и историю ввода, но не обычный профиль WebKit. Для проверки нужны случайные ID сайтов или непостоянное хранилище и локальная демо-страница.'] },
       { title: 'Удаление', paragraphs: ['Чтобы удалить данные сохранённого сайта, сначала удалите его в Settings. Затем завершите lowkey и удалите lowkey.app. Удаление одного приложения сохраняет профили, настройки и историю.', 'Конфигурация: ~/.config/lowkey/config.json. История ввода: ~/Library/Application Support/Lowkey/history.json; исторический регистр каталога сохранён. Данными обычных окон управляет WebKit. Не удаляйте файлы другого браузера.'] },
@@ -111,12 +115,14 @@ const copy: Record<Locale, AppCopy> = {
       { title: 'Оновіть без втрати авторизації', text: 'Завершіть lowkey, завантажте новий реліз із GitHub і замініть лише застосунок. Конфігурація, історія введення та профілі залишаться. Попередні вікна не відкриваються. Коли lowkey запущено, натисніть значок у Dock, щоб відкрити адресну панель. Це працює й тоді, коли вікно сайту відкрите.' },
     ],
     faq: [
+      { question: "lowkey 0.1.2", answer: "Опис змін і підписана збірка доступні в GitHub Releases." },
       { question: 'Будь-яка авторизація працює?', answer: 'Ні. Google та інші провайдери можуть відхиляти вбудовані браузери. Вікна авторизації використовують потрібний профіль, але lowkey не видає себе за Safari, не обходить перевірку сертифікатів і не переносить cookies іншого браузера. Складні OAuth-сценарії не гарантовані.' },
       { question: 'Що відбувається після закриття сайту?', answer: 'Command-W приховує збережений сайт, сторінка продовжує працювати. Shift-Command-W закриває вікно, зберігаючи профіль. Звичайне вікно закривається за Command-W. Видалення сайту в Settings потребує підтвердження перед видаленням профілю.' },
       { question: 'Є вебпошук і розширення?', answer: 'Немає пошуку через пошукову систему, розширень, інтеграції з менеджером паролів і служби автоматичних оновлень.' },
     ],
     supportIntro: 'Налаштування, профілі та допомога з lowkey. Для звіту про помилку використовуйте демо-сторінку; не публікуйте облікові дані й приватні адреси.',
     support: [
+      { title: "lowkey 0.1.2", paragraphs: ["Опис змін і підписана збірка доступні в GitHub Releases."] },
       { title: 'Перевірте адресу й профіль', paragraphs: ['Використовуйте HTTP(S)-адресу або ім’я хоста. Аліаси не залежать від регістру. Command-L зі збереженого сайту може відкрити звичайне вікно; Command-Shift-L явно використовує поточний профіль.', 'Якщо провайдер блокує вхід, використовуйте підтримуваний браузер. Додаткові origins і правила зовнішніх посилань керують навігацією, а не створюють ізольоване середовище безпеки.'] },
       { title: 'Безпечний звіт про помилку', paragraphs: ['Укажіть версії lowkey та macOS і мінімальні кроки відтворення. Приховайте cookies, паролі, токени в адресах, приватні хости й config.json. Збирання з джерел потребує Swift 6.2 / Xcode 26 або новішого.', 'LOWKEY_CONFIG ізолює конфігурацію та історію введення, але не звичайний профіль WebKit. Для перевірки потрібні випадкові ID сайтів або непостійне сховище й локальна демо-сторінка.'] },
       { title: 'Видалення', paragraphs: ['Щоб видалити дані збереженого сайту, спочатку видаліть його в Settings. Потім завершіть lowkey і видаліть lowkey.app. Видалення лише застосунку зберігає профілі, налаштування та історію.', 'Конфігурація: ~/.config/lowkey/config.json. Історія введення: ~/Library/Application Support/Lowkey/history.json; історичний регістр каталогу збережено. Даними звичайних вікон керує WebKit. Не видаляйте файли іншого браузера.'] },
