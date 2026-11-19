@@ -21,6 +21,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
     description: 'A leader-key launcher for macOS. Press your leader key, then a key or short sequence to open an app or URL, or to start a small micro-app. Home, then w, g — and you’re on GitHub. Double-tap the leader to search apps with launcha.',
     features: [
+      { title: 'Ting 0.7.13', text: "Open Ting and choose Check for Updates… to install this release." },
       { title: 'Ting 0.7.12', text: "Open Ting and choose Check for Updates… to install this release." },
       { title: 'Ting 0.7.11: menu and launch timing', text: 'Selecta appears immediately by default. Ting sends the app launch request before playing the sound.' },
       { title: 'Ting 0.7.10: reopen 1Password', text: 'Select 1Password to show its window even if the app is already running with its main window closed.' },
@@ -69,6 +70,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
     supportIntro: 'Leader keys, bindings, and help from the project. Keep private URLs and tokens out of public reports.',
     support: [
+      { title: 'Ting 0.7.13', paragraphs: ["Open Ting and choose Check for Updates… to install this release."] },
       { title: 'Ting 0.7.12', paragraphs: ["Open Ting and choose Check for Updates… to install this release."] },
       { title: 'Leader or sequence not working?', paragraphs: [], items: ['Choose a non-modifier key, optionally with modifiers. Right Option alone cannot be a leader; Home or F13 can.', 'Check the sequence in Settings → Bindings. Finish recording with Done. Esc closes the menu and Delete goes back one group.', 'Check the menu delay and unknown key behaviour in General. The default delay is 0.25 s; quick sequences may finish before the menu appears.'] },
       { title: 'Ting 0.7.11: selecta delay', paragraphs: ['To keep selecta hidden during fast sequences, increase Settings › General › Show menu after. An explicitly configured delay is unchanged.'] },
@@ -120,6 +122,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
     description: 'Лаунчер для macOS с ведущей клавишей. Нажмите её, затем одну клавишу или короткую последовательность — откроется приложение или URL либо запустится микро-приложение. Home, затем w, g — и вы на GitHub. Двойное нажатие ведущей клавиши открывает поиск приложений launcha.',
     features: [
+      { title: 'Ting 0.7.13', text: "Откройте Ting и выберите Check for Updates…, чтобы установить эту версию." },
       { title: 'Ting 0.7.12', text: "Откройте Ting и выберите Check for Updates…, чтобы установить эту версию." },
       { title: 'Ting 0.7.11: меню без задержки', text: 'По умолчанию selecta появляется сразу. При запуске приложения Ting сначала отправляет запрос macOS, а затем воспроизводит звук.' },
       { title: 'Ting 0.7.10: открытие окна 1Password', text: 'Если 1Password уже запущен, но его окно закрыто, выберите 1Password в Ting, чтобы снова открыть окно.' },
@@ -168,6 +171,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
     supportIntro: 'Ведущая клавиша, привязки и помощь проекта. Не публикуйте приватные URL и токены из конфигурации.',
     support: [
+      { title: 'Ting 0.7.13', paragraphs: ["Откройте Ting и выберите Check for Updates…, чтобы установить эту версию."] },
       { title: 'Ting 0.7.12', paragraphs: ["Откройте Ting и выберите Check for Updates…, чтобы установить эту версию."] },
       { title: 'Клавиша или последовательность не срабатывает?', paragraphs: [], items: ['Выберите клавишу, отличную от модификатора, при желании — в сочетании с модификаторами. Один Right Option не подойдёт, а Home или F13 подойдут.', 'Проверьте последовательность в Settings → Bindings. Завершите запись кнопкой Done. Esc закрывает меню, Delete возвращает на одну группу назад.', 'Проверьте задержку меню и поведение при неизвестной клавише в General. По умолчанию задержка — 0.25 с: быстрая последовательность может завершиться раньше, чем появится меню.'] },
       { title: 'Ting 0.7.11: задержка selecta', paragraphs: ['Чтобы меню не появлялось при быстром вводе, увеличьте задержку в Settings › General › Show menu after. Заданная ранее задержка сохранится.'] },
@@ -219,6 +223,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
     description: 'Лаунчер для macOS через початкову клавішу. Натисніть початкову клавішу, а далі — призначену клавішу або послідовність для запуску застосунку, URL або мікрозастосунку. Наприклад: Home, потім w, g — і ви на GitHub. Натисніть початкову клавішу двічі, щоб відкрити пошук застосунків launcha.',
     features: [
+      { title: 'Ting 0.7.13', text: "Відкрийте Ting і виберіть Check for Updates…, щоб установити цю версію." },
       { title: 'Ting 0.7.12', text: "Відкрийте Ting і виберіть Check for Updates…, щоб установити цю версію." },
       { title: 'Ting 0.7.11: меню без затримки', text: 'За замовчуванням selecta з’являється одразу. Під час запуску застосунку Ting спочатку надсилає запит macOS, а потім відтворює звуковий сигнал.' },
       { title: 'Ting 0.7.10: відкриття вікна 1Password', text: 'Якщо 1Password уже працює, але його вікно закрите, виберіть 1Password у Ting, щоб знову відкрити вікно.' },
@@ -267,6 +272,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
     supportIntro: 'Початкова клавіша, прив’язки та допомога проєкту. Не публікуйте приватні URL і токени з конфігурації.',
     support: [
+      { title: 'Ting 0.7.13', paragraphs: ["Відкрийте Ting і виберіть Check for Updates…, щоб установити цю версію."] },
       { title: 'Ting 0.7.12', paragraphs: ["Відкрийте Ting і виберіть Check for Updates…, щоб установити цю версію."] },
       { title: 'Клавіша чи послідовність не спрацьовує?', paragraphs: [], items: ['Виберіть клавішу, відмінну від модифікатора, за бажанням — разом із модифікаторами. Сам Right Option не підійде, а Home або F13 підійдуть.', 'Перевірте послідовність у Settings → Bindings. Завершіть запис кнопкою Done. Esc закриває меню, Delete повертає на одну групу назад.', 'Перевірте затримку меню та поведінку за невідомої клавіші в General. Затримка за замовчуванням — 0.25 с: швидка послідовність може завершитися раніше, ніж з’явиться меню.'] },
       { title: 'Ting 0.7.11: затримка selecta', paragraphs: ['Щоб меню не з’являлося під час швидкого введення, збільште затримку в Settings › General › Show menu after. Раніше задана затримка збережеться.'] },
