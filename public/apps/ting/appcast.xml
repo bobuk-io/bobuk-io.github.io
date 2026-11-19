@@ -3,17 +3,18 @@
     <channel>
         <title>Ting</title>
         <item>
-            <title>0.7.13</title>
-            <pubDate>Thu, 19 Nov 2026 03:05:09 +0200</pubDate>
+            <title>0.7.14</title>
+            <pubDate>Thu, 19 Nov 2026 18:35:29 +0200</pubDate>
             <link>https://bobuk.io/apps/ting/</link>
-            <sparkle:version>28</sparkle:version>
-            <sparkle:shortVersionString>0.7.13</sparkle:shortVersionString>
+            <sparkle:version>29</sparkle:version>
+            <sparkle:shortVersionString>0.7.14</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.13
+            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.14
 
-Open Ting and choose Check for Updates… to install this release.
+- launcha now finds Finder and installed copies of Safari, including Safari installations that macOS exposes through a hidden application link.
+- You can search for an app by its `.app` filename as well as its display name. For example, searching for `Finder` also works when macOS shows a localized name.
 ]]></description>
-            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.13/Ting-0.7.13-universal.zip" length="8744124" type="application/octet-stream" sparkle:edSignature="SLTJXJHQisGDn31rnpoeK0COtEb2e4RGJu//CeQ65jYCO2e9irpiaDa93ssmhqYUE947SkRIMcg4LzDwcFKfBA=="/>
+            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.14/Ting-0.7.14-universal.zip" length="8746662" type="application/octet-stream" sparkle:edSignature="ScBkk0rvIuGib/Jx7hSFvNbbIo6wfH+x21dzEAUFqm8jpjl5uqtikwemJIothBCUT/F1FAKqNj+aUmXPN+uoDg=="/>
         </item>
     </channel>
 </rss>
