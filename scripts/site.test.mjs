@@ -645,3 +645,15 @@ test('Ukrainian pages use the agreed terms', async () => {
     assert.ok(!ting.includes(text), `still present: ${text}`);
   }
 });
+
+test('Ting announces the version in its update feed in every locale', async () => {
+  const feed = await readFile(new URL('./apps/ting/appcast.xml', dist), 'utf8');
+  const version = feed.match(/sparkle:shortVersionString>([^<]+)</)?.[1];
+  assert.ok(version);
+  for (const locale of locales) {
+    for (const route of ['apps/ting', 'apps/ting/support']) {
+      const page = await html(pathFor(locale, route));
+      assert.ok(page.includes(`>Ting ${version}<`) || page.includes(`>Ting ${version}:`));
+    }
+  }
+});
