@@ -3,38 +3,23 @@
     <channel>
         <title>Ting</title>
         <item>
-            <title>0.7.16</title>
-            <pubDate>Thu, 19 Nov 2026 21:54:11 +0200</pubDate>
+            <title>0.7.17</title>
+            <pubDate>Thu, 19 Nov 2026 22:55:24 +0200</pubDate>
             <link>https://bobuk.io/apps/ting/</link>
-            <sparkle:version>31</sparkle:version>
-            <sparkle:shortVersionString>0.7.16</sparkle:shortVersionString>
+            <sparkle:version>32</sparkle:version>
+            <sparkle:shortVersionString>0.7.17</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.16
+            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.17
 
-## Save lowkey pages as PDF from a micro-app
+- Replaced the crowded Settings tabs with a resizable sidebar and search across individual settings. Leader and launcha controls are in Keys & Launch; micro-app diagnostics and permissions have their own page. Rare clipboard retention/privacy controls are collapsed until needed.
+- Shortened the menu: config, reload and Copy Agent Prompt are under Tools; About and update commands are under Ting. Errors are grouped under Needs Attention.
+- Added opt-in clipboard history between launches, off by default. Defaults are 100 entries, 50 MiB and 30 days; all limits are adjustable and 0 days disables age expiry. Expired copies are removed hourly; copying content again renews its age, but reusing it does not. Existing explicit item limits are preserved.
+- Stored history is local, private to your user and excluded from backups, without additional encryption. Clear History and disabling Clipbawd delete both memory and disk history; disabling persistence deletes the archive but keeps the current session. Settings show usage, archive size and storage errors.
+- Added basic Markdown syntax coloring without embedded-image loading, and thumbnail/duration previews for one MP4/MOV/M4V video per clipboard copy, up to 30 seconds and 32 MiB. Movies are retained as bytes and can be copied after the original file is removed. Other files remain path references. PNG, JPEG and TIFF image support is preserved.
 
-The native `lowkey` step now supports `action: save-pdf` with a required, templated `file:` path. This calls the bundled `lowkeyctl` directly, without a shell or synthetic input.
-
-```yaml
-format: ting.microapp/2
-description: Save a demo page as PDF.
-input: none
-timeout: 60
-steps:
-  - lowkey: demo
-    action: save-pdf
-    file: ~/Desktop/demo-page.pdf
-    timeout: 60
-```
-
-- Requires lowkey 0.1.2 or later in `/Applications` and an already-open saved-site window on its saved origin.
-- Prints the entire current document to A4 PDF using WebKit's print styles, not just the visible viewport. Lazy content and virtualized lists are not automatically loaded or expanded.
-- `~` expands to the current user's home directory. Paths with spaces are passed as one argument. Existing files are never overwritten.
-- Input passes through unchanged on success. Failures stop the run without retry. Console runs require `--allow-effects`.
-
-The checker rejects a missing or empty `file:` and fields that do not apply to this action.
+Settings and bindings remain compatible. The history archive lives in `~/Library/Application Support/Ting/Clipbawd/`; uninstalling with data removal also removes this directory. Deleting local history is not a secure erase of filesystem snapshots or existing backups. Approved micro-app history templates reject video entries explicitly, as they already do for images.
 ]]></description>
-            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.16/Ting-0.7.16-universal.zip" length="8800047" type="application/octet-stream" sparkle:edSignature="u7Fdim/IYm32U1pcoAr57/4G26bYwRfdZnS91wAKFHR5/2vYV9URVsj/i4UjNxc4HAROvmd93qwcmC+/k/rJCA=="/>
+            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.17/Ting-0.7.17-universal.zip" length="9204633" type="application/octet-stream" sparkle:edSignature="YYObp208IYLOvxcnytSTs6mWhdWuz5vq3dgISwHdR/icMJ/8vfD23mBeIwugsA28NEOrMN9p0hXOCmsByMzeDA=="/>
         </item>
     </channel>
 </rss>
