@@ -3,25 +3,30 @@
     <channel>
         <title>Splash Finish</title>
         <item>
-            <title>0.3.14</title>
-            <pubDate>Wed, 18 Nov 2026 15:31:30 +0200</pubDate>
+            <title>0.3.15</title>
+            <pubDate>Fri, 20 Nov 2026 23:49:59 +0200</pubDate>
             <link>https://bobuk.io/apps/splash-finish/</link>
-            <sparkle:version>20</sparkle:version>
-            <sparkle:shortVersionString>0.3.14</sparkle:shortVersionString>
+            <sparkle:version>21</sparkle:version>
+            <sparkle:shortVersionString>0.3.15</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Splash Finish 0.3.14
+            <description sparkle:format="markdown"><![CDATA[# Splash Finish 0.3.15
 
-- A refreshed inbox window from the shared bobuk.io component library, BobukKit:
-  a rounded frame with an amber accent line, matching Ting and Lowkey.
-- Shortcut hints at the bottom of the inbox now show each key next to its action.
-  Each hint stays together and moves to a new line when space is limited.
-- Notification cards, links, pi questions, keyboard commands, light and dark
-  themes, and Increased Contrast work as before.
+- Snooze now keeps the panel hidden for its whole time. New events still land in the
+  inbox and update the menu bar count; the panel opens with everything collected
+  meanwhile when the snooze ends, when you show the inbox (Show Inbox, `⌥⌘S`,
+  `splash-finish show`), or when the inbox becomes empty. Before, any new event
+  ended the snooze.
+- ⌘C and ⌘V now work in pi question fields.
+- Splash Finish installs in `/Applications`, like the other bobuk.io apps. The
+  standalone installer replaces and removes a copy that older installers put in
+  `~/Applications`; without administrator rights, pass `--app-dir ~/Applications`.
+- The inbox panel, Settings, the `⌥⌘S` hotkey, Start at Login and the update flow now
+  come from BobukKit 0.2.1, the shared bobuk.io component library.
 
 Your inbox, settings and agent integrations are retained. Homebrew copies update with
 **Update Splash Finish via Homebrew…**; standalone copies update with **Check for Updates…**.
 ]]></description>
-            <enclosure url="https://github.com/bobuk-io/splash-finish/releases/download/v0.3.14/SplashFinish-0.3.14-universal.zip" length="3043174" type="application/octet-stream" sparkle:edSignature="BsEbM9dT9U5IEW+0CF1iq1w6KgaLcz7EcKdRs7L+lI9Qh3D6LWsEhND2uiwZNO2LLe0P4YJ3qUszVEyPLVxlDA=="/>
+            <enclosure url="https://github.com/bobuk-io/splash-finish/releases/download/v0.3.15/SplashFinish-0.3.15-universal.zip" length="3481784" type="application/octet-stream" sparkle:edSignature="safzGbnJlHDrSvx7YSCbPiuxwYlnWo3bkXMjkYKS3viBH57RZZMtvPVtsnU534vqUSmJncYCqyccfKLYoSsJBA=="/>
         </item>
     </channel>
 </rss>
