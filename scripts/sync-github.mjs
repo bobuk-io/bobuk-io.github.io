@@ -41,21 +41,33 @@ const previous = await readFile(target, 'utf8').then(JSON.parse).catch(() => ({}
 // release (drafts and prereleases excluded), or the last push for a repository without releases.
 // Visibility above is critical; these dates are not. If a release lookup fails (for example,
 // a rate limit), keep the previous date rather than fail the deploy.
+// The same lookup feeds the "Latest releases" window on the homepage: tag, date and link of the
+// latest published release. A failed lookup keeps the previous entry.
 const updatedAt = {};
+const releases = {};
 for (const name of repositories) {
   const response = await api(`repos/bobuk-io/${encodeURIComponent(name)}/releases/latest`).catch(() => null);
   const release = response?.ok ? await response.json().catch(() => null) : null;
-  if (release?.published_at) updatedAt[name] = release.published_at;
-  else if (response?.status === 404) updatedAt[name] = pushedAt[name];
+  if (release?.published_at) {
+    updatedAt[name] = release.published_at;
+    if (typeof release.tag_name === 'string' && typeof release.html_url === 'string' && release.html_url.startsWith('https://github.com/bobuk-io/')) {
+      releases[name] = { tag: release.tag_name, publishedAt: release.published_at, url: release.html_url };
+    }
+  } else if (response?.status === 404) updatedAt[name] = pushedAt[name];
   else {
     updatedAt[name] = previous.updatedAt?.[name] ?? pushedAt[name];
+    if (previous.releases?.[name]) releases[name] = previous.releases[name];
     console.warn(`Could not read the latest ${name} release (${response?.status ?? 'network error'}); using ${updatedAt[name]}.`);
   }
 }
 const temporary = `${target}.tmp`;
 try {
   repositories.sort();
-  const snapshot = { organization: 'bobuk-io', repositories, updatedAt: Object.fromEntries(repositories.map(name => [name, updatedAt[name]])) };
+  const snapshot = {
+    organization: 'bobuk-io', repositories,
+    updatedAt: Object.fromEntries(repositories.map(name => [name, updatedAt[name]])),
+    releases: Object.fromEntries(repositories.filter(name => releases[name]).map(name => [name, releases[name]])),
+  };
   await writeFile(temporary, JSON.stringify(snapshot, null, 2) + '\n');
   await rename(temporary, target);
 } finally { await rm(temporary, { force: true }); }

@@ -17,7 +17,8 @@ const canonical = new URL(localPath(locale, route), Astro.site);
     <link rel="canonical" href={canonical} />
     {!noindex && <>{locales.map(lang => <link rel="alternate" hreflang={lang} href={new URL(localPath(lang, route), Astro.site)} />)}<link rel="alternate" hreflang="x-default" href={new URL(localPath('en', route), Astro.site)} /></>}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="theme-color" content="#f5f3ec" />
+    <meta name="theme-color" content="#161b1d" />
+    <meta name="color-scheme" content="dark" />
     {noindex && <meta name="robots" content="noindex" />}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

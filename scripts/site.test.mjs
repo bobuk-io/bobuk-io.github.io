@@ -719,3 +719,52 @@ test('Ting 0.7.14 documents Finder and Safari search in every locale', async () 
     }
   }
 });
+
+test('every app window uses its catalog accent and the newest app gets the wide window', async () => {
+  const accents = Object.fromEntries(JSON.parse(await readFile(new URL('../src/data/catalog.json', import.meta.url))).map(app => [app.slug, app.accent]));
+  const time = app => Date.parse(snapshot.updatedAt?.[app.repo] ?? '') || 0;
+  const newest = [...active].sort((a, b) => time(b) - time(a))[0];
+  for (const locale of locales) {
+    const homepage = await html(pathFor(locale));
+    for (const app of active) {
+      assert.match(accents[app.slug] ?? '', /^#[0-9a-fA-F]{6}$/, `${app.slug}: accent in catalog.json`);
+      const window = homepage.slice(0, homepage.indexOf(`id="app-${app.slug}"`)).lastIndexOf('<article');
+      const tag = homepage.slice(window, homepage.indexOf('>', window));
+      assert.ok(tag.includes(`--accent: ${accents[app.slug]}`), `${locale} ${app.slug}: window accent`);
+      assert.equal(tag.includes('wide'), app.slug === newest.slug, `${locale} ${app.slug}: wide window`);
+    }
+  }
+});
+
+test('the latest releases come from the GitHub snapshot, newest first', async () => {
+  const releases = Object.entries(snapshot.releases ?? {}).filter(([repo]) => active.some(app => app.repo === repo))
+    .sort((a, b) => Date.parse(b[1].publishedAt) - Date.parse(a[1].publishedAt));
+  for (const locale of locales) {
+    const homepage = await html(pathFor(locale));
+    const positions = releases.map(([, release]) => homepage.indexOf(`href="${release.url}"`));
+    assert.ok(positions.every(position => position > 0), `${locale}: every release is linked`);
+    assert.deepEqual([...positions].sort((a, b) => a - b), positions, `${locale}: newest release first`);
+    for (const [repo, release] of releases) {
+      const name = active.find(app => app.repo === repo).name;
+      assert.ok(homepage.includes(`${name} ${release.tag.replace(/^v/, '')}`), `${locale}: ${name} version`);
+    }
+  }
+});
+
+test('the homepage does not state how many apps there are in its copy', async () => {
+  for (const locale of locales) {
+    const text = (await html(pathFor(locale))).replace(/<[^>]+>/g, ' ');
+    assert.doesNotMatch(text, /\b(four|four small|четыре|чотири)\b/i, `${locale}: app count in copy`);
+  }
+});
+
+test('app pages show the four newest updates and keep the rest under All updates', async () => {
+  for (const app of active) for (const locale of locales) {
+    const page = await html(pathFor(locale, `apps/${app.slug}`));
+    const visible = page.slice(page.indexOf('<section class="features'), page.indexOf('</section>', page.indexOf('<section class="features')));
+    assert.ok((visible.match(/<h2>/g) || []).length <= 4, `${locale} ${app.slug}: at most four visible updates`);
+    const hidden = page.includes('class="more-features');
+    const total = (page.match(/<span class="index">/g) || []).length;
+    assert.equal(hidden, total > 4, `${locale} ${app.slug}: All updates only for long histories`);
+  }
+});

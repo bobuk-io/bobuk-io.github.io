@@ -1,6 +1,7 @@
 ---
 import ShotCarousel from './ShotCarousel.astro';
 import Guide from './Guide.astro';
+import { releases } from '../data/apps';
 import type { App } from '../data/apps';
 import { ui, localPath } from '../i18n';
 import type { Locale } from '../i18n';
@@ -12,15 +13,20 @@ const route = `apps/${app.slug}`;
 const sections = section === 'privacy' ? copy.privacy : copy.support;
 const guide = copy.guide;
 const guidePath = guide ? localPath(locale, `${route}/${guide.slug}`) : '';
+const version = releases.find(release => release.app.slug === app.slug)?.version;
+// The newest cards show at once; a long release history stays one click away.
+const shownFeatures = 4;
 ---
 <div class="wrap product-nav"><a href={localPath(locale)}>← {t.allApps}</a><nav aria-label={app.name}><a href={localPath(locale, route)} aria-current={!section ? 'page' : undefined}>{t.overview}</a>{guide && <a href={guidePath} aria-current={section === 'guide' ? 'page' : undefined}>{guide.nav}</a>}<a href={localPath(locale, `${route}/support`)} aria-current={section === 'support' ? 'page' : undefined}>{t.support}</a><a href={localPath(locale, `${route}/privacy`)} aria-current={section === 'privacy' ? 'page' : undefined}>{t.privacy}</a></nav></div>
 {!section ? <>
-  <section class="product-hero wrap">
-    <div class="featured-copy"><div class="app-identity"><img src={app.icon} width="64" height="64" alt="" /><div><p class="app-name">{app.name}</p><span>{t.requirements}</span></div></div><h1>{copy.tagline}</h1><p>{copy.description}</p><div class="actions">{app.appStoreUrl ? <a class="button" href={app.appStoreUrl}>{t.store} ↗</a> : <a class="button" href="#install">{t.installMac} ↓</a>}<a class="text-link" href={app.repo}>{t.code} ↗</a></div><p class="requirements">{t.signed}<br />{t.distribution}</p></div>
-    <ShotCarousel app={app} locale={locale} priority />
+  <section class="product-hero wrap window" style={`--accent: ${app.accent}`}>
+    <div class="window-strip"><span>{copy.category}</span>{version && <span class="mono">{version}</span>}</div>
+    <div class="window-body"><div class="featured-copy"><div class="app-identity"><img src={app.icon} width="64" height="64" alt="" /><div><p class="app-name">{app.name}</p><span>{t.requirements}</span></div></div><h1>{copy.tagline}</h1><p>{copy.description}</p><div class="actions">{app.appStoreUrl ? <a class="button" href={app.appStoreUrl}>{t.store} ↗</a> : <a class="button" href="#install">{t.installMac} ↓</a>}<a class="text-link" href={app.repo}>{t.code} ↗</a></div><p class="requirements">{t.signed}<br />{t.distribution}</p></div>
+    <ShotCarousel app={app} locale={locale} priority /></div>
   </section>
-  <section class="features wrap">{copy.features.map((feature, i) => <div><span class="index">0{i + 1}</span><h2>{feature.title}</h2><p>{feature.text}</p></div>)}</section>
-  <section id="install" class="install wrap"><div><p class="eyebrow">{t.quickStart}</p><h2>{t.installTitle}</h2><p>{t.requirements}. {copy.installNote}</p><a class="text-link" href={`${app.repo}/releases/latest`}>{t.latestRelease} ↗</a></div><div class="steps">{copy.steps.map((step, i) => <><h3><span>0{i + 1}</span>{step.title}</h3><p>{step.text}</p>{step.command && <div class="code-block"><code id={`command-${i}`}>{step.command}</code><button class="copy" data-copy={`command-${i}`} aria-label={`${t.copyLabel}: ${step.title}`} hidden>{t.copy}</button></div>}{step.scriptUrl && <p class="small"><a href={step.scriptUrl}>{t.reviewScript} ↗</a></p>}</>)}<p class="copy-status small" role="status" aria-live="polite" data-success={t.copied} data-error={t.copyFailed}></p></div></section>
+  <section class="features wrap">{copy.features.slice(0, shownFeatures).map((feature, i) => <div><span class="index">{String(i + 1).padStart(2, '0')}</span><h2>{feature.title}</h2><p>{feature.text}</p></div>)}</section>
+  {copy.features.length > shownFeatures && <details class="more-features wrap"><summary><span>{t.allUpdates}</span><span class="mono">{copy.features.length}</span></summary><div class="features">{copy.features.slice(shownFeatures).map((feature, i) => <div><span class="index">{String(i + shownFeatures + 1).padStart(2, '0')}</span><h2>{feature.title}</h2><p>{feature.text}</p></div>)}</div></details>}
+  <section id="install" class="install wrap"><div><p class="eyebrow">{t.quickStart}</p><h2>{t.installTitle}</h2><p>{t.requirements}. {copy.installNote}</p><a class="text-link" href={`${app.repo}/releases/latest`}>{t.latestRelease} ↗</a></div><div class="steps">{copy.steps.map((step, i) => <><h3><span>{String(i + 1).padStart(2, '0')}</span>{step.title}</h3><p>{step.text}</p>{step.command && <div class="code-block"><code id={`command-${i}`}>{step.command}</code><button class="copy" data-copy={`command-${i}`} aria-label={`${t.copyLabel}: ${step.title}`} hidden>{t.copy}</button></div>}{step.scriptUrl && <p class="small"><a href={step.scriptUrl}>{t.reviewScript} ↗</a></p>}</>)}<p class="copy-status small" role="status" aria-live="polite" data-success={t.copied} data-error={t.copyFailed}></p></div></section>
   <section class="faq wrap"><h2>{t.faq}</h2><div>{copy.faq.map(item => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div></section>
 </> : section === 'guide' && guide ? <Guide guide={guide} app={app} locale={locale} /> : <article class="prose wrap">
   <p class="eyebrow">{app.name} / {section === 'privacy' ? t.privacyEyebrow : t.supportEyebrow}</p><h1>{section === 'privacy' ? copy.privacyTitle : t.supportTitle}</h1><p class="lead">{section === 'privacy' ? copy.privacyIntro : copy.supportIntro}</p>

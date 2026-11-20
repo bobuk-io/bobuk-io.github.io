@@ -21,3 +21,11 @@ const updatedAt: Record<string, string | undefined> = publicRepos.updatedAt;
 const updated = (app: App) => Date.parse(updatedAt[app.repoName] ?? '') || 0;
 /** Public apps, most recently updated first; the catalog.json order breaks ties (the sort is stable). */
 export const apps = catalog.filter(app => publicNames.has(app.repoName)).sort((a, b) => updated(b) - updated(a));
+
+export interface Release { app: App; version: string; publishedAt: string; url: string; }
+const releaseSnapshot: Record<string, { tag: string; publishedAt: string; url: string } | undefined> = (publicRepos as { releases?: Record<string, { tag: string; publishedAt: string; url: string }> }).releases ?? {};
+/** The latest published GitHub release of each public app, newest first, from `npm run sync:github`. */
+export const releases: Release[] = apps.flatMap(app => {
+  const release = releaseSnapshot[app.repoName];
+  return release ? [{ app, version: release.tag.replace(/^v/, ''), publishedAt: release.publishedAt, url: release.url }] : [];
+}).sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt));

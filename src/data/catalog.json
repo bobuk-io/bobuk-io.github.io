@@ -6,6 +6,7 @@
     "repo": "https://github.com/bobuk-io/splash-finish",
     "platform": "macOS",
     "icon": "/images/splash-finish-icon.png",
+    "accent": "#3E8C86",
     "socialImage": "/images/splash-finish.png",
     "companions": [
       "Claude Code",
@@ -20,6 +21,7 @@
     "repo": "https://github.com/bobuk-io/HAScS",
     "platform": "macOS",
     "icon": "/images/hascs-icon.png",
+    "accent": "#8C7BE0",
     "socialImage": "/images/hascs.png",
     "companions": [
       "Home Assistant"
@@ -32,6 +34,7 @@
     "repo": "https://github.com/bobuk-io/ting",
     "platform": "macOS",
     "icon": "/images/ting-icon.png",
+    "accent": "#E7BB74",
     "socialImage": "/images/ting.png",
     "companions": []
   },
@@ -42,6 +45,7 @@
     "repo": "https://github.com/bobuk-io/lowkey",
     "platform": "macOS",
     "icon": "/images/lowkey-icon.png",
+    "accent": "#4D7DFF",
     "companions": [
       "Ting"
     ],

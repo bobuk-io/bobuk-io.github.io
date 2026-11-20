@@ -1,7 +1,7 @@
 // Scaffold a new public bobuk-io app on the landing site. See docs/updating.md.
 //
 //   npm run app:new -- <repo> [--slug <slug>] [--name "<Name>"] [--icon <png>]
-//                     [--platform macOS] [--companions "A, B"] [--dry-run]
+//                     [--platform macOS] [--companions "A, B"] [--accent "#RRGGBB"] [--dry-run]
 //
 // Creates src/data/apps/<slug>.ts (copy in en, ru and uk with TODO(landing) placeholders),
 // adds the app to src/data/catalog.json, installs a 256 px icon, creates the screenshot folder
@@ -22,12 +22,12 @@ const { values: options, positionals } = parseArgs({
   allowPositionals: true,
   options: {
     slug: { type: 'string' }, name: { type: 'string' }, icon: { type: 'string' },
-    platform: { type: 'string', default: 'macOS' }, companions: { type: 'string', default: '' },
+    platform: { type: 'string', default: 'macOS' }, companions: { type: 'string', default: '' }, accent: { type: 'string', default: '#E7BB74' },
     'dry-run': { type: 'boolean', default: false }, help: { type: 'boolean', short: 'h', default: false },
   },
 });
 if (options.help || positionals.length !== 1) {
-  console.log('Usage: npm run app:new -- <repo> [--slug <slug>] [--name "<Name>"] [--icon <png>] [--platform macOS] [--companions "A, B"] [--dry-run]');
+  console.log('Usage: npm run app:new -- <repo> [--slug <slug>] [--name "<Name>"] [--icon <png>] [--platform macOS] [--companions "A, B"] [--accent "#RRGGBB"] [--dry-run]');
   process.exit(options.help ? 0 : 1);
 }
 const [repoName] = positionals;
@@ -116,7 +116,8 @@ const copy: Record<Locale, AppCopy> = {
 ${locale('en', 'English')}${locale('ru', 'русский')}${locale('uk', 'українська')}};
 export default copy;
 `;
-const entry = { slug, repoName, name, repo: repo.html_url, platform: options.platform, icon: `/images/${slug}-icon.png`, companions };
+if (!/^#[0-9a-fA-F]{6}$/.test(options.accent)) fail('--accent must be a #RRGGBB color.');
+const entry = { slug, repoName, name, repo: repo.html_url, platform: options.platform, icon: `/images/${slug}-icon.png`, accent: options.accent, companions };
 
 if (dryRun) {
   console.log(`Dry run. Would create src/data/apps/${slug}.ts, public/images/${slug}-icon.png (from ${iconSource}), public/images/shots/${slug}/ and add to catalog.json:`);

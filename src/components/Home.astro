@@ -1,32 +1,50 @@
 ---
+// The homepage is a desk of app windows, drawn like BobukKit's ChromeWindow: an accent line in the
+// app's color, a strip with its name, then the content. Everything comes from data:
+// - apps: catalog.json + src/data/apps/<slug>.ts, newest release first (npm run sync:github);
+// - the newest app gets the wide window; the others pair up, and an unpaired last one widens;
+// - "Latest releases" lists each app's latest GitHub release from the same sync.
 import ShotCarousel from './ShotCarousel.astro';
-import { apps } from '../data/apps';
+import { apps, releases } from '../data/apps';
 import { ui, localPath } from '../i18n';
 import type { Locale } from '../i18n';
 const { locale } = Astro.props as { locale: Locale };
 const t = ui[locale];
+const date = new Intl.DateTimeFormat(locale, { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
+const versionOf = (repoName: string) => releases.find(release => release.app.repoName === repoName)?.version;
 ---
 <section class="intro wrap">
   <p class="eyebrow"><span class="small-line"></span>{t.eyebrow}</p>
-  <h1>{t.hero}<br /><span class="soft">{t.heroSoft}</span></h1>
-  <div class="intro-bottom"><p>{t.intro}</p><a class="text-link" href="#apps">{t.findApp}<span aria-hidden="true">↓</span></a></div>
+  <h1>{t.hero} <span class="soft">{t.heroSoft}</span></h1>
+  <div class="intro-bottom"><p>{t.intro}<br /><span class="requirements">{t.requirements}</span></p><a class="text-link" href="#apps">{t.findApp}<span aria-hidden="true">↓</span></a></div>
 </section>
-<section id="apps" class="catalog wrap" aria-labelledby="apps-title">
-  <div class="section-heading"><h2 id="apps-title">{t.apps}</h2><span class="muted">{String(apps.length).padStart(2, '0')} / {t.catalog}</span></div>
+
+<section id="apps" class="desk wrap" aria-labelledby="apps-title">
+  <h2 id="apps-title" class="visually-hidden">{t.apps}</h2>
   {apps.length ? apps.map((app, i) => {
     const copy = app.translations[locale];
     const page = localPath(locale, `apps/${app.slug}`);
-    return <article class:list={['featured', { flip: i % 2 === 1 }]} aria-labelledby={`app-${app.slug}`}>
-      <div class="featured-copy">
-        <div class="app-identity"><img src={app.icon} width="64" height="64" alt="" loading={i ? 'lazy' : undefined} /><div><h3 id={`app-${app.slug}`}>{app.name}</h3><span>{app.platform} / {copy.category}</span></div></div>
-        <p class="tagline">{copy.tagline}</p><p>{copy.description}</p>
-        <div class="actions"><a class="button" href={page}>{t.explore}<span aria-hidden="true">↗</span></a><a class="text-link" href={`${page}#install`}>{t.install}<span aria-hidden="true">↓</span></a></div>
-        <p class="requirements">{t.requirements}</p>
-        {app.companions.length > 0 && <div class="integrations"><span>{t.companions}</span>{app.companions.map(name => <strong>{name}</strong>)}</div>}
+    const version = versionOf(app.repoName);
+    return <article class:list={['window', 'app-window', { wide: i === 0 }]} style={`--accent: ${app.accent}`} aria-labelledby={`app-${app.slug}`}>
+      <div class="window-strip"><span>{copy.category}</span>{version && <span class="mono">{version}</span>}</div>
+      <div class="window-body">
+        <div class="featured-copy">
+          <div class="app-identity"><img src={app.icon} width="56" height="56" alt="" loading={i ? 'lazy' : undefined} /><div><h3 id={`app-${app.slug}`}>{app.name}</h3><span>{app.platform}</span></div></div>
+          <p class="tagline">{copy.tagline}</p><p class="description">{copy.description}</p>
+          <div class="actions"><a class="button" href={page}>{t.explore}<span aria-hidden="true">↗</span></a><a class="text-link" href={`${page}#install`}>{t.install}<span aria-hidden="true">↓</span></a></div>
+          {app.companions.length > 0 && <div class="integrations"><span>{t.companions}</span>{app.companions.map(name => <strong>{name}</strong>)}</div>}
+        </div>
+        <ShotCarousel app={app} locale={locale} priority={i === 0} />
       </div>
-      <ShotCarousel app={app} locale={locale} priority={i === 0} />
     </article>;
   }) : <p class="empty">{t.empty}</p>}
 </section>
-<section class="principles wrap" aria-label={t.eyebrow}>{t.principles.map(p => <div><span class="index">{p.label}</span><h3>{p.title}</h3><p>{p.text}</p></div>)}</section>
-<section class="closing wrap"><div><h2>{t.closing}</h2><p>{t.closingText}</p></div><a class="text-link" href={localPath(locale, 'support')}>{t.contact}<span aria-hidden="true">↗</span></a></section>
+
+<section class="desk tiles wrap" aria-label={t.eyebrow}>
+  {releases.length > 0 && <div class="window tile releases" style="--accent: #4D7DFF">
+    <div class="window-strip"><span>{t.releasesTitle}</span></div>
+    <ol>{releases.map(release => <li><img src={release.app.icon} width="28" height="28" alt="" loading="lazy" /><a href={release.url}><strong>{release.app.name} {release.version}</strong><span class="visually-hidden">, {t.releaseNotes}</span></a><time datetime={release.publishedAt}>{date.format(new Date(release.publishedAt))}</time></li>)}</ol>
+  </div>}
+  {t.principles.map((p, i) => <div class="window tile" style={`--accent: ${['#E7BB74', '#3E8C86', '#8C7BE0'][i % 3]}`}><div class="window-strip"><span>{p.label}</span></div><div class="tile-body"><h3>{p.title}</h3><p>{p.text}</p></div></div>)}
+  <div class="window tile closing light" style="--accent: #885500"><div class="tile-body"><div><h2>{t.closing}</h2><p>{t.closingText}</p></div><a class="button" href={localPath(locale, 'support')}>{t.contact}<span aria-hidden="true">↗</span></a></div></div>
+</section>

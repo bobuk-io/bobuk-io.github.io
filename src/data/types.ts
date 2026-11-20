@@ -33,6 +33,8 @@ export interface App {
   repo: string;
   platform: string;
   icon: string;
+  /** Accent of the app's window on the site: the line on top of its window. A hex color from its icon. */
+  accent: string;
   /** PNG used for social previews and structured data; falls back to the icon. */
   socialImage?: string;
   appStoreUrl?: string;
