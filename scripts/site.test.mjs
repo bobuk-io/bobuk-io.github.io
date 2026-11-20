@@ -156,6 +156,17 @@ test('Splash Finish release and upgrade instructions are available in every loca
   }
 });
 
+test('Splash Finish 0.3.15 announces the snooze fix in every locale', async () => {
+  if (!snapshot.repositories.includes('splash-finish')) return;
+  for (const locale of locales) {
+    const app = await html(pathFor(locale, 'apps/splash-finish'));
+    for (const text of ['0.3.15', 'Snooze', '⌘C', '/Applications', 'BobukKit']) {
+      assert.ok(app.includes(text), `${locale}: missing ${text}`);
+    }
+    assert.ok(app.indexOf('0.3.15?') < app.indexOf('0.3.14?'), `${locale}: 0.3.15 must come first`);
+  }
+});
+
 test('Splash Finish 0.3.14 announces the BobukKit window in every locale', async () => {
   if (!snapshot.repositories.includes('splash-finish')) return;
   for (const locale of locales) {
