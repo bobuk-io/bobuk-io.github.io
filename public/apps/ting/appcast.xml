@@ -3,23 +3,27 @@
     <channel>
         <title>Ting</title>
         <item>
-            <title>0.7.17</title>
-            <pubDate>Thu, 19 Nov 2026 22:55:24 +0200</pubDate>
+            <title>0.7.18</title>
+            <pubDate>Sun, 22 Nov 2026 01:19:59 +0200</pubDate>
             <link>https://bobuk.io/apps/ting/</link>
-            <sparkle:version>32</sparkle:version>
-            <sparkle:shortVersionString>0.7.17</sparkle:shortVersionString>
+            <sparkle:version>33</sparkle:version>
+            <sparkle:shortVersionString>0.7.18</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.17
+            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.18
 
-- Replaced the crowded Settings tabs with a resizable sidebar and search across individual settings. Leader and launcha controls are in Keys & Launch; micro-app diagnostics and permissions have their own page. Rare clipboard retention/privacy controls are collapsed until needed.
-- Shortened the menu: config, reload and Copy Agent Prompt are under Tools; About and update commands are under Ting. Errors are grouped under Needs Attention.
-- Added opt-in clipboard history between launches, off by default. Defaults are 100 entries, 50 MiB and 30 days; all limits are adjustable and 0 days disables age expiry. Expired copies are removed hourly; copying content again renews its age, but reusing it does not. Existing explicit item limits are preserved.
-- Stored history is local, private to your user and excluded from backups, without additional encryption. Clear History and disabling Clipbawd delete both memory and disk history; disabling persistence deletes the archive but keeps the current session. Settings show usage, archive size and storage errors.
-- Added basic Markdown syntax coloring without embedded-image loading, and thumbnail/duration previews for one MP4/MOV/M4V video per clipboard copy, up to 30 seconds and 32 MiB. Movies are retained as bytes and can be copied after the original file is removed. Other files remain path references. PNG, JPEG and TIFF image support is preserved.
+- Fuzzy search in launcha: letters may be scattered and longer queries may contain a typo, so `1pwd` and even `1pvd` find 1Password. One typo is allowed from four letters, two from eight; a three-letter query gets one typo only when nothing else matches (`1pv`). The first letter must match. Names that contain the query as typed always come first, so an often used app never jumps above a close match only because you typed loosely. Wrong keyboard layout search keeps working.
+- Matched letters are highlighted in launcha results.
+- Within each match group, apps you launch more often rank higher, also for loose matches; equal matches prefer the shorter name, so `sfr` lists Safari above 1Password for Safari.
+- New opt-in setting **Rank by apps you use** (Settings › Keys & Launch): launcha also counts the apps you switch to outside launcha, at most once per app every 30 minutes, and can list running apps higher or lower. The record stays on this Mac in `app-usage.json`; turning the setting off deletes it.
+- Micro-app choice fields, micro-app choice lists and the bindings filter in Settings use the same fuzzy matching. The bindings list keeps its tree order.
+- Clipbawd now previews a single copied PNG or JPEG file (such as screenshots captured to a file) while still pasting it as a file; unreadable or removed files fall back to the file icon.
+- Pressing `⌘,` in selecta, launcha or Clipbawd now closes the launcher and opens Settings, including on Russian and Ukrainian keyboard layouts; other `⌘` shortcuts such as `⌘Q` remain swallowed.
+- Settings is now a regular Ting window with its close control in the window strip, a fixed sidebar, readable page titles and grouped controls. The settings search uses the shared search field.
+- Launcha, leader and clipboard panels, hotkeys, keyboard layout handling and Homebrew updates now come from the shared BobukKit library used by every bobuk.io app.
 
-Settings and bindings remain compatible. The history archive lives in `~/Library/Application Support/Ting/Clipbawd/`; uninstalling with data removal also removes this directory. Deleting local history is not a secure erase of filesystem snapshots or existing backups. Approved micro-app history templates reject video entries explicitly, as they already do for images.
+Settings, bindings and history are compatible with 0.7.17.
 ]]></description>
-            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.17/Ting-0.7.17-universal.zip" length="9204633" type="application/octet-stream" sparkle:edSignature="YYObp208IYLOvxcnytSTs6mWhdWuz5vq3dgISwHdR/icMJ/8vfD23mBeIwugsA28NEOrMN9p0hXOCmsByMzeDA=="/>
+            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.18/Ting-0.7.18-universal.zip" length="9754153" type="application/octet-stream" sparkle:edSignature="knDO3VPOQ5Udx6NX93RDesB6YuOYRZuDwBy3NQXosZTIfticsSEZQN7l04nTevIZ3nVMdldtjejt3NcP8wObCQ=="/>
         </item>
     </channel>
 </rss>
