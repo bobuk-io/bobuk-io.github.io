@@ -156,6 +156,37 @@ test('Splash Finish release and upgrade instructions are available in every loca
   }
 });
 
+test('Splash Finish 0.3.16 announces Antigravity, Copilot CLI, Codex async questions and Snooze in every locale', async () => {
+  if (!snapshot.repositories.includes('splash-finish')) return;
+  for (const locale of locales) {
+    const app = await html(pathFor(locale, 'apps/splash-finish'));
+    for (const text of ['0.3.16', 'Antigravity', 'Copilot CLI', 'ask_question', 'Unsnooze']) {
+      assert.ok(app.includes(text), `${locale}: missing ${text}`);
+    }
+    assert.ok(app.indexOf('0.3.16?') < app.indexOf('0.3.15?'), `${locale}: 0.3.16 must come first`);
+    const support = await html(pathFor(locale, 'apps/splash-finish/support'));
+    for (const text of ['0.3.16', 'ANTIGRAVITY_CONFIG_DIR', 'COPILOT_HOME', 'Unsnooze']) {
+      assert.ok(support.includes(text), `${locale}: support missing ${text}`);
+    }
+  }
+});
+
+test('Ting 0.7.18 documents fuzzy search, Clipbawd image previews and ⌘, Settings in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  for (const locale of locales) {
+    const app = await html(pathFor(locale, 'apps/ting'));
+    for (const text of ['Ting 0.7.18', 'Rank by apps you use', 'Clipbawd', 'PNG', '⌘,']) {
+      assert.ok(app.includes(text), `${locale}: missing ${text}`);
+    }
+    const support = await html(pathFor(locale, 'apps/ting/support'));
+    for (const text of ['Ting 0.7.18', 'app-usage.json', 'Keys &amp; Launch', 'PNG', '⌘,']) {
+      assert.ok(support.includes(text), `${locale}: support missing ${text}`);
+    }
+    const privacy = await html(pathFor(locale, 'apps/ting/privacy'));
+    assert.ok(privacy.includes('app-usage.json'), `${locale}: privacy missing app-usage.json`);
+  }
+});
+
 test('Splash Finish 0.3.15 announces the snooze fix in every locale', async () => {
   if (!snapshot.repositories.includes('splash-finish')) return;
   for (const locale of locales) {
@@ -667,9 +698,9 @@ test('Reviewed site copy uses the agreed wording in every locale', async () => {
     },
     hascs: { ru: ['Нажмите номер, чтобы запустить сцену.'], uk: ['Натисніть номер, щоб запустити сцену.'] },
     'splash-finish': {
-      en: ['One tidy inbox for Claude Code, Codex, and pi. Know when work is done or an agent needs a decision, then return to the right session.'],
-      ru: ['Один чистый инбокс для Claude Code, Codex и pi. Узнавайте, что работа закончена или что агенту нужно ваше решение, — и возвращайтесь к нужной сессии.'],
-      uk: ['Один чистий інбокс для Claude Code, Codex і pi. Дізнавайтеся, що роботу завершено або що агенту потрібне ваше рішення, — і повертайтесь до потрібної сесії.'],
+      en: ['One tidy inbox for Claude Code, Codex, GitHub Copilot CLI, Antigravity (agy), and pi. Know when work is done or an agent needs a decision, then return to the right session.'],
+      ru: ['Один чистый инбокс для Claude Code, Codex, GitHub Copilot CLI, Antigravity (agy) и pi. Узнавайте, что работа закончена или что агенту нужно ваше решение, — и возвращайтесь к нужной сессии.'],
+      uk: ['Один чистий інбокс для Claude Code, Codex, GitHub Copilot CLI, Antigravity (agy) і pi. Дізнавайтеся, що роботу завершено або що агенту потрібне ваше рішення, — і повертайтесь до потрібної сесії.'],
     },
   };
   for (const locale of ['ru', 'uk']) {
