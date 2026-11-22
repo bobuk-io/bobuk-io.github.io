@@ -156,6 +156,21 @@ test('Splash Finish release and upgrade instructions are available in every loca
   }
 });
 
+test('Splash Finish 0.3.18 announces Oh My Pi (OMP) and Agterm session links in every locale', async () => {
+  if (!snapshot.repositories.includes('splash-finish')) return;
+  for (const locale of locales) {
+    const app = await html(pathFor(locale, 'apps/splash-finish'));
+    for (const text of ['0.3.18', 'Oh My Pi (OMP)', '--agent omp', 'agterm://']) {
+      assert.ok(app.includes(text), `${locale}: missing ${text}`);
+    }
+    assert.ok(app.indexOf('0.3.18?') < app.indexOf('0.3.17?'), `${locale}: 0.3.18 must come first`);
+    const support = await html(pathFor(locale, 'apps/splash-finish/support'));
+    for (const text of ['0.3.18', 'OMP_PROFILE', 'PI_CONFIG_DIR', 'agterm://session/']) {
+      assert.ok(support.includes(text), `${locale}: support missing ${text}`);
+    }
+  }
+});
+
 test('Splash Finish 0.3.17, Ting 0.7.19, lowkey 0.1.3 and HAScS 0.3.4 announce BobukKit 0.5.0 updates in every locale', async () => {
   for (const locale of locales) {
     if (snapshot.repositories.includes('splash-finish')) {
@@ -734,9 +749,9 @@ test('Reviewed site copy uses the agreed wording in every locale', async () => {
     },
     hascs: { ru: ['Нажмите номер, чтобы запустить сцену.'], uk: ['Натисніть номер, щоб запустити сцену.'] },
     'splash-finish': {
-      en: ['One tidy inbox for Claude Code, Codex, GitHub Copilot CLI, Antigravity (agy), and pi. Know when work is done or an agent needs a decision, then return to the right session.'],
-      ru: ['Один чистый инбокс для Claude Code, Codex, GitHub Copilot CLI, Antigravity (agy) и pi. Узнавайте, что работа закончена или что агенту нужно ваше решение, — и возвращайтесь к нужной сессии.'],
-      uk: ['Один чистий інбокс для Claude Code, Codex, GitHub Copilot CLI, Antigravity (agy) і pi. Дізнавайтеся, що роботу завершено або що агенту потрібне ваше рішення, — і повертайтесь до потрібної сесії.'],
+      en: ['One tidy inbox for Claude Code, Codex, GitHub Copilot CLI, Antigravity (agy), pi, and Oh My Pi (OMP). Know when work is done or an agent needs a decision, then return to the right session.'],
+      ru: ['Один чистый инбокс для Claude Code, Codex, GitHub Copilot CLI, Antigravity (agy), pi и Oh My Pi (OMP). Узнавайте, что работа закончена или что агенту нужно ваше решение, — и возвращайтесь к нужной сессии.'],
+      uk: ['Один чистий інбокс для Claude Code, Codex, GitHub Copilot CLI, Antigravity (agy), pi та Oh My Pi (OMP). Дізнавайтеся, що роботу завершено або що агенту потрібне ваше рішення, — і повертайтесь до потрібної сесії.'],
     },
   };
   for (const locale of ['ru', 'uk']) {
