@@ -3,27 +3,21 @@
     <channel>
         <title>Ting</title>
         <item>
-            <title>0.7.18</title>
-            <pubDate>Sun, 22 Nov 2026 01:19:59 +0200</pubDate>
+            <title>0.7.19</title>
+            <pubDate>Sun, 22 Nov 2026 09:44:54 +0200</pubDate>
             <link>https://bobuk.io/apps/ting/</link>
-            <sparkle:version>33</sparkle:version>
-            <sparkle:shortVersionString>0.7.18</sparkle:shortVersionString>
+            <sparkle:version>34</sparkle:version>
+            <sparkle:shortVersionString>0.7.19</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.18
+            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.19
 
-- Fuzzy search in launcha: letters may be scattered and longer queries may contain a typo, so `1pwd` and even `1pvd` find 1Password. One typo is allowed from four letters, two from eight; a three-letter query gets one typo only when nothing else matches (`1pv`). The first letter must match. Names that contain the query as typed always come first, so an often used app never jumps above a close match only because you typed loosely. Wrong keyboard layout search keeps working.
-- Matched letters are highlighted in launcha results.
-- Within each match group, apps you launch more often rank higher, also for loose matches; equal matches prefer the shorter name, so `sfr` lists Safari above 1Password for Safari.
-- New opt-in setting **Rank by apps you use** (Settings › Keys & Launch): launcha also counts the apps you switch to outside launcha, at most once per app every 30 minutes, and can list running apps higher or lower. The record stays on this Mac in `app-usage.json`; turning the setting off deletes it.
-- Micro-app choice fields, micro-app choice lists and the bindings filter in Settings use the same fuzzy matching. The bindings list keeps its tree order.
-- Clipbawd now previews a single copied PNG or JPEG file (such as screenshots captured to a file) while still pasting it as a file; unreadable or removed files fall back to the file icon.
-- Pressing `⌘,` in selecta, launcha or Clipbawd now closes the launcher and opens Settings, including on Russian and Ukrainian keyboard layouts; other `⌘` shortcuts such as `⌘Q` remain swallowed.
-- Settings is now a regular Ting window with its close control in the window strip, a fixed sidebar, readable page titles and grouped controls. The settings search uses the shared search field.
-- Launcha, leader and clipboard panels, hotkeys, keyboard layout handling and Homebrew updates now come from the shared BobukKit library used by every bobuk.io app.
+- **Color themes across selecta, launcha, Clipbawd, and Settings:** **Settings › General › Appearance** now offers **System**, **Light**, and **Dark** modes plus **18 built-in palettes** (Amber, Sage, Ocean, Terracotta, Catppuccin, Tokyo Night, Kanagawa, Everforest, Rosé Pine, Flexoki, Nord, Dracula, Gruvbox, Solarized, One Light / One Dark, Ayu, Monokai, and GitHub) shared via BobukKit 0.5.0.
+- **Full 10-color customization:** customize **Panel**, **Accent**, and **Text**, or expand **More colors** for **Surface**, **Muted text**, **Border**, **Selection**, **Link**, **Success**, and **Danger** with per-role **Auto** contrast reset, palette swatches, live preview, and WCAG contrast warnings. Selected rows in pickers use the theme's `selection` token, and palettes persist in `~/.config/ting/config.json`.
+- **Shared launcher footer gear:** the bottom-right settings gear in selecta and launcha now uses BobukKit's shared footer control.
 
-Settings, bindings and history are compatible with 0.7.17.
+Settings, bindings, micro-apps, and history are compatible with 0.7.18.
 ]]></description>
-            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.18/Ting-0.7.18-universal.zip" length="9754153" type="application/octet-stream" sparkle:edSignature="knDO3VPOQ5Udx6NX93RDesB6YuOYRZuDwBy3NQXosZTIfticsSEZQN7l04nTevIZ3nVMdldtjejt3NcP8wObCQ=="/>
+            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.19/Ting-0.7.19-universal.zip" length="10166266" type="application/octet-stream" sparkle:edSignature="Cj1Q5s8bdXxRkSlX425/PcE8mjVQ7jHNtJBbIdUO/W2QM2kU0dlZX1ThxZ/eorhbaUYy+MCnKSjuagFTz8hcDA=="/>
         </item>
     </channel>
 </rss>
