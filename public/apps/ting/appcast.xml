@@ -3,21 +3,21 @@
     <channel>
         <title>Ting</title>
         <item>
-            <title>0.7.19</title>
-            <pubDate>Sun, 22 Nov 2026 09:44:54 +0200</pubDate>
+            <title>0.7.20</title>
+            <pubDate>Sun, 22 Nov 2026 17:14:05 +0200</pubDate>
             <link>https://bobuk.io/apps/ting/</link>
-            <sparkle:version>34</sparkle:version>
-            <sparkle:shortVersionString>0.7.19</sparkle:shortVersionString>
+            <sparkle:version>35</sparkle:version>
+            <sparkle:shortVersionString>0.7.20</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.19
+            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.20
 
-- **Color themes across selecta, launcha, Clipbawd, and Settings:** **Settings › General › Appearance** now offers **System**, **Light**, and **Dark** modes plus **18 built-in palettes** (Amber, Sage, Ocean, Terracotta, Catppuccin, Tokyo Night, Kanagawa, Everforest, Rosé Pine, Flexoki, Nord, Dracula, Gruvbox, Solarized, One Light / One Dark, Ayu, Monokai, and GitHub) shared via BobukKit 0.5.0.
-- **Full 10-color customization:** customize **Panel**, **Accent**, and **Text**, or expand **More colors** for **Surface**, **Muted text**, **Border**, **Selection**, **Link**, **Success**, and **Danger** with per-role **Auto** contrast reset, palette swatches, live preview, and WCAG contrast warnings. Selected rows in pickers use the theme's `selection` token, and palettes persist in `~/.config/ting/config.json`.
-- **Shared launcher footer gear:** the bottom-right settings gear in selecta and launcha now uses BobukKit's shared footer control.
+- **Much faster panel opening and lower CPU usage:** the main focus of this release is eliminating CPU spikes when opening and using Ting's panels.
+- **Bounded, cached app indexing in launcha:** `launcha` now scans only application folders up to two levels deep (`/Applications/*.app` and direct subfolders such as `/Applications/Utilities/*.app`), skips regular files and common package bundles without touching LaunchServices, caches unchanged `.app` metadata, and skips full rescans on open when watched app directories have not changed. Reopening `launcha` drops from hundreds of milliseconds of CPU to under 1 ms.
+- **Smoother selecta, launcha, and Clipbawd rendering:** removed redundant recomputation cascades and disk reads on `launcha` open, moved card drop shadows onto static background layers instead of offscreen-blurring composite panels on every keystroke or hover, stopped `selecta`'s blinking slot animation when hidden (and switched it to GPU layer opacity), precompiled and cached Clipbawd Markdown highlighting and file icons, and adopted BobukKit 0.5.2 (avoiding redundant `PickerSurfaceView` redraws, caching Carbon keyboard layouts, and reusing prepared fuzzy queries).
 
-Settings, bindings, micro-apps, and history are compatible with 0.7.18.
+Settings, bindings, micro-apps, and history are compatible with 0.7.19.
 ]]></description>
-            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.19/Ting-0.7.19-universal.zip" length="10166266" type="application/octet-stream" sparkle:edSignature="Cj1Q5s8bdXxRkSlX425/PcE8mjVQ7jHNtJBbIdUO/W2QM2kU0dlZX1ThxZ/eorhbaUYy+MCnKSjuagFTz8hcDA=="/>
+            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.20/Ting-0.7.20-universal.zip" length="10216400" type="application/octet-stream" sparkle:edSignature="BIV7Te7Tvhah3d/CGD6sUxfB7hWysStfLU1I2AR7Ig/HTKetY6Ia4arrccl6SNkOJPFPGZEj+zyd+s1ZmJ52Cg=="/>
         </item>
     </channel>
 </rss>
