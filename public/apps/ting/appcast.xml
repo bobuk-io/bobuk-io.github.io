@@ -3,22 +3,24 @@
     <channel>
         <title>Ting</title>
         <item>
-            <title>0.7.21</title>
-            <pubDate>Sun, 22 Nov 2026 22:51:56 +0200</pubDate>
+            <title>0.7.22</title>
+            <pubDate>Mon, 23 Nov 2026 00:25:21 +0200</pubDate>
             <link>https://bobuk.io/apps/ting/</link>
-            <sparkle:version>36</sparkle:version>
-            <sparkle:shortVersionString>0.7.21</sparkle:shortVersionString>
+            <sparkle:version>37</sparkle:version>
+            <sparkle:shortVersionString>0.7.22</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.21
+            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.22
 
-- **Chatta — built-in ACP agent chat and Ting configuration workspace:** open Chatta from Ting's menu bar, **launcha** (`chatta`), a **selecta** binding, or an optional global hotkey in **Settings › Chatta**. Switch between **Chat** (text-only conversation) and **Configure Ting** (a sandboxed workspace on your Ting folder that reads `CONFIGURING.md` / `FORMAT.md`, edits bindings, and writes and validates micro-apps with `ting-micro`). Closing the window hides it and keeps the conversation ready while automatically stopping idle agent subprocesses after a configurable timeout.
-- **ACP agent auto-detection and one-click adapter install (BobukKit 0.9.4):** Chatta discovers installed ACP agents (`Antigravity`, `Codex`, `Claude`, `Pi`, `Kimi`, `Gemini`, `OpenCode`) across common macOS tool paths (Homebrew, mise, nvm, fnm, Volta, Bun, pnpm, `~/.npmrc`), detects when a base CLI like `codex`, `claude`, or `pi` is installed without its `-acp` bridge, and offers **Install ACP Adapter** (or **Copy Command**) directly in Chatta and **Settings › Chatta**. Includes a shimmer status sweep while generating and Seatbelt PTY support for workspace validation commands.
-- **Headless `chatta:` micro-app step:** call your local ACP agent from any micro-app pipeline with optional `agent`, `model`, `effort`, `system`, `access` (`text`, `read`, `write`), and `cwd`, inheriting defaults from **Settings › Chatta** and streaming output into the result panel.
-- **Micro-app search, panel sizing, timeouts, and locale fixes:** `choose` steps now rank title matches above subtitle-only matches; **Settings › Micro-apps** adds configurable maximum timeout (`60–86400 s`, default `300 s`, with per-micro-app `timeout` capped by `maxTimeout`), result panel width (`480–1200 pt`), and result text size (`11–24 pt`); and micro-app subprocesses drop inherited `LANGUAGE` to avoid locale override issues.
+- **Opt-in agent tools in Chatta Chat mode:** built-in agent tools (such as `web_search`) stay off by default (`chatta.allowTools: false`), running inside the sandbox without host filesystem access when enabled. On the first tool call while off, Chatta asks inline whether to **Allow Always**, allow for **This Session**, or **Don't Allow**, and automatically retries your message once allowed. Toggle tools anytime from the Chatta header or **Settings › Chatta**.
+- **Immediate window and input focus:** opening Chatta from the menu bar, launcha, selecta, or a global hotkey now reliably activates the window and places keyboard focus directly in the message field.
+- **Upgraded Chatta chat experience (BobukKit 0.11.2):**
+  - **Auto-connect on send:** start typing and press `⌘↩` immediately, even after an idle disconnect.
+  - **Attachments, tables, activity disclosure, and history:** attach or drag & drop files and images (or paste clipboard images), inspect collapsible tool and thought activity, render Markdown tables, recall previous prompts with `↑`/`↓`, and regenerate or hover-copy replies.
+  - **Remembered choices and reliability:** Chatta remembers your last agent, model, and reasoning effort across sessions (when not pinned in Settings), handles stale model IDs cleanly when switching agents, prefers versioned `mise` binaries over stale shims, coalesces streaming chunks, and cleanly terminates agent process groups.
 
-Settings, bindings, micro-apps, and history are compatible with 0.7.20.
+Settings, bindings, micro-apps, and history are compatible with 0.7.21.
 ]]></description>
-            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.21/Ting-0.7.21-universal.zip" length="11438154" type="application/octet-stream" sparkle:edSignature="5YcYNs6dP08Fa3fhBwl3hWfAYufyXiDKQtpbhdvHL/QlD6KE7JshlFVG2ULoxtsFVMJ/7zeWV46TLKTSGmv4DA=="/>
+            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.22/Ting-0.7.22-universal.zip" length="12002919" type="application/octet-stream" sparkle:edSignature="b+FVn6hKps9/mpk6JaexnOs0hFD8ks7QZGaBirqjj2K85Z4JzcpLRHnhLxyHZ5eO9pS5ooAz1EmPznGyBvqFCg=="/>
         </item>
     </channel>
 </rss>
