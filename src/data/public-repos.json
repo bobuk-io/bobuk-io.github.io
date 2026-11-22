@@ -14,11 +14,11 @@
     ".github": "2026-11-18T15:00:37Z",
     "BobukKit": "2026-11-22T08:07:59Z",
     "HAScS": "2026-11-22T07:37:39Z",
-    "bobuk-io.github.io": "2026-11-22T15:14:35Z",
-    "homebrew-tap": "2026-11-22T20:32:43Z",
+    "bobuk-io.github.io": "2026-11-22T20:32:56Z",
+    "homebrew-tap": "2026-11-22T20:52:14Z",
     "lowkey": "2026-11-22T07:39:02Z",
     "splash-finish": "2026-11-22T20:32:41Z",
-    "ting": "2026-11-22T15:14:20Z"
+    "ting": "2026-11-22T20:52:12Z"
   },
   "releases": {
     "HAScS": {
@@ -37,9 +37,9 @@
       "url": "https://github.com/bobuk-io/splash-finish/releases/tag/v0.3.18"
     },
     "ting": {
-      "tag": "v0.7.20",
-      "publishedAt": "2026-11-22T15:14:20Z",
-      "url": "https://github.com/bobuk-io/ting/releases/tag/v0.7.20"
+      "tag": "v0.7.21",
+      "publishedAt": "2026-11-22T20:52:12Z",
+      "url": "https://github.com/bobuk-io/ting/releases/tag/v0.7.21"
     }
   }
 }
