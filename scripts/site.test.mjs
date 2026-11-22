@@ -156,6 +156,42 @@ test('Splash Finish release and upgrade instructions are available in every loca
   }
 });
 
+test('Splash Finish 0.3.17, Ting 0.7.19, lowkey 0.1.3 and HAScS 0.3.4 announce BobukKit 0.5.0 updates in every locale', async () => {
+  for (const locale of locales) {
+    if (snapshot.repositories.includes('splash-finish')) {
+      const app = await html(pathFor(locale, 'apps/splash-finish'));
+      const support = await html(pathFor(locale, 'apps/splash-finish/support'));
+      for (const text of ['0.3.17', 'BobukKit 0.5.0', 'More colors', 'Auto']) {
+        assert.ok(app.includes(text), `${locale}: splash-finish missing ${text}`);
+      }
+      assert.ok(app.indexOf('0.3.17?') < app.indexOf('0.3.16?'), `${locale}: 0.3.17 must come first`);
+      assert.ok(support.includes('0.3.17') && support.includes('More colors'), `${locale}: splash-finish support missing 0.3.17`);
+    }
+    if (snapshot.repositories.includes('ting')) {
+      const app = await html(pathFor(locale, 'apps/ting'));
+      const support = await html(pathFor(locale, 'apps/ting/support'));
+      for (const text of ['Ting 0.7.19', 'More colors', 'Catppuccin', 'Kanagawa']) {
+        assert.ok(app.includes(text), `${locale}: ting missing ${text}`);
+      }
+      assert.ok(support.includes('Ting 0.7.19') && support.includes('BobukKit 0.5.0'), `${locale}: ting support missing 0.7.19`);
+    }
+    if (snapshot.repositories.includes('lowkey')) {
+      const app = await html(pathFor(locale, 'apps/lowkey'));
+      const support = await html(pathFor(locale, 'apps/lowkey/support'));
+      for (const text of ['lowkey 0.1.3', 'BobukKit 0.5.0', 'More colors', '⌘L']) {
+        assert.ok(app.includes(text), `${locale}: lowkey missing ${text}`);
+      }
+      assert.ok(support.includes('lowkey 0.1.3') && support.includes('More colors'), `${locale}: lowkey support missing 0.1.3`);
+    }
+    if (snapshot.repositories.includes('HAScS')) {
+      const app = await html(pathFor(locale, 'apps/hascs'));
+      const support = await html(pathFor(locale, 'apps/hascs/support'));
+      assert.ok(app.includes('0.3.4') && app.includes('BobukKit 0.5.0'), `${locale}: hascs missing 0.3.4`);
+      assert.ok(support.includes('HAScS 0.3.4') && support.includes('BobukKit 0.5.0'), `${locale}: hascs support missing 0.3.4`);
+    }
+  }
+});
+
 test('Splash Finish 0.3.16 announces Antigravity, Copilot CLI, Codex async questions and Snooze in every locale', async () => {
   if (!snapshot.repositories.includes('splash-finish')) return;
   for (const locale of locales) {

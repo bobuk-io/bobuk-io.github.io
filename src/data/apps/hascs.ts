@@ -25,6 +25,7 @@ const copy: Record<Locale, AppCopy> = {
       { title: 'Open the remote', text: 'Click the house icon to choose a scene. The panel immediately accepts number keys. This command only opens the panel; it does not itself run a scene.', command: "open 'hascs://scenes'" },
     ],
     faq: [
+      { question: 'What’s new in 0.3.4?', answer: 'Updated Ukrainian and Russian panel hints to use «номер», and moved the scene panel and Settings onto the shared BobukKit 0.5.0 window shell. Scene tiles, shortcuts, reordering, activation and Keychain credentials stay unchanged.' },
       { question: 'What’s new in 0.3.3?', answer: 'The footer uses BobukKit, the shared bobuk.io component library, for keyboard hints. Each key stays next to its action. English, Ukrainian and Russian are retained; the scene grid, close button, reordering and activation are unchanged. Replace the app to update; your Keychain connection and saved scene assignments remain.' },
       { question: 'Do I need Home Assistant?', answer: 'Yes. HAScS is a remote for scenes in your own Home Assistant instance, not a replacement server. Up to nine scenes are available.' },
       { question: 'Does a successful request mean every device changed?', answer: 'No. The confirmation means Home Assistant accepted the request, not that every device reached its final state. Do not use this as a safety-critical controller.' },
@@ -32,6 +33,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
     supportIntro: 'Connection setup, scene selection, and help from the project. Never share your real Home Assistant token.',
     support: [
+      { title: 'HAScS 0.3.4: localized hint wording and BobukKit 0.5.0', paragraphs: ['The Ukrainian and Russian panel hints now say «номер» instead of «цифру», and the scene panel and Settings use the shared BobukKit 0.5.0 window shell. Replace /Applications/HAScS.app from GitHub Releases; your Keychain connection and scene order are retained.'] },
       { title: 'Connection troubleshooting', paragraphs: [], items: ['Check the URL in Settings and use HTTPS where possible. HTTP sends the token without transport encryption.', 'Check that the long-lived token is valid and that its Home Assistant user can access the scenes. Leave the token field empty to keep the saved token.', 'Install the latest release. Do not test by repeatedly activating scenes that affect real devices.'] },
       { title: 'Scene order and limits', paragraphs: ['The app displays up to nine scenes. Use Reorder to drag scenes or move them with Shift + arrow keys, then choose Done to save. Escape or closing the panel discards unsaved changes.'] },
       { title: 'Report a problem safely', paragraphs: ['Include the app and macOS versions, steps to reproduce, and the expected result. Redact server addresses, tokens, scene names, screenshots, and device details where necessary.', 'For security issues, use the private reporting instructions in SECURITY.md on GitHub, not a public issue.'] },
@@ -68,6 +70,7 @@ const copy: Record<Locale, AppCopy> = {
       { title: 'Откройте пульт', text: 'Нажмите на значок дома для выбора сцены. Панель сразу принимает цифровые клавиши. Эта команда только открывает панель и сама не запускает сцену.', command: "open 'hascs://scenes'" },
     ],
     faq: [
+      { question: 'Что нового в 0.3.4?', answer: 'В русской и украинской подсказках панели используется слово «номер», а панель сцен и Settings переведены на общую оконную оболочку BobukKit 0.5.0. Плитки сцен, клавиши, сортировка, запуск и подключение в Keychain сохранены.' },
       { question: 'Что нового в 0.3.3?', answer: 'Подсказки клавиш внизу панели теперь рисует BobukKit — общая библиотека компонентов bobuk.io. Клавиша остаётся рядом с действием. Английский, украинский и русский сохранены; сетка сцен, кнопка закрытия, изменение порядка и запуск сцен работают как раньше. Для обновления замените приложение; подключение в Keychain и назначенные номера сцен останутся.' },
       { question: 'Нужен ли Home Assistant?', answer: 'Да. HAScS — пульт для сцен в вашем Home Assistant, а не замена сервера. Доступно до девяти сцен.' },
       { question: 'Успешный запрос означает, что все устройства переключились?', answer: 'Нет. Подтверждение означает, что Home Assistant принял запрос, а не что каждое устройство достигло нужного состояния. Не используйте приложение для критичных систем безопасности.' },
@@ -75,6 +78,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
     supportIntro: 'Настройка подключения, выбор сцен и помощь проекта. Никогда не публикуйте настоящий токен Home Assistant.',
     support: [
+      { title: 'HAScS 0.3.4: формулировка подсказки и BobukKit 0.5.0', paragraphs: ['В русской и украинской подсказках используется слово «номер», а панель сцен и окно настроек переведены на общую оболочку BobukKit 0.5.0. Для обновления замените /Applications/HAScS.app архивом из GitHub Releases; подключение в Keychain и порядок сцен сохранятся.'] },
       { title: 'Проблемы с подключением', paragraphs: [], items: ['Проверьте URL в настройках; по возможности используйте HTTPS. Через HTTP токен передаётся без шифрования транспорта.', 'Проверьте действительность токена и доступ HA-пользователя к сценам. Пустое поле токена сохраняет прежнее значение.', 'Установите последний релиз. Не проверяйте подключение многократным запуском сцен, влияющих на реальные устройства.'] },
       { title: 'Порядок и ограничение сцен', paragraphs: ['Доступно до девяти сцен. В режиме Reorder перетаскивайте сцены или перемещайте их через Shift + стрелки, затем нажмите Done. Escape и закрытие панели отменяют несохранённые изменения.'] },
       { title: 'Как безопасно сообщить о проблеме', paragraphs: ['Укажите версии приложения и macOS, шаги воспроизведения и ожидаемый результат. При необходимости скройте адреса сервера, токены, названия сцен, скриншоты и сведения об устройствах.', 'Об уязвимостях сообщайте приватно по инструкции SECURITY.md на GitHub, а не в публичном issue.'] },
@@ -111,6 +115,7 @@ const copy: Record<Locale, AppCopy> = {
       { title: 'Відкрийте пульт', text: 'Натисніть значок будинку для вибору сцени. Панель одразу приймає цифрові клавіші. Ця команда лише відкриває панель і сама не запускає сцену.', command: "open 'hascs://scenes'" },
     ],
     faq: [
+      { question: 'Що нового в 0.3.4?', answer: 'В українській і російській підказках панелі використовується слово «номер», а панель сцен і Settings переведено на спільну віконну оболонку BobukKit 0.5.0. Плитки сцен, клавіші, впорядкування, запуск і підключення в Keychain збережено.' },
       { question: 'Що нового в 0.3.3?', answer: 'Підказки клавіш унизу панелі тепер використовують спільну бібліотеку компонентів bobuk.io — BobukKit. Клавіша залишається поруч із дією. Англійську, українську й російську збережено; сітка сцен, кнопка закриття, зміна порядку й запуск сцен працюють як і раніше. Для оновлення замініть застосунок; підключення в Keychain і призначені номери сцен залишаться.' },
       { question: 'Чи потрібен Home Assistant?', answer: 'Так. HAScS — пульт для сцен у вашому Home Assistant, а не заміна сервера. Доступно до дев’яти сцен.' },
       { question: 'Успішний запит означає, що всі пристрої перемкнулися?', answer: 'Ні. Підтвердження означає, що Home Assistant прийняв запит, а не що кожен пристрій досяг потрібного стану. Не використовуйте застосунок для критичних систем безпеки.' },
@@ -118,6 +123,7 @@ const copy: Record<Locale, AppCopy> = {
     ],
     supportIntro: 'Налаштування підключення, вибір сцен і допомога проєкту. Ніколи не публікуйте справжній токен Home Assistant.',
     support: [
+      { title: 'HAScS 0.3.4: формулювання підказки та BobukKit 0.5.0', paragraphs: ['В українській і російській підказках використовується слово «номер», а панель сцен і вікно налаштувань переведено на спільну оболонку BobukKit 0.5.0. Для оновлення замініть /Applications/HAScS.app архівом із GitHub Releases; підключення в Keychain і порядок сцен збережуться.'] },
       { title: 'Проблеми з підключенням', paragraphs: [], items: ['Перевірте URL у налаштуваннях; за можливості використовуйте HTTPS. Через HTTP токен передається без транспортного шифрування.', 'Перевірте чинність токена й доступ HA-користувача до сцен. Порожнє поле токена зберігає попереднє значення.', 'Встановіть останній реліз. Не перевіряйте підключення багаторазовим запуском сцен, що впливають на справжні пристрої.'] },
       { title: 'Порядок та обмеження сцен', paragraphs: ['Доступно до дев’яти сцен. У режимі Reorder перетягуйте сцени або переміщуйте їх через Shift + стрілки, а потім натисніть Done. Escape і закриття панелі скасовують незбережені зміни.'] },
       { title: 'Як безпечно повідомити про проблему', paragraphs: ['Укажіть версії застосунку та macOS, кроки відтворення й очікуваний результат. За потреби приховайте адреси сервера, токени, назви сцен, знімки екрана та відомості про пристрої.', 'Про вразливості повідомляйте приватно за інструкцією SECURITY.md на GitHub, а не в публічному issue.'] },
