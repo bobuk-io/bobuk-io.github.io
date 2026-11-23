@@ -3,24 +3,19 @@
     <channel>
         <title>Ting</title>
         <item>
-            <title>0.7.22</title>
-            <pubDate>Mon, 23 Nov 2026 00:25:21 +0200</pubDate>
+            <title>0.7.23</title>
+            <pubDate>Mon, 23 Nov 2026 15:00:34 +0200</pubDate>
             <link>https://bobuk.io/apps/ting/</link>
-            <sparkle:version>37</sparkle:version>
-            <sparkle:shortVersionString>0.7.22</sparkle:shortVersionString>
+            <sparkle:version>38</sparkle:version>
+            <sparkle:shortVersionString>0.7.23</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.22
+            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.23
 
-- **Opt-in agent tools in Chatta Chat mode:** built-in agent tools (such as `web_search`) stay off by default (`chatta.allowTools: false`), running inside the sandbox without host filesystem access when enabled. On the first tool call while off, Chatta asks inline whether to **Allow Always**, allow for **This Session**, or **Don't Allow**, and automatically retries your message once allowed. Toggle tools anytime from the Chatta header or **Settings › Chatta**.
-- **Immediate window and input focus:** opening Chatta from the menu bar, launcha, selecta, or a global hotkey now reliably activates the window and places keyboard focus directly in the message field.
-- **Upgraded Chatta chat experience (BobukKit 0.11.2):**
-  - **Auto-connect on send:** start typing and press `⌘↩` immediately, even after an idle disconnect.
-  - **Attachments, tables, activity disclosure, and history:** attach or drag & drop files and images (or paste clipboard images), inspect collapsible tool and thought activity, render Markdown tables, recall previous prompts with `↑`/`↓`, and regenerate or hover-copy replies.
-  - **Remembered choices and reliability:** Chatta remembers your last agent, model, and reasoning effort across sessions (when not pinned in Settings), handles stale model IDs cleanly when switching agents, prefers versioned `mise` binaries over stale shims, coalesces streaming chunks, and cleanly terminates agent process groups.
+- **Chatta Claude and ACP agent authentication (BobukKit 0.11.3):** ACP agent subprocesses now inherit `USER`, `LOGNAME` (falling back to the current macOS account name when unset), `SHELL`, and standard proxy/TLS environment variables (`HTTP_PROXY`, `HTTPS_PROXY`, `NO_PROXY`, `SSL_CERT_FILE`, `NODE_EXTRA_CA_CERTS`). This fixes Claude Code failing with *"OAuth session expired and could not be refreshed"* when looking up its macOS Keychain credentials under `$USER`.
 
-Settings, bindings, micro-apps, and history are compatible with 0.7.21.
+Settings, bindings, micro-apps, and history are compatible with 0.7.22.
 ]]></description>
-            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.22/Ting-0.7.22-universal.zip" length="12002919" type="application/octet-stream" sparkle:edSignature="b+FVn6hKps9/mpk6JaexnOs0hFD8ks7QZGaBirqjj2K85Z4JzcpLRHnhLxyHZ5eO9pS5ooAz1EmPznGyBvqFCg=="/>
+            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.23/Ting-0.7.23-universal.zip" length="12003992" type="application/octet-stream" sparkle:edSignature="NSlSf5ws6p1tOeUO28m11WRIFTjvUNKVTsvBk87u86Vyvsuc4Gd4+/5dvLG11yxpiShSLwMT8ji9GfyN8uN0Cw=="/>
         </item>
     </channel>
 </rss>
