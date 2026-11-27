@@ -59,7 +59,7 @@ Slug — постоянный адрес `/apps/<slug>/`, его нельзя м
 - Все нативные приложения выпускаются одним набором скриптов `Scripts/release/` (описание — `Scripts/release/README.md` в любом приложении). `Scripts/release_next.sh` сам публикует релиз на GitHub (вместе с `appcast.xml` для Ting 0.6.1 и старше), копирует `dist/appcast.xml` сюда, выполняет `npm run deploy`, коммитит и пушит этот репозиторий и ждёт новую версию в живом фиде. Тексты релиза на сайте закоммитьте до запуска: скрипт требует чистый `main`. Если шаг сайта упал, `Scripts/release/landing.sh` в приложении доделывает его.
 - Не правьте `appcast.xml` руками: он подписан ключом Sparkle вместе с архивом. Копируйте только файл из `dist/` релиза, уже опубликованного на GitHub.
 - Файл должен быть в репозитории: `npm run deploy` делает `rsync --delete`, и файл, положенный на сервер отдельно, удалится. Проверка `Ting update feed…` в `scripts/site.test.mjs` следит, что фид на месте и ссылается на подписанные архивы GitHub.
-- После деплоя проверьте, что `https://bobuk.io/apps/ting/appcast.xml` отвечает HTTP 200 с новой версией.
+- После деплоя проверьте, что `https://bobuk.io/apps/ting/appcast.xml` отвечает HTTP 200 с новой версией. Если там старая версия, а `npm run deploy` прошёл, прокси Sigma отдаёт прошлую публикацию статического стека: выполните на oranges.team `/stacks/sigma/bin/ss-static sync bobuk-io` (подробнее — README, раздел «Деплой»), затем `Scripts/release/landing.sh` в приложении.
 
 ### Фид обновлений Splash Finish
 

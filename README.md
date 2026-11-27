@@ -47,7 +47,7 @@ swift scripts/capture-windows.swift <pid или имя процесса> <пре
 
 Сайт: **https://bobuk.io/**. Репозиторий: [bobuk-io/bobuk-io.github.io](https://github.com/bobuk-io/bobuk-io.github.io).
 
-Сайт работает на сервере oranges.team, в стеке Sigma Stacks `/stacks/bobuk-io`. Контейнер static-web-server отдаёт файлы из `/stacks/bobuk-io/data/public`; сертификаты для `bobuk.io` и `www.bobuk.io` выпускает прокси (HTTP-01). DNS — A-запись `bobuk.io` в Cloudflare без проксирования; `*.bobuk.io` — CNAME на `bobuk.io`.
+Сайт работает на сервере oranges.team, в статическом стеке Sigma Stacks `/stacks/bobuk-io` (файл `static.toml`, без контейнера). Файлы лежат в `/stacks/bobuk-io/data/public`, но прокси Sigma отдаёт не их, а опубликованную копию в `/stacks/sigma/proxy/sites/bobuk-io`. Копию обновляет `/stacks/sigma/bin/ss-static sync bobuk-io`: пока её не запустили, сайт показывает прошлую публикацию. Сертификаты для `bobuk.io` и `www.bobuk.io` выпускает прокси (HTTP-01). DNS — A-запись `bobuk.io` в Cloudflare без проксирования; `*.bobuk.io` — CNAME на `bobuk.io`.
 
 Публикация — вручную с Mac, нужен SSH-доступ к `oranges.team`:
 
@@ -55,7 +55,19 @@ swift scripts/capture-windows.swift <pid или имя процесса> <пре
 npm run deploy
 ```
 
-Скрипт `scripts/deploy.sh` проверяет публичность репозиториев, собирает сайт с `SITE_URL=https://bobuk.io`, запускает тесты, копирует `dist/` через rsync и проверяет, что главные страницы отвечают HTTP 200. Static-web-server читает файлы при каждом запросе, поэтому перезапуск не нужен. HTML, `sitemap.xml` и `robots.txt` отдаются с `Cache-Control: no-cache`. Другой сервер или путь: `DEPLOY_HOST` и `DEPLOY_PATH`.
+Скрипт `scripts/deploy.sh`:
+
+1. проверяет публичность репозиториев (`npm run sync:github`);
+2. собирает сайт с `SITE_URL=https://bobuk.io` и запускает тесты;
+3. копирует `dist/` через `rsync --delete` в `data/public` стека;
+4. публикует копию через SSH: `ss-static sync bobuk-io`, если в стеке есть `static.toml`. Стеку на Compose (без `static.toml`) этот шаг не нужен;
+5. проверяет, что `/`, `/ru/`, `/uk/` и `sitemap.xml` отвечают HTTP 200.
+
+Перезапуск не нужен. Другой сервер, путь или стек: `DEPLOY_HOST`, `DEPLOY_PATH` и `DEPLOY_STACK`.
+
+Ответ 200 ещё не значит, что новая версия на сайте: проверьте новый факт на живой странице, для релиза Ting — версию в `https://bobuk.io/apps/ting/appcast.xml`. `Scripts/release_next.sh` приложений делает это сам и падает, если фид не обновился. Если сайт показывает старое, а в `data/public` уже новые файлы, выполните на сервере `/stacks/sigma/bin/ss-static sync bobuk-io`.
+
+В статическом режиме прокси отдаёт все файлы, включая хешированные `/_astro/*`, с `Cache-Control: no-cache`, а на несуществующий адрес — 404 без страницы `404.html`. Настройки `data/sws.toml` (кэш по типам файлов и `page404`) действовали, пока сайт отдавал контейнер static-web-server, и сейчас не применяются; кэш задаётся ключом `cache_control` в `static.toml`.
 
 Автоматической ежедневной сборки для bobuk.io нет. Если репозиторий приложения стал приватным, запустите `npm run deploy` вручную.
 
