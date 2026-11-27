@@ -390,6 +390,24 @@ test('Ting documents release 0.4.0 micro-apps and their security model in every 
   }
 });
 
+test('Ting documents release 0.7.26 My Schedule and Calendar access in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  for (const locale of locales) {
+    for (const route of ['apps/ting', 'apps/ting/support']) {
+      assert.ok((await html(pathFor(locale, route))).includes('Ting 0.7.26'), `${locale}: missing 0.7.26 on ${route}`);
+    }
+    const support = await html(pathFor(locale, 'apps/ting/support'));
+    for (const text of ['My Schedule', 'Settings › My Schedule', 'Allow Calendar Access', 'Google Meet', 'Zoom']) {
+      assert.ok(support.includes(text), `${locale}: missing ${text} on the support page`);
+    }
+    const privacy = await html(pathFor(locale, 'apps/ting/privacy'));
+    for (const text of ['My Schedule', 'Allow Calendar Access']) {
+      assert.ok(privacy.includes(text), `${locale}: missing privacy fact ${text}`);
+    }
+    assert.ok((await html(pathFor(locale, 'apps/ting'))).includes('0.7.26'), `${locale}: the permissions answer does not mention My Schedule`);
+  }
+});
+
 test('Ting documents release 0.7.25 window hotkey crash fix in every locale', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   for (const locale of locales) {
