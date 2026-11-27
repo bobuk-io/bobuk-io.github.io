@@ -390,6 +390,19 @@ test('Ting documents release 0.4.0 micro-apps and their security model in every 
   }
 });
 
+test('Ting documents release 0.7.25 window hotkey crash fix in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  for (const locale of locales) {
+    for (const route of ['apps/ting', 'apps/ting/support']) {
+      assert.ok((await html(pathFor(locale, route))).includes('Ting 0.7.25'), `${locale}: missing 0.7.25 on ${route}`);
+    }
+    const support = await html(pathFor(locale, 'apps/ting/support'));
+    for (const text of ['Settings', 'Check for Updates…', 'brew upgrade --cask --greedy bobuk-io/tap/ting']) {
+      assert.ok(support.includes(text), `${locale}: missing ${text} on the support page`);
+    }
+  }
+});
+
 test('Ting documents release 0.7.24 window management, its permission and files beside apps in every locale', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   for (const locale of locales) {
