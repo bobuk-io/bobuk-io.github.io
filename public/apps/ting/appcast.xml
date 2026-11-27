@@ -3,20 +3,21 @@
     <channel>
         <title>Ting</title>
         <item>
-            <title>0.7.27</title>
-            <pubDate>Fri, 27 Nov 2026 19:59:44 +0200</pubDate>
+            <title>0.7.28</title>
+            <pubDate>Fri, 27 Nov 2026 20:23:51 +0200</pubDate>
             <link>https://bobuk.io/apps/ting/</link>
-            <sparkle:version>42</sparkle:version>
-            <sparkle:shortVersionString>0.7.27</sparkle:shortVersionString>
+            <sparkle:version>43</sparkle:version>
+            <sparkle:shortVersionString>0.7.28</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.27
+            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.28
 
-- **Extended key capture:** a new **Settings › Keys & Launch › Extended key capture (HID)** switch, off by default (`"extendedKeys": true` in `config.json`). Ting then reads the keys that macOS ignores — Stop, Again, Undo, Cut, Copy, Paste, Find, Execute, Menu, Select and F21–F24 — straight from the keyboard, so they can be the leader, any other Ting hotkey and keys inside the menu, with or without modifiers. It needs Input Monitoring, which Ting asks for once when you turn it on; Ting looks only for these keys and keeps nothing it reads (BobukKit 0.13.1).
-- **Any key in the menu:** bindings are no longer limited to letters, digits, Space, Return and F-keys. Signs such as `[`, `;` and `/`, Tab, Home, End, Page Up and Down, keypad Clear and keys without a name (`key10` for the ISO § key) work too. Esc, ⌫ and the arrows still move through the menu.
+- **Homebrew updates and `brew trust`:** Homebrew now loads casks from taps other than its own only after you trust them, so a copy installed from `bobuk-io/tap` failed to update with "Refusing to load cask bobuk-io/tap/ting from untrusted tap". The **Update Ting via Homebrew…** window now recognizes this, explains it and offers **Trust and Update**: only when you click it, Ting runs `brew trust --cask bobuk-io/tap/ting` (this cask only) and the same update again. If your copy cannot update to 0.7.28 for this reason, run `brew trust bobuk-io/tap` once, then `brew upgrade --cask bobuk-io/tap/ting`.
+- **Fresh releases are found:** Homebrew updates refresh the taps first, so a release published minutes ago is installed instead of "already up to date".
+- **Plain `brew upgrade` includes Ting:** the cask no longer says `auto_updates`, so `brew upgrade` and `brew outdated` list Ting without `--greedy`.
 
-Settings, bindings, micro-apps, and history are compatible with 0.7.26.
+BobukKit 0.13.3. Settings, bindings, micro-apps, and history are compatible with 0.7.27.
 ]]></description>
-            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.27/Ting-0.7.27-universal.zip" length="12966787" type="application/octet-stream" sparkle:edSignature="WJn4yrEm3adDyCjO4UkoLe2aP4Hg1BEk5AtS8yYFuZkrnTPhfkLRt2wUAJ/RzPQzUv589l8OgWovxHNJ+W4tAw=="/>
+            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.28/Ting-0.7.28-universal.zip" length="12996118" type="application/octet-stream" sparkle:edSignature="4cCnQla+5G3sZoa1vEI1LiiNyeIe8SgZMPI5SWiMMHYvy0JyQ6LqDojsPbZYx2OJclf/t7zz6aKTaDi3e4glDg=="/>
         </item>
     </channel>
 </rss>
