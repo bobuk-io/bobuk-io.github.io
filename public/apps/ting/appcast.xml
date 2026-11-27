@@ -3,19 +3,21 @@
     <channel>
         <title>Ting</title>
         <item>
-            <title>0.7.25</title>
-            <pubDate>Fri, 27 Nov 2026 16:20:28 +0200</pubDate>
+            <title>0.7.26</title>
+            <pubDate>Fri, 27 Nov 2026 17:11:27 +0200</pubDate>
             <link>https://bobuk.io/apps/ting/</link>
-            <sparkle:version>40</sparkle:version>
-            <sparkle:shortVersionString>0.7.25</sparkle:shortVersionString>
+            <sparkle:version>41</sparkle:version>
+            <sparkle:shortVersionString>0.7.26</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.25
+            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.26
 
-- **Fix: window hotkeys no longer crash Ting.** Pressing a window-command hotkey while a Ting window was in front, for example right after recording it in Settings › Windows, quit Ting. Ting's own windows are now moved on the main thread; other apps' windows are still moved in the background, so an unresponsive app cannot freeze Ting.
+- **My Schedule:** a read-only calendar panel. Search for **My Schedule** in launcha, choose it from Ting's menu, or bind it in selecta (`"open": "schedule"`). It shows whether you are free now, your upcoming events and the useful free gaps of the next seven days. Up and down select an event; `Return` or a double-click joins its Google Meet, Zoom, Microsoft Teams, Webex, Jitsi, Whereby, Slack huddle or other recognized meeting link. Choose which calendars it reads in **Settings › My Schedule** (`schedule.calendars` in `config.json`; `null`, the default, means all of them). Contributed by Serhiy Zabolotnyy (#33).
+- **Calendar access:** My Schedule asks for macOS Calendar access only when you click **Allow Calendar Access**. Ting only reads events: it never creates, changes or deletes them, keeps nothing about them on disk, looks at event notes only to find a known meeting link, and opens a link only when you choose the event.
+- **Contributors:** About Ting now lists everyone who contributed to Ting on GitHub, each linked to their profile; the same list is in `CONTRIBUTORS.md`.
 
-Settings, bindings, micro-apps, and history are compatible with 0.7.24.
+Settings, bindings, micro-apps, and history are compatible with 0.7.25.
 ]]></description>
-            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.25/Ting-0.7.25-universal.zip" length="12418494" type="application/octet-stream" sparkle:edSignature="4bs2/QojDLztpuLchAxhCBdvpqmijrEZl76yaCRu72vcLRAldfw6SUOC2Ue7eRkjjtpWI0sTM8BkE+6SBi1OBw=="/>
+            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.26/Ting-0.7.26-universal.zip" length="12897497" type="application/octet-stream" sparkle:edSignature="2T/BMTubZEiPQEA965PnON2USGCMfzEGGwPHLKG2Bgkmz+x5fbj3dotXO18VRkUbY/qMdwKi/xctWsyIkrqdAA=="/>
         </item>
     </channel>
 </rss>
