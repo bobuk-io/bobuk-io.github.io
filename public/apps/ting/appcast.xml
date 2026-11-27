@@ -3,19 +3,29 @@
     <channel>
         <title>Ting</title>
         <item>
-            <title>0.7.23</title>
-            <pubDate>Mon, 23 Nov 2026 15:00:34 +0200</pubDate>
+            <title>0.7.24</title>
+            <pubDate>Fri, 27 Nov 2026 15:58:43 +0200</pubDate>
             <link>https://bobuk.io/apps/ting/</link>
-            <sparkle:version>38</sparkle:version>
-            <sparkle:shortVersionString>0.7.23</sparkle:shortVersionString>
+            <sparkle:version>39</sparkle:version>
+            <sparkle:shortVersionString>0.7.24</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.23
+            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.24
 
-- **Chatta Claude and ACP agent authentication (BobukKit 0.11.3):** ACP agent subprocesses now inherit `USER`, `LOGNAME` (falling back to the current macOS account name when unset), `SHELL`, and standard proxy/TLS environment variables (`HTTP_PROXY`, `HTTPS_PROXY`, `NO_PROXY`, `SSL_CERT_FILE`, `NODE_EXTRA_CA_CERTS`). This fixes Claude Code failing with *"OAuth session expired and could not be refreshed"* when looking up its macOS Keychain credentials under `$USER`.
+- **Window management:** move or resize the focused window into halves, quarters or thirds, maximize or center it, restore its previous frame, or move it to the previous or next display, with an optional gap. Add a leader binding with **Settings › Bindings › + › Window** (`"window": "left-half"` in `config.json`), or record direct hotkeys and set the gap in the new **Settings › Windows** page. Window commands need Accessibility; Settings › Windows shows whether it is allowed. Contributed by Serhiy Zabolotnyy (#15).
+- **Micro-app hotkeys:** start a micro-app with one global shortcut, without the leader. Record it in the Hotkey column of **Settings › Micro-apps**, or add `microHotkeys` to `config.json` (#26).
+- **launcha files beside apps:** files from Spotlight now appear below matching apps for queries of three or more characters, instead of only when no app matches. `⌘↓` jumps to the first file, and the selection stays on files while you type (#24). Adding characters to a finished search answers at once, without the blank list and a new Spotlight query (#25). Recently changed files come first.
+- **Desktop, Documents and Downloads:** after you allow these folders, Ting reads each one once, so macOS asks about every folder, not only Desktop (#23).
+- **iCloud Drive in launcha:** a new **Search iCloud Drive** switch in Settings › launcha, off by default and separate from the Desktop, Documents and Downloads consent (#27).
+- **Chatta text size:** `⌘+`, `⌘−` and `⌘0` in the Chatta window, and **Settings › Chatta › Text size** (80–200%), scale the chat text, headings, code and the message field. The size is kept between launches (#32).
+- **Chatta send key:** **Settings › Chatta › Send with** chooses `⌘↩` (default) or `↩`, where `⇧↩` adds a line (#20).
+- **Chatta finds more ACP adapters:** adapters installed with pnpm 11 or newer and with fnm in `~/.local/share/fnm`, `$FNM_DIR` or Application Support are now found when Ting starts at login (BobukKit 0.12.0, #13, #19).
+- **Clipbawd plain text:** `⇧↩` pastes only the text of an item, without fonts, colors or links (#16).
+- **Running apps without windows:** opening an app from Ting that is running with all its windows closed now shows its window, as a Dock click does, for every app, not only 1Password (#28).
+- **Micro-app AI effort:** `ai:` steps with `provider: anthropic` accept `effort: low|medium|high|xhigh|max` (#30).
 
-Settings, bindings, micro-apps, and history are compatible with 0.7.22.
+Settings, bindings, micro-apps, and history are compatible with 0.7.23.
 ]]></description>
-            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.23/Ting-0.7.23-universal.zip" length="12003992" type="application/octet-stream" sparkle:edSignature="NSlSf5ws6p1tOeUO28m11WRIFTjvUNKVTsvBk87u86Vyvsuc4Gd4+/5dvLG11yxpiShSLwMT8ji9GfyN8uN0Cw=="/>
+            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.24/Ting-0.7.24-universal.zip" length="12415350" type="application/octet-stream" sparkle:edSignature="5iwlK6MgdoloEIUQ8XBZfl8kSCH77PKYCAlOFsAR784lhaVaJtCBYkA1sMhPDPjzmZ3gqtslftJpEKpLpaxrBA=="/>
         </item>
     </channel>
 </rss>
