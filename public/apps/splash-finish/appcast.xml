@@ -3,20 +3,21 @@
     <channel>
         <title>Splash Finish</title>
         <item>
-            <title>0.3.18</title>
-            <pubDate>Sun, 22 Nov 2026 22:32:25 +0200</pubDate>
+            <title>0.3.19</title>
+            <pubDate>Fri, 27 Nov 2026 20:25:48 +0200</pubDate>
             <link>https://bobuk.io/apps/splash-finish/</link>
-            <sparkle:version>24</sparkle:version>
-            <sparkle:shortVersionString>0.3.18</sparkle:shortVersionString>
+            <sparkle:version>25</sparkle:version>
+            <sparkle:shortVersionString>0.3.19</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Splash Finish 0.3.18
+            <description sparkle:format="markdown"><![CDATA[# Splash Finish 0.3.19
 
-- **Oh My Pi (OMP) integration:** install or update from **Integrations** or with `splash-finish install-skills --agent omp` (and inspect with `splash-finish doctor` or remove with `uninstall-skills --agent omp`). Notifies from the main interactive terminal session when turns settle — waiting for background async jobs and queued messages — or when OMP needs attention for `ask`, tool approvals, or plan reviews, without copying prompts, answers, or transcripts into the inbox. Honors `PI_CONFIG_DIR`, `OMP_PROFILE` / `PI_PROFILE`, `PI_CODING_AGENT_DIR`, and `SPLASH_FINISH_DISABLED=1`, and prevents conflicting installs when pi and OMP point to the same agent directory.
-- **Agterm session links:** `agterm://` is now allowed in `--source-url` (for example `--source-url "agterm://session/$AGTERM_SESSION_ID"`), so clicking a notification can return directly to the originating Agterm session.
+- **Agterm sessions without `--source-url`:** in a local Agterm session (`AGTERM_ENABLED=1` and a full `AGTERM_SESSION_ID`), `notify` and the installed hooks capture the `agterm://session/<UUID>` link themselves, so clicking a notification returns to that session. An explicit `--source-url` still takes precedence; the link selects the session, not a split pane. Contributed by Gregory Nickonov (#8).
+- **Homebrew updates and `brew trust`:** Homebrew now loads casks from taps other than its own only after you trust them. When an update fails with "Refusing to load cask bobuk-io/tap/splash-finish from untrusted tap", the **Update Splash Finish via Homebrew…** window explains it and offers **Trust and Update**, which runs `brew trust --cask bobuk-io/tap/splash-finish` only when you click it, then updates. If your copy cannot reach 0.3.19 for this reason, run `brew trust bobuk-io/tap` once, then `brew upgrade --cask bobuk-io/tap/splash-finish`.
+- **Fresh releases are found:** Homebrew updates refresh the taps first, and the cask no longer says `auto_updates`, so a plain `brew upgrade` includes Splash Finish.
 
 Your inbox, settings, and existing integrations are retained. Homebrew copies update with **Update Splash Finish via Homebrew…**; standalone copies update with **Check for Updates…**.
 ]]></description>
-            <enclosure url="https://github.com/bobuk-io/splash-finish/releases/download/v0.3.18/SplashFinish-0.3.18-universal.zip" length="4635440" type="application/octet-stream" sparkle:edSignature="5a9h/HZ9b5yPpHCZ0UG/xzphspLPpkY0/+Xd2fSPX8Oh3GxruQm8AaZX660lfpF7zjznHc9h8g37oWwZzjhIBw=="/>
+            <enclosure url="https://github.com/bobuk-io/splash-finish/releases/download/v0.3.19/SplashFinish-0.3.19-universal.zip" length="5262705" type="application/octet-stream" sparkle:edSignature="gdFyIbHqQ67E6BZsJOHMFqD+mYuKRUT5ZWALYt5+zUjrxyKXkUhhg403N7T2fhYJviliEcnzNEGY7aqPnmR2Cg=="/>
         </item>
     </channel>
 </rss>
