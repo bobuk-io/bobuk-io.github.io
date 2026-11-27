@@ -3,21 +3,20 @@
     <channel>
         <title>Ting</title>
         <item>
-            <title>0.7.26</title>
-            <pubDate>Fri, 27 Nov 2026 17:11:27 +0200</pubDate>
+            <title>0.7.27</title>
+            <pubDate>Fri, 27 Nov 2026 19:59:44 +0200</pubDate>
             <link>https://bobuk.io/apps/ting/</link>
-            <sparkle:version>41</sparkle:version>
-            <sparkle:shortVersionString>0.7.26</sparkle:shortVersionString>
+            <sparkle:version>42</sparkle:version>
+            <sparkle:shortVersionString>0.7.27</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.26
+            <description sparkle:format="markdown"><![CDATA[# Ting 0.7.27
 
-- **My Schedule:** a read-only calendar panel. Search for **My Schedule** in launcha, choose it from Ting's menu, or bind it in selecta (`"open": "schedule"`). It shows whether you are free now, your upcoming events and the useful free gaps of the next seven days. Up and down select an event; `Return` or a double-click joins its Google Meet, Zoom, Microsoft Teams, Webex, Jitsi, Whereby, Slack huddle or other recognized meeting link. Choose which calendars it reads in **Settings › My Schedule** (`schedule.calendars` in `config.json`; `null`, the default, means all of them). Contributed by Serhiy Zabolotnyy (#33).
-- **Calendar access:** My Schedule asks for macOS Calendar access only when you click **Allow Calendar Access**. Ting only reads events: it never creates, changes or deletes them, keeps nothing about them on disk, looks at event notes only to find a known meeting link, and opens a link only when you choose the event.
-- **Contributors:** About Ting now lists everyone who contributed to Ting on GitHub, each linked to their profile; the same list is in `CONTRIBUTORS.md`.
+- **Extended key capture:** a new **Settings › Keys & Launch › Extended key capture (HID)** switch, off by default (`"extendedKeys": true` in `config.json`). Ting then reads the keys that macOS ignores — Stop, Again, Undo, Cut, Copy, Paste, Find, Execute, Menu, Select and F21–F24 — straight from the keyboard, so they can be the leader, any other Ting hotkey and keys inside the menu, with or without modifiers. It needs Input Monitoring, which Ting asks for once when you turn it on; Ting looks only for these keys and keeps nothing it reads (BobukKit 0.13.1).
+- **Any key in the menu:** bindings are no longer limited to letters, digits, Space, Return and F-keys. Signs such as `[`, `;` and `/`, Tab, Home, End, Page Up and Down, keypad Clear and keys without a name (`key10` for the ISO § key) work too. Esc, ⌫ and the arrows still move through the menu.
 
-Settings, bindings, micro-apps, and history are compatible with 0.7.25.
+Settings, bindings, micro-apps, and history are compatible with 0.7.26.
 ]]></description>
-            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.26/Ting-0.7.26-universal.zip" length="12897497" type="application/octet-stream" sparkle:edSignature="2T/BMTubZEiPQEA965PnON2USGCMfzEGGwPHLKG2Bgkmz+x5fbj3dotXO18VRkUbY/qMdwKi/xctWsyIkrqdAA=="/>
+            <enclosure url="https://github.com/bobuk-io/ting/releases/download/v0.7.27/Ting-0.7.27-universal.zip" length="12966787" type="application/octet-stream" sparkle:edSignature="WJn4yrEm3adDyCjO4UkoLe2aP4Hg1BEk5AtS8yYFuZkrnTPhfkLRt2wUAJ/RzPQzUv589l8OgWovxHNJ+W4tAw=="/>
         </item>
     </channel>
 </rss>
