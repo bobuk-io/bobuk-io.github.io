@@ -390,6 +390,25 @@ test('Ting documents release 0.4.0 micro-apps and their security model in every 
   }
 });
 
+test('Ting documents release 0.7.24 window management, its permission and files beside apps in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  for (const locale of locales) {
+    for (const route of ['apps/ting', 'apps/ting/support']) {
+      assert.ok((await html(pathFor(locale, route))).includes('Ting 0.7.24'), `${locale}: missing 0.7.24 on ${route}`);
+    }
+    const support = await html(pathFor(locale, 'apps/ting/support'));
+    for (const text of ['Settings › Windows', 'left-half', 'Settings › Micro-apps', '⌘↓', 'Search iCloud Drive', 'Text size', 'Send with', 'pnpm', 'fnm', '⇧Return']) {
+      assert.ok(support.includes(text), `${locale}: missing ${text} on the support page`);
+    }
+    const privacy = await html(pathFor(locale, 'apps/ting/privacy'));
+    for (const text of ['iCloud Drive', 'Search iCloud Drive']) {
+      assert.ok(privacy.includes(text), `${locale}: missing privacy fact ${text}`);
+    }
+    const page = await html(pathFor(locale, 'apps/ting'));
+    assert.ok(page.includes('0.7.24'), `${locale}: the permissions answer does not mention window commands`);
+  }
+});
+
 test('Ting documents release 0.7.0 calculator and the bobuk.io feed in every locale', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   for (const locale of locales) {
