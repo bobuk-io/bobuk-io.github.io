@@ -390,6 +390,22 @@ test('Ting documents release 0.4.0 micro-apps and their security model in every 
   }
 });
 
+test('Ting documents release 0.7.27 extended key capture in every locale', async () => {
+  if (!snapshot.repositories.includes('ting')) return;
+  for (const locale of locales) {
+    for (const route of ['apps/ting', 'apps/ting/support']) {
+      assert.ok((await html(pathFor(locale, route))).includes('Ting 0.7.27'), `${locale}: missing 0.7.27 on ${route}`);
+    }
+    const support = await html(pathFor(locale, 'apps/ting/support'));
+    for (const text of ['Extended key capture (HID)', 'extendedKeys', 'Stop', 'Again', 'F21–F24', 'Karabiner-Elements', 'key10']) {
+      assert.ok(support.includes(text), `${locale}: missing ${text} on the support page`);
+    }
+    const privacy = await html(pathFor(locale, 'apps/ting/privacy'));
+    assert.ok(privacy.includes('Extended key capture'), `${locale}: the privacy page does not explain Input Monitoring`);
+    assert.ok((await html(pathFor(locale, 'apps/ting'))).includes('0.7.27'), `${locale}: the permissions answer does not mention extended keys`);
+  }
+});
+
 test('Ting documents release 0.7.26 My Schedule and Calendar access in every locale', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   for (const locale of locales) {
