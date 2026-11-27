@@ -390,6 +390,22 @@ test('Ting documents release 0.4.0 micro-apps and their security model in every 
   }
 });
 
+test('Ting 0.7.28 and Splash Finish 0.3.19 explain brew trust for Homebrew updates in every locale', async () => {
+  const apps = [['ting', 'Ting 0.7.28', 'brew trust --cask bobuk-io/tap/ting'], ['splash-finish', '0.3.19', 'brew trust --cask bobuk-io/tap/splash-finish']];
+  for (const [slug, release, trustCask] of apps) {
+    if (!snapshot.repositories.includes(slug)) continue;
+    for (const locale of locales) {
+      const page = await html(pathFor(locale, `apps/${slug}`));
+      assert.ok(page.includes(release), `${locale}: missing ${release} on apps/${slug}`);
+      assert.ok(page.includes('brew trust bobuk-io/tap'), `${locale}: apps/${slug} does not say how to trust the tap`);
+      const support = await html(pathFor(locale, `apps/${slug}/support`));
+      for (const text of [release, 'Trust and Update', trustCask, 'Refusing to load cask', 'auto_updates']) {
+        assert.ok(support.includes(text), `${locale}: missing ${text} on apps/${slug}/support`);
+      }
+    }
+  }
+});
+
 test('Ting documents release 0.7.27 extended key capture in every locale', async () => {
   if (!snapshot.repositories.includes('ting')) return;
   for (const locale of locales) {
